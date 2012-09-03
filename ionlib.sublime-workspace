@@ -1,0 +1,300 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tf2",
+				"tf2_key"
+			],
+			[
+				"mysql_num",
+				"mysql_num_rows"
+			],
+			[
+				"mysql_er",
+				"mysql_error"
+			],
+			[
+				"error",
+				"error_log"
+			],
+			[
+				"mysqlerr",
+				"mysql_error"
+			],
+			[
+				"mcrypt_gener",
+				"mcrypt_generic_init"
+			],
+			[
+				"Numbeo",
+				"NumberOfBytesToProtect"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/projects/Vox/TF2/StrEnc.h",
+		"/C/projects/Vox/TF2/StrEnc.cpp",
+		"/C/projects/Vox/TF2/Entropy.h",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tomorrow-Night.tmTheme",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tubster.tmTheme",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Stanley/Documents/Contests/USACO/2012/jan12/climb.myjudge.cpp",
+		"/C/Users/Stanley/Documents/Contests/USACO/2012/open12/bookshelf.cpp",
+		"/C/Users/Stanley/Documents/Contests/USACO/2012/camp/files_from_camp/Code/eval/shortpal.cpp",
+		"/C/Users/Stanley/Downloads/test.cpp",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tomorrow-Night-Eighties.tmTheme",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tomorrow-Night-Blue.tmTheme",
+		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tomorrow-Night-Bright.tmTheme",
+		"/C/Users/Stanley/Downloads/phpseclib0.2.2/PHP/Compat/Function/array_fill.php",
+		"/G/projects/0ToBeSorted/SAM63/SAM.API/SAM/API/Client.cs",
+		"/C/Users/Stanley/Dropbox/menu.cpp",
+		"/C/projects/Vox/VACHook/Input.txt",
+		"/C/projects/Vox/VACHook/DLLMain.cpp",
+		"/C/projects/Vox/VACHook/Dbg.txt",
+		"/C/projects/Vox/TF2/Hook.txt",
+		"/C/projects/Vox/WebBackend/voxation.intmax.org/Crypt/AES.php",
+		"/C/Users/Stanley/Downloads/Retrum/TF2Debug.txt",
+		"/C/projects/Vox/WebBackend/voxation.intmax.org/index.php",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/CFW1FontWrapperInterface.cpp",
+		"/C/Users/Stanley/Downloads/BF3EngineDrawing/BF3EngineDrawing/BF3EngineDrawing/EntryPoint.cpp",
+		"/C/Users/Stanley/Downloads/hwoverlay (1).cpp",
+		"/C/Users/Stanley/Downloads/hwoverlay.cpp",
+		"/C/Users/Stanley/Downloads/BF3EngineDrawing/BF3EngineDrawing/BF3EngineDrawing/ReversedStructs.h",
+		"/C/Users/Stanley/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Jessecar96/TF2ItemsScanner2.appref-ms",
+		"/C/Users/Stanley/Downloads/BF3EngineDrawing/BF3EngineDrawing/BF3EngineDrawing/includes.h",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/CFW1FontWrapper.cpp",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/CFW1DWriteRenderTarget.cpp",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/FW1Precompiled.cpp",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/FW1FontWrapper.cpp",
+		"/C/projects/Vox/FW1FontWrapper/Src/FW1FontWrapper/Source/CFW1TextGeometry.cpp",
+		"/C/tmp/buf.cpp",
+		"/C/projects/Vox/.git/info/exclude",
+		"/C/projects/Vox/TF2/NetVar.h",
+		"/C/Users/Stanley/Downloads/voxation_phpfogapp_com.sql",
+		"/C/projects/Vox/TF2/NetVar.txt",
+		"/C/Users/Stanley/Downloads/mysql-shared-02.phpfog.com (1).sql",
+		"/C/Users/Stanley/Downloads/WER2966.tmp.appcompat.txt",
+		"/C/Users/Stanley/Downloads/TF2Debug.txt",
+		"/C/projects/Vox/HDSys/Win32/Release/tools/hwidreal.txt",
+		"/C/projects/Vox/HDSys/Win32/Release/tools/dbg.txt",
+		"/C/projects/Vox/HDSys/Win32/Release/hwidreal.txt",
+		"/C/Users/Stanley/Downloads/WER2ADD.tmp.mdmp",
+		"/C/projects/Vox/WebBackend/voxation.intmax.org/fileJITJITJIT/index.php",
+		"/C/Users/Stanley/Documents/Contests/Techstart/2012/1.cpp",
+		"/C/Users/Stanley/Documents/Contests/Techstart/2012/2.cpp",
+		"/C/Users/Stanley/Documents/Contests/Techstart/2012/4.cpp",
+		"/C/Users/Stanley/Documents/Contests/Techstart/2012/10.cpp",
+		"/C/Users/Stanley/Documents/Contests/Techstart/2012/14.cpp",
+		"/C/Users/Stanley/Downloads/mysql-shared-02.phpfog.com.sql",
+		"/C/projects/Vox/HDS/hwid.cpp",
+		"/C/projects/Vox/WebBackend/voxation.intmax.org/Crypt/Rijndael.php",
+		"/C/tmp/bsod.cpp",
+		"/C/tmp/index.php",
+		"/C/projects/Vox/TF2/IsAttackCritical.cpp",
+		"/C/projects/TF2ItemParser/bin/Debug/output.txt",
+		"/C/Users/Stanley/Documents/Contests/USACO/2012/camp/files_from_camp/Code/eval/cows.cpp",
+		"/C/projects/Vox/TF2/CBaseCombatCharacter.txt",
+		"/C/projects/Vox/.git/info/exclude_public"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"p",
+			"hWnd",
+			"windowproc",
+			"g_wcpAppName",
+			"hWnd",
+			"g_font",
+			"m_angEyeangles[0",
+			"m_angEyeangles[1]",
+			"die",
+			"sleep(3",
+			"mysql_fetch_array",
+			"$date",
+			"NAME1",
+			"setIV",
+			"setKey(",
+			"@access pub",
+			"encryptIV",
+			"iv",
+			"0x5a",
+			"0x5",
+			"warn scan",
+			"WARN",
+			"(\"Nt",
+			"hl2.exe",
+			"VOID __stdcall",
+			"VOID",
+			"typedef",
+			"ebp-4",
+			"bResult 0",
+			"DT_TFWeaponBase->LocalActiveTFWeaponData->DT_LocalTFWeapondata->m_",
+			"fllastcrit",
+			"is not a",
+			"muzzle",
+			"flare",
+			"DT_TFProjectile_Pipebomb",
+			"m_ihighestup",
+			"minibuildin",
+			"m_bhassap",
+			"DT_TFProjectile_Pipebomb->m_bCritical",
+			"m_bCritical",
+			"DT_TFProjectile_Pipebomb-",
+			"DT_TFProjectile_Pipebomb",
+			"m_bTouched",
+			"BaseGrenade",
+			"DT_BaseGrenade",
+			"DT_TFWeaponBaseGrenadeProj",
+			"CTFGrenadePipebombProjectile",
+			"0.00",
+			"cloak",
+			"m_flcharge",
+			"disguise",
+			"DT_LocalWeaponData",
+			"DT_BASEPLAYER->m_lifestate",
+			"m_ihealth"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"sleep(1",
+			"mysql_fetch_assoc",
+			"ebp-4/*flCritMult*/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 159.0,
+	"status_bar_visible": true
+}
