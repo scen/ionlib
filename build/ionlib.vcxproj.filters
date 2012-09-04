@@ -144,6 +144,9 @@
     <ClInclude Include="..\src\render\size.h">
       <Filter>Header Files\render</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\render\color.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -219,6 +222,9 @@
       <Filter>Source Files\render</Filter>
     </ClCompile>
     <ClCompile Include="..\src\render\size.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\color.cpp">
       <Filter>Source Files\render</Filter>
     </ClCompile>
   </ItemGroup>

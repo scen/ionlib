@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma warning(disable: 4005 4996 4615 4018 4482;)
+
 #define BEA_ENGINE_STATIC
 //#define BEA_USE_STDCALL
 
@@ -21,6 +23,7 @@
 #include <algorithm>
 #include <vector>
 #include <memory>
+#include <sstream>
 
 //beaengine
 #include "beaengine/BeaEngine.h"
@@ -28,6 +31,7 @@
 //asmjit
 #include "asmjit/AsmJit.h"
 
-#pragma comment(lib, "bea.lib")
+//boost
+#include "boost/format.hpp"
 
-#pragma warning(disable: 4005 4996 4615 4018 4482;)
+#pragma comment(lib, "bea.lib")

@@ -38,6 +38,7 @@
     <ClInclude Include="..\src\mem\signature.h" />
     <ClInclude Include="..\src\mem\sigscan.h" />
     <ClInclude Include="..\src\mem\vmt.h" />
+    <ClInclude Include="..\src\render\color.h" />
     <ClInclude Include="..\src\render\font.h" />
     <ClInclude Include="..\src\render\point.h" />
     <ClInclude Include="..\src\render\rect.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="..\src\mem\signature.cpp" />
     <ClCompile Include="..\src\mem\sigscan.cpp" />
     <ClCompile Include="..\src\mem\vmt.cpp" />
+    <ClCompile Include="..\src\render\color.cpp" />
     <ClCompile Include="..\src\render\font.cpp" />
     <ClCompile Include="..\src\render\point.cpp" />
     <ClCompile Include="..\src\render\rect.cpp" />

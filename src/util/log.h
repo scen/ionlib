@@ -2,7 +2,11 @@
 
 #include "../required.h"
 
+//macros, this you can do something like this
+//dbglog("this " << blah << " and that " << that)
 #define log ion::logger::get()
+#define dbglog(a) do { std::stringstream ss; ss << a; log.dbg(ss.str().c_str()); } while (false);
+#define infolog(a) do { std::stringstream ss; ss << a; log.info(ss.str().c_str()); } while (false);
 
 namespace ion
 {
