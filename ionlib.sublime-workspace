@@ -35,23 +35,59 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 1894,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "LICENSE",
+			"settings":
+			{
+				"buffer_size": 1057,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 35.0,
 		"selected_items":
 		[
 			[
+				"gitpu",
+				"Git: Push Current Branch"
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add..."
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
 				"packa",
-				"Package Control: Remove Package"
+				"Package Control: Install Package"
 			],
 			[
 				"Pack",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 386.0
+		"width": 498.0
 	},
 	"console":
 	{
@@ -68,6 +104,9 @@
 	},
 	"file_history":
 	[
+		"/C/projects/ionlib/.git/info/exclude",
+		"/C/projects/Vox/LICENSE",
+		"/C/projects/Vox/README.md",
 		"/C/projects/Vox/TF2/StrEnc.h",
 		"/C/projects/Vox/TF2/StrEnc.cpp",
 		"/C/projects/Vox/TF2/Entropy.h",
@@ -222,13 +261,61 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 0,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 1894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								941,
+								941
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "LICENSE",
+					"settings":
+					{
+						"buffer_size": 1057,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								324,
+								324
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -249,18 +336,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -270,6 +350,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.git":
+	{
+		"height": 102.0
+	},
 	"replace":
 	{
 		"height": 62.0
@@ -285,11 +369,11 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"show_minimap": true,
 	"show_open_files": false,
