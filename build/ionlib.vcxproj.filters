@@ -31,6 +31,15 @@
     <Filter Include="Header Files\asmjit">
       <UniqueIdentifier>{a57ff307-32db-4c9a-96cd-e91166432f7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{c932bcd0-fd27-455e-b88a-cf55055dade5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\render">
+      <UniqueIdentifier>{95036589-f30d-4bbf-bcd5-277054f68123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\render">
+      <UniqueIdentifier>{77b1650d-e386-4df3-ab99-c216f28d012e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -120,6 +129,21 @@
     <ClInclude Include="..\src\util\log.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\render\render.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\font.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\point.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\rect.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\size.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -182,5 +206,25 @@
     <ClCompile Include="..\src\util\log.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\render\render.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\font.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\point.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\rect.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\size.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\bea.lib">
+      <Filter>lib</Filter>
+    </Library>
   </ItemGroup>
 </Project>

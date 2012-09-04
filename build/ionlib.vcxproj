@@ -38,6 +38,11 @@
     <ClInclude Include="..\src\mem\signature.h" />
     <ClInclude Include="..\src\mem\sigscan.h" />
     <ClInclude Include="..\src\mem\vmt.h" />
+    <ClInclude Include="..\src\render\font.h" />
+    <ClInclude Include="..\src\render\point.h" />
+    <ClInclude Include="..\src\render\rect.h" />
+    <ClInclude Include="..\src\render\render.h" />
+    <ClInclude Include="..\src\render\size.h" />
     <ClInclude Include="..\src\required.h" />
     <ClInclude Include="..\src\util\log.h" />
   </ItemGroup>
@@ -61,7 +66,15 @@
     <ClCompile Include="..\src\mem\signature.cpp" />
     <ClCompile Include="..\src\mem\sigscan.cpp" />
     <ClCompile Include="..\src\mem\vmt.cpp" />
+    <ClCompile Include="..\src\render\font.cpp" />
+    <ClCompile Include="..\src\render\point.cpp" />
+    <ClCompile Include="..\src\render\rect.cpp" />
+    <ClCompile Include="..\src\render\render.cpp" />
+    <ClCompile Include="..\src\render\size.cpp" />
     <ClCompile Include="..\src\util\log.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\bea.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5DD8C37-B07D-4E57-999B-683E94FA52B2}</ProjectGuid>

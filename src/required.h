@@ -20,6 +20,7 @@
 #include <functional>
 #include <algorithm>
 #include <vector>
+#include <memory>
 
 //beaengine
 #include "beaengine/BeaEngine.h"

@@ -50,14 +50,54 @@
 				"buffer_size": 1057,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": ".git/info/exclude",
+			"settings":
+			{
+				"buffer_size": 347,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ionlib.sln",
+			"settings":
+			{
+				"buffer_size": 861,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 35.0,
+		"height": 110.0,
 		"selected_items":
 		[
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"git commi",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git push cu",
+				"Git: Push Current Branch"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git ",
+				"Git: Add..."
+			],
 			[
 				"gitpu",
 				"Git: Push Current Branch"
@@ -87,7 +127,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 498.0
+		"width": 386.0
 	},
 	"console":
 	{
@@ -104,6 +144,18 @@
 	},
 	"file_history":
 	[
+		"/C/projects/Vox/Mem/MemMgr.cpp",
+		"/C/projects/Vox/Mem/VMT.cpp",
+		"/C/projects/Vox/Mem/Detour.cpp",
+		"/C/projects/Vox/D3D11/D3D11Hook.h",
+		"/C/projects/Vox/Mem/MemMgr.h",
+		"/C/projects/Vox/Mem/Common.h",
+		"/C/projects/Vox/Mem/VMT.h",
+		"/C/Users/Stanley/Downloads/AsmJit-1.0-beta4/AsmJit-1.0-beta4/README.txt",
+		"/C/projects/Vox/Mem/Detour.h",
+		"/C/projects/Vox/Util/Logger.h",
+		"/C/projects/Vox/Util/Logger.cpp",
+		"/C/projects/Vox/Util/Required.h",
 		"/C/projects/ionlib/.git/info/exclude",
 		"/C/projects/Vox/LICENSE",
 		"/C/projects/Vox/README.md",
@@ -261,7 +313,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -276,13 +328,15 @@
 						"selection":
 						[
 							[
-								941,
-								941
+								1800,
+								1800
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -302,13 +356,66 @@
 						"selection":
 						[
 							[
-								324,
-								324
+								465,
+								465
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": ".git/info/exclude",
+					"settings":
+					{
+						"buffer_size": 347,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								292,
+								292
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "ionlib.sln",
+					"settings":
+					{
+						"buffer_size": 861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								861,
+								861
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
