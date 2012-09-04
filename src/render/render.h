@@ -7,6 +7,7 @@
 #include "rect.h"
 #include "point.h"
 #include "size.h"
+#include "color.h"
 
 namespace ion
 {
@@ -20,11 +21,17 @@ namespace ion
 		virtual ~render() {}
 		
 		//text functions
-		virtual void renderText(int flags, const std::shared_ptr<font> &fnt, const point& p, const char* fmt, ...) PURE;
-		virtual size measureText(int flags, const std::shared_ptr<font> &fnt, const point& p, const char* fmt, ...) PURE;
+		virtual void renderText(const font &fnt, const point& p, const char* fmt, ...) PURE;
+		virtual void renderText(int flags, const font &fnt, const point& p, const char* fmt, ...) PURE;
+		virtual void renderText(int flags, const font &fnt, int x, int y, const char* fmt, ...) PURE;
 
+		virtual size measureText(int flags, const font &fnt, const point& p, const char* fmt, ...) PURE;
+		void lol()
+		{
+			boost::format("sup");
+		}
 		//rect
-		virtual void renderRect() PURE;
+		virtual void renderRect(rect& r) PURE;
 		virtual void renderGradient() PURE;
 
 
