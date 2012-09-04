@@ -19,6 +19,18 @@
     <Filter Include="Source Files\mem">
       <UniqueIdentifier>{12ba3533-e13d-4a34-903e-cca5c5034d3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{d926baa5-deec-47bc-bda1-d533afbb3636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{92b7eb37-301d-4875-bfd4-43f1f172c4fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\asmjit">
+      <UniqueIdentifier>{5ed0400f-2df0-4a90-b75c-422e1b1464d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\asmjit">
+      <UniqueIdentifier>{a57ff307-32db-4c9a-96cd-e91166432f7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -33,6 +45,81 @@
     <ClInclude Include="..\src\mem\module.h">
       <Filter>Header Files\mem</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\mem\vmt.h">
+      <Filter>Header Files\mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mem\detour.h">
+      <Filter>Header Files\mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\ApiBegin.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\ApiEnd.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\AsmJit.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Assembler.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\AssemblerX86X64.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Build.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\CodeGenerator.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Compiler.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\CompilerX86X64.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Config.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\CpuInfo.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Defs.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\DefsX86X64.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Logger.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\MemoryManager.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\MemoryMarker.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Operand.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\OperandX86X64.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Platform.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Util.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\asmjit\Util_p.h">
+      <Filter>Header Files\asmjit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mem\memmgr.h">
+      <Filter>Header Files\mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\log.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -43,6 +130,57 @@
     </ClCompile>
     <ClCompile Include="..\src\mem\module.cpp">
       <Filter>Source Files\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mem\vmt.cpp">
+      <Filter>Source Files\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mem\detour.cpp">
+      <Filter>Source Files\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\AssemblerX86X64.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\CodeGenerator.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\Compiler.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\CompilerX86X64.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\CpuInfo.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\Defs.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\DefsX86X64.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\Logger.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\MemoryManager.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\MemoryMarker.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\OperandX86X64.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\Platform.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\inc\asmjit\Util.cpp">
+      <Filter>Source Files\asmjit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mem\memmgr.cpp">
+      <Filter>Source Files\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\log.cpp">
+      <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

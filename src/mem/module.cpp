@@ -2,11 +2,11 @@
 
 namespace ion
 {
-	module::module(char* name)
+	module::module(char* name) : m_start(0), m_len(0)
 	{
 		bool flag = false;
 		enumLoadedModules([&](MODULEENTRY32& me32){
-			if (!strcmp(name, me32.szModule))
+			if (!_stricmp(name, me32.szModule))
 			{
 				setStart((DWORD)me32.modBaseAddr);
 				setLen((DWORD)me32.modBaseSize);

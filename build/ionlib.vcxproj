@@ -11,15 +11,57 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\inc\asmjit\ApiBegin.h" />
+    <ClInclude Include="..\inc\asmjit\ApiEnd.h" />
+    <ClInclude Include="..\inc\asmjit\AsmJit.h" />
+    <ClInclude Include="..\inc\asmjit\Assembler.h" />
+    <ClInclude Include="..\inc\asmjit\AssemblerX86X64.h" />
+    <ClInclude Include="..\inc\asmjit\Build.h" />
+    <ClInclude Include="..\inc\asmjit\CodeGenerator.h" />
+    <ClInclude Include="..\inc\asmjit\Compiler.h" />
+    <ClInclude Include="..\inc\asmjit\CompilerX86X64.h" />
+    <ClInclude Include="..\inc\asmjit\Config.h" />
+    <ClInclude Include="..\inc\asmjit\CpuInfo.h" />
+    <ClInclude Include="..\inc\asmjit\Defs.h" />
+    <ClInclude Include="..\inc\asmjit\DefsX86X64.h" />
+    <ClInclude Include="..\inc\asmjit\Logger.h" />
+    <ClInclude Include="..\inc\asmjit\MemoryManager.h" />
+    <ClInclude Include="..\inc\asmjit\MemoryMarker.h" />
+    <ClInclude Include="..\inc\asmjit\Operand.h" />
+    <ClInclude Include="..\inc\asmjit\OperandX86X64.h" />
+    <ClInclude Include="..\inc\asmjit\Platform.h" />
+    <ClInclude Include="..\inc\asmjit\Util.h" />
+    <ClInclude Include="..\inc\asmjit\Util_p.h" />
+    <ClInclude Include="..\src\mem\detour.h" />
+    <ClInclude Include="..\src\mem\memmgr.h" />
     <ClInclude Include="..\src\mem\module.h" />
     <ClInclude Include="..\src\mem\signature.h" />
     <ClInclude Include="..\src\mem\sigscan.h" />
+    <ClInclude Include="..\src\mem\vmt.h" />
     <ClInclude Include="..\src\required.h" />
+    <ClInclude Include="..\src\util\log.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\inc\asmjit\AssemblerX86X64.cpp" />
+    <ClCompile Include="..\inc\asmjit\CodeGenerator.cpp" />
+    <ClCompile Include="..\inc\asmjit\Compiler.cpp" />
+    <ClCompile Include="..\inc\asmjit\CompilerX86X64.cpp" />
+    <ClCompile Include="..\inc\asmjit\CpuInfo.cpp" />
+    <ClCompile Include="..\inc\asmjit\Defs.cpp" />
+    <ClCompile Include="..\inc\asmjit\DefsX86X64.cpp" />
+    <ClCompile Include="..\inc\asmjit\Logger.cpp" />
+    <ClCompile Include="..\inc\asmjit\MemoryManager.cpp" />
+    <ClCompile Include="..\inc\asmjit\MemoryMarker.cpp" />
+    <ClCompile Include="..\inc\asmjit\OperandX86X64.cpp" />
+    <ClCompile Include="..\inc\asmjit\Platform.cpp" />
+    <ClCompile Include="..\inc\asmjit\Util.cpp" />
+    <ClCompile Include="..\src\mem\detour.cpp" />
+    <ClCompile Include="..\src\mem\memmgr.cpp" />
     <ClCompile Include="..\src\mem\module.cpp" />
     <ClCompile Include="..\src\mem\signature.cpp" />
     <ClCompile Include="..\src\mem\sigscan.cpp" />
+    <ClCompile Include="..\src\mem\vmt.cpp" />
+    <ClCompile Include="..\src\util\log.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5DD8C37-B07D-4E57-999B-683E94FA52B2}</ProjectGuid>
@@ -59,7 +101,7 @@
     <OutDir>$(SolutionDir)\build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\build\obj\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>C:\projects\ionlib\src\;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\projects\ionlib\inc;C:\projects\ionlib\src\;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

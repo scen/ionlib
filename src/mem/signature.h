@@ -7,7 +7,7 @@ namespace ion
 	public:
 		signature(char* pattern, char* mask) : m_pattern((PBYTE)pattern), m_mask(mask) {}
 		signature(PBYTE pattern, char* mask) : m_pattern(pattern), m_mask(mask) {}
-
+		~signature() {}
 		PBYTE getPattern() const { return m_pattern; }
 		void setPattern(PBYTE val) { m_pattern = val; }
 

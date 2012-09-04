@@ -8,7 +8,7 @@ namespace ion
 	{
 	public:
 		module(char* name);
-
+		~module() {}
 		//static
 		static bool enumLoadedModules(std::function<void(MODULEENTRY32&)> lambda);
 
