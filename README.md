@@ -7,6 +7,13 @@ This project is based off my old Voxation RE libraries (pretty much refactored i
 
 I wanted to switch it up because I was unhappy with the clumsy nested namespaces and clunky inheritance. Progress will be pretty slow, because of school, programming contests and all that good stuff.
 
+This library is built for Visual Studio 2012 (VS110)
+
+Notes
+-----
+
+* Refer to [this](http://code.google.com/p/v8/wiki/BuildingWithGYP) to build V8 
+
 About
 -----
 
