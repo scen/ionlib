@@ -24,6 +24,11 @@
 #include <vector>
 #include <memory>
 #include <sstream>
+#include <fstream>
+#include <ostream>
+#include <istream>
+#include <iostream>
+#include <string>
 
 //beaengine
 #include "beaengine/BeaEngine.h"
@@ -32,6 +37,7 @@
 #include "asmjit/AsmJit.h"
 
 //boost
+#include "boost/lexical_cast.hpp"
 #include "boost/format.hpp"
 
 #pragma comment(lib, "bea.lib")

@@ -42,27 +42,27 @@ namespace ion
 		vmt( void* inst, size_t offset = 0, UINT vfuncs = 0 );
 		~vmt();
 
-		inline void HookMethod( void* newfunc, size_t index )
+		inline void hookMethod( void* newfunc, size_t index )
 		{
 			_array[index+3] = newfunc;
 		}
 
-		inline void UnhookMethod( size_t index )
+		inline void unhookMethod( size_t index )
 		{
 			_array[index+3] = _oldvmt[index];
 		}
 
 		// Manage the hooks.
-		inline void Unhook() {*_vftable = _oldvmt; }
-		inline void Rehook() { *_vftable = _array + 3; }
-		inline bool Hooked() const { return *_vftable!=_oldvmt; }
-		inline void EraseHooks() { for ( UINT i = 0; i<_vcount; ++i ) _array[i+3] = _vftable[i]; }
-		inline UINT NumFuncs() const { return _vcount; }
+		inline void unhook() {*_vftable = _oldvmt; }
+		inline void rehook() { *_vftable = _array + 3; }
+		inline bool hooked() const { return *_vftable!=_oldvmt; }
+		inline void eraseHooks() { for ( UINT i = 0; i<_vcount; ++i ) _array[i+3] = _vftable[i]; }
+		inline UINT numFuncs() const { return _vcount; }
 
-		inline void Poof() { _vftable = NULL; }
+		inline void poof() { _vftable = NULL; }
 
 		template< typename Fn >
-		inline Fn GetMethod( size_t index ) const
+		inline Fn getMethod( size_t index ) const
 		{
 			return (Fn) _oldvmt[ index ];
 		}

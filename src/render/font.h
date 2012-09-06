@@ -10,5 +10,9 @@ namespace ion
 	{
 	public:
 		virtual ~font() {}
+
+		std::string m_name;
+		std::string getName() const { return m_name; }
+		void setName(const std::string &val) { m_name = val; }
 	};
 }

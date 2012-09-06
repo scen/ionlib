@@ -32,6 +32,7 @@
     <ClInclude Include="..\inc\asmjit\Platform.h" />
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
+    <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
     <ClInclude Include="..\src\mem\detour.h" />
     <ClInclude Include="..\src\mem\memmgr.h" />
     <ClInclude Include="..\src\mem\module.h" />
@@ -39,6 +40,8 @@
     <ClInclude Include="..\src\mem\sigscan.h" />
     <ClInclude Include="..\src\mem\vmt.h" />
     <ClInclude Include="..\src\render\color.h" />
+    <ClInclude Include="..\src\render\dx11\dx11font.h" />
+    <ClInclude Include="..\src\render\dx11\dx11render.h" />
     <ClInclude Include="..\src\render\font.h" />
     <ClInclude Include="..\src\render\point.h" />
     <ClInclude Include="..\src\render\rect.h" />
@@ -61,6 +64,7 @@
     <ClCompile Include="..\inc\asmjit\OperandX86X64.cpp" />
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
+    <ClCompile Include="..\src\hooks\draw\dx11hook.cpp" />
     <ClCompile Include="..\src\mem\detour.cpp" />
     <ClCompile Include="..\src\mem\memmgr.cpp" />
     <ClCompile Include="..\src\mem\module.cpp" />
@@ -68,6 +72,8 @@
     <ClCompile Include="..\src\mem\sigscan.cpp" />
     <ClCompile Include="..\src\mem\vmt.cpp" />
     <ClCompile Include="..\src\render\color.cpp" />
+    <ClCompile Include="..\src\render\dx11\dx11font.cpp" />
+    <ClCompile Include="..\src\render\dx11\dx11render.cpp" />
     <ClCompile Include="..\src\render\font.cpp" />
     <ClCompile Include="..\src\render\point.cpp" />
     <ClCompile Include="..\src\render\rect.cpp" />
@@ -110,13 +116,13 @@
     <OutDir>$(SolutionDir)\build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\build\obj\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\build\obj\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>C:\projects\ionlib\inc;C:\projects\ionlib\src\;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;C:\projects\ionlib\inc;C:\projects\ionlib\src\;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,6 +130,7 @@
       <Optimization>Disabled</Optimization>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <PrecompiledHeaderOutputFile>$(SolutionDir)\build\ipch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -137,6 +144,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <PrecompiledHeaderOutputFile>$(SolutionDir)\build\ipch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

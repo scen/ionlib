@@ -2,12 +2,20 @@
 
 #include "../required.h"
 
+#define _DBG 1
+
 //macros, this you can do something like this
 //dbglog("this " << blah << " and that " << that)
 #define log ion::logger::get()
-#define dbglog(a) do { std::stringstream ss; ss << a; log.dbg(ss.str().c_str()); } while (false);
-#define infolog(a) do { std::stringstream ss; ss << a; log.info(ss.str().c_str()); } while (false);
-
+#ifdef _DBG
+#define dbglog(a) do { std::stringstream ss; ss << a; log.dbg((char*)ss.str().c_str()); } while (false);
+#define dbglogn(a) do { std::stringstream ss; ss << a << std::endl; log.dbg((char*)ss.str().c_str()); } while (false);
+#else
+#define dbglog(a)
+#define dbglogn(a)
+#endif
+#define infolog(a) do { std::stringstream ss; ss << a; log.info((char*)ss.str().c_str()); } while (false);
+#define infologn(a) do { std::stringstream ss; ss << a << std::endl; log.info((char*)ss.str().c_str()); } while (false);
 namespace ion
 {
 	class logger
@@ -47,7 +55,7 @@ namespace ion
 
 		void dbg(char* fmt, ...)
 		{
-#ifndef _DBG
+#ifdef _DBG
 			va_list args;
 			char buf[1024] = {0};
 			char tbuf[24] = {0};

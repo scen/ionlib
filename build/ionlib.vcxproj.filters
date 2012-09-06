@@ -40,6 +40,24 @@
     <Filter Include="Source Files\render">
       <UniqueIdentifier>{77b1650d-e386-4df3-ab99-c216f28d012e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\render\dx11">
+      <UniqueIdentifier>{cea257fb-3aaa-4b7e-a7e6-b8459be64d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\render\dx11">
+      <UniqueIdentifier>{9175483f-dd99-4f99-9898-c1afb63f3a4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hooks">
+      <UniqueIdentifier>{8472f514-4715-417f-97f1-8ce3e03cf9ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hooks">
+      <UniqueIdentifier>{a88dbc86-1e3b-4143-84f7-fe22cdc575e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hooks\draw">
+      <UniqueIdentifier>{21e39fdc-9dd2-46d4-a8ff-196a2d34b9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hooks\draw">
+      <UniqueIdentifier>{f35158e0-1ec1-4816-b83e-311ae55e6902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -123,9 +141,6 @@
     <ClInclude Include="..\inc\asmjit\Util_p.h">
       <Filter>Header Files\asmjit</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\mem\memmgr.h">
-      <Filter>Header Files\mem</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\util\log.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
@@ -146,6 +161,18 @@
     </ClInclude>
     <ClInclude Include="..\src\render\color.h">
       <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\dx11\dx11font.h">
+      <Filter>Header Files\render\dx11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\dx11\dx11render.h">
+      <Filter>Header Files\render\dx11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\hooks\draw\dx11hook.h">
+      <Filter>Header Files\hooks\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mem\memmgr.h">
+      <Filter>Header Files\hooks\draw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +253,15 @@
     </ClCompile>
     <ClCompile Include="..\src\render\color.cpp">
       <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\dx11\dx11render.cpp">
+      <Filter>Source Files\render\dx11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\dx11\dx11font.cpp">
+      <Filter>Source Files\render\dx11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hooks\draw\dx11hook.cpp">
+      <Filter>Source Files\hooks\draw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

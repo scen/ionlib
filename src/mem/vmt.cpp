@@ -46,7 +46,7 @@ namespace ion
 	}
 	vmt::~vmt()
 	{
-		if ( _vftable ) Unhook();
+		if ( _vftable ) unhook();
 		free( _array );
 	}
 }
