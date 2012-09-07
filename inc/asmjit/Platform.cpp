@@ -75,7 +75,7 @@ static sysuint_t roundUpToPowerOf2(sysuint_t base)
 // ============================================================================
 
 #if defined(ASMJIT_WINDOWS)
-
+#define NOMINMAX
 #include <windows.h>
 
 namespace AsmJit {

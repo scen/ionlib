@@ -1,0 +1,8 @@
+* Check out V8Shell in cvv8::V8Shell
+http://code.google.com/p/v8-juice/source/browse/convert/addons/shell-skel/shell.cpp
+http://code.google.com/p/v8-juice/source/browse/convert/addons/bytearray/Makefile
+
+
+v8 tutorial pages
+* Setting up a global object http://athile.net/library/wiki/index.php/Library/V8/Tutorial#Adding_a_global_object
+Wrapping a Javascript function as a std::function<> in above page

@@ -33,6 +33,7 @@
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
     <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
+    <ClInclude Include="..\src\jsctx\jsctx.h" />
     <ClInclude Include="..\src\mem\detour.h" />
     <ClInclude Include="..\src\mem\memmgr.h" />
     <ClInclude Include="..\src\mem\module.h" />
@@ -49,6 +50,7 @@
     <ClInclude Include="..\src\render\size.h" />
     <ClInclude Include="..\src\required.h" />
     <ClInclude Include="..\src\util\log.h" />
+    <ClInclude Include="..\src\util\log_js.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\inc\asmjit\AssemblerX86X64.cpp" />
@@ -65,6 +67,7 @@
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp" />
+    <ClCompile Include="..\src\jsctx\jsctx.cpp" />
     <ClCompile Include="..\src\mem\detour.cpp" />
     <ClCompile Include="..\src\mem\memmgr.cpp" />
     <ClCompile Include="..\src\mem\module.cpp" />
@@ -83,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\bea.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5DD8C37-B07D-4E57-999B-683E94FA52B2}</ProjectGuid>

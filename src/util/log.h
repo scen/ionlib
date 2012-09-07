@@ -2,14 +2,16 @@
 
 #include "../required.h"
 
+//Two classes, logger
+
 #define _DBG 1
 
 //macros, this you can do something like this
 //dbglog("this " << blah << " and that " << that)
 #define log ion::logger::get()
 #ifdef _DBG
-#define dbglog(a) do { std::stringstream ss; ss << a; log.dbg((char*)ss.str().c_str()); } while (false);
-#define dbglogn(a) do { std::stringstream ss; ss << a << std::endl; log.dbg((char*)ss.str().c_str()); } while (false);
+#define dbglog(a) do { char fname[_MAX_FNAME] = {0}; char extName[_MAX_EXT] = {0}; _splitpath_s(__FILE__, 0, 0, 0, 0, fname, _MAX_FNAME, extName, _MAX_EXT); std::stringstream ss; ss << fname << extName << ":" << std::dec << __LINE__ << ":" << __FUNCTION__ << "(): " << a; log.dbg((char*)ss.str().c_str()); } while (false);
+#define dbglogn(a) dbglog(a << std::endl)
 #else
 #define dbglog(a)
 #define dbglogn(a)
@@ -109,4 +111,5 @@ namespace ion
 		~logger() {}
 		logger& operator=(logger const&) {}
 	};
+
 }

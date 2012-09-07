@@ -12,6 +12,7 @@
 #include "Build.h"
 
 #if defined(ASMJIT_WINDOWS)
+#define NOMINMAX
 #include <windows.h>
 #endif // ASMJIT_WINDOWS
 

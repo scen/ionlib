@@ -58,6 +58,12 @@
     <Filter Include="Source Files\hooks\draw">
       <UniqueIdentifier>{f35158e0-1ec1-4816-b83e-311ae55e6902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\jsctx">
+      <UniqueIdentifier>{097ae62c-88f3-4c23-bfe7-02dd1c6e9c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\jsctx">
+      <UniqueIdentifier>{66633804-cdfa-4168-8ab4-7b0108aa835b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -174,6 +180,12 @@
     <ClInclude Include="..\src\mem\memmgr.h">
       <Filter>Header Files\hooks\draw</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\jsctx\jsctx.h">
+      <Filter>Header Files\jsctx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\log_js.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -263,10 +275,19 @@
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp">
       <Filter>Source Files\hooks\draw</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\jsctx\jsctx.cpp">
+      <Filter>Source Files\jsctx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\bea.lib">
       <Filter>lib</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt" />
   </ItemGroup>
 </Project>

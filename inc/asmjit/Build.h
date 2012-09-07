@@ -278,6 +278,7 @@ ASMJIT_API void assertionFailure(const char* file, int line, const char* exp);
 // ----------------------------------------------------------------------------
 
 #if defined(ASMJIT_WINDOWS)
+#define NOMINMAX
 #include <Windows.h>
 #endif // ASMJIT_WINDOWS
 

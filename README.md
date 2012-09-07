@@ -9,10 +9,13 @@ I wanted to switch it up because I was unhappy with the clumsy nested namespaces
 
 This library is built for Visual Studio 2012 (VS110)
 
-Notes
------
+Notes for future reference
+--------------------------
 
-* Refer to [this](http://code.google.com/p/v8/wiki/BuildingWithGYP) to build V8 
+* Refer to [this](http://code.google.com/p/v8/wiki/BuildingWithGYP) to build V8
+    * Make sure to build using /MD (Multi Threaded DLL)
+	* Make sure to ignore LIBCMT.lib in `preparser`
+	* HandleScope will CRASH if done in a different thread, use v8::Locker. Intentional problem described [here](https://groups.google.com/forum/?fromgroups=#!topic/v8-users/FXpeTYuAqKI)
 
 About
 -----
