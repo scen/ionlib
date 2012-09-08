@@ -18,6 +18,7 @@
 #include <winnt.h>
 #include <winternl.h>
 #include <WinBase.h>
+#include <Shlwapi.h>
 
 //STL
 #include <functional>
@@ -31,6 +32,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <set>
 
 //beaengine
 #include "beaengine/BeaEngine.h"
@@ -41,6 +43,7 @@
 //boost
 #include "boost/lexical_cast.hpp"
 #include "boost/format.hpp"
+#include "boost/foreach.hpp"
 
 //google v8
 #include "v8/v8.h"
@@ -52,6 +55,7 @@
 namespace cv = cvv8;
 
 #pragma comment(lib, "WinMM.lib")
+#pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "bea.lib")
 #pragma comment(lib, "v8/v8_base.lib")

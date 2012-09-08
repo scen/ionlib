@@ -39,7 +39,7 @@
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 1894,
+				"buffer_size": 2373,
 				"line_ending": "Windows"
 			}
 		},
@@ -55,7 +55,7 @@
 			"file": ".git/info/exclude",
 			"settings":
 			{
-				"buffer_size": 347,
+				"buffer_size": 341,
 				"line_ending": "Unix"
 			}
 		},
@@ -65,6 +65,22 @@
 			{
 				"buffer_size": 861,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/render/color.h",
+			"settings":
+			{
+				"buffer_size": 1142,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Stanley/Downloads/v8-v8-3.13.0-0-g6b47a1a/v8-v8-6b47a1a/build/README.txt",
+			"settings":
+			{
+				"buffer_size": 2259,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -144,6 +160,7 @@
 	},
 	"file_history":
 	[
+		"/C/projects/ionlib/src/render/dx11/extra/FW1FontWrapper.h",
 		"/C/projects/Vox/Mem/MemMgr.cpp",
 		"/C/projects/Vox/Mem/VMT.cpp",
 		"/C/projects/Vox/Mem/Detour.cpp",
@@ -239,6 +256,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}",
+			"return",
 			"p",
 			"hWnd",
 			"windowproc",
@@ -313,7 +332,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -321,15 +340,15 @@
 					"file": "README.md",
 					"settings":
 					{
-						"buffer_size": 1894,
+						"buffer_size": 2373,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1800,
-								1800
+								0,
+								0
 							]
 						],
 						"settings":
@@ -375,15 +394,15 @@
 					"file": ".git/info/exclude",
 					"settings":
 					{
-						"buffer_size": 347,
+						"buffer_size": 341,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								292,
-								292
+								0,
+								0
 							]
 						],
 						"settings":
@@ -419,6 +438,59 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/render/color.h",
+					"settings":
+					{
+						"buffer_size": 1142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Stanley/Downloads/v8-v8-3.13.0-0-g6b47a1a/v8-v8-6b47a1a/build/README.txt",
+					"settings":
+					{
+						"buffer_size": 2259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1141,
+								1141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

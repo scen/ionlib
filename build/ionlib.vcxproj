@@ -33,7 +33,8 @@
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
     <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
-    <ClInclude Include="..\src\jsctx\jsctx.h" />
+    <ClInclude Include="..\src\js\jsctx.h" />
+    <ClInclude Include="..\src\js\jsmgr.h" />
     <ClInclude Include="..\src\mem\detour.h" />
     <ClInclude Include="..\src\mem\memmgr.h" />
     <ClInclude Include="..\src\mem\module.h" />
@@ -67,7 +68,8 @@
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp" />
-    <ClCompile Include="..\src\jsctx\jsctx.cpp" />
+    <ClCompile Include="..\src\js\jsctx.cpp" />
+    <ClCompile Include="..\src\js\jsmgr.cpp" />
     <ClCompile Include="..\src\mem\detour.cpp" />
     <ClCompile Include="..\src\mem\memmgr.cpp" />
     <ClCompile Include="..\src\mem\module.cpp" />

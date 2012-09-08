@@ -59,7 +59,7 @@ namespace ion
 		{
 #ifdef _DBG
 			va_list args;
-			char buf[1024] = {0};
+			char buf[2056] = {0};
 			char tbuf[24] = {0};
 			SYSTEMTIME st;
 
@@ -83,7 +83,7 @@ namespace ion
 		void info(char* fmt, ...)
 		{
 			va_list args;
-			char buf[1024] = {0};
+			char buf[2056] = {0};
 			char tbuf[24] = {0};
 			SYSTEMTIME st;
 
