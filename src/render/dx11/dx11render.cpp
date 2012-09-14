@@ -174,8 +174,6 @@ namespace ion
 
 		m_deviceContext->RSGetViewports( &viewportNumber, &vp );
 
-		//Normalize the points http://www.directxtutorial.com/Tutorial11/B-A/BA3.aspx
-
 		float xx0 = 2.0f * ( begin.getX() - 0.5f ) / vp.Width - 1.0f;
 		float yy0 = 1.0f - 2.0f * ( begin.getY() - 0.5f ) / vp.Height;
 		float xx1 = 2.0f * ( end.getX() - 0.5f ) / vp.Width - 1.0f;

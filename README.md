@@ -16,6 +16,13 @@ Notes for future reference
     * Make sure to build using /MD (Multi Threaded DLL)
 	* Make sure to ignore LIBCMT.lib in `preparser`
 	* HandleScope will CRASH if done in a different thread, use v8::Locker. Intentional problem described [here](https://groups.google.com/forum/?fromgroups=#!topic/v8-users/FXpeTYuAqKI)
+* How to build luabind
+    * Build Lua using [this method](http://stackoverflow.com/questions/6321927/compiling-lua-5-2-alpha-under-vs2010)
+    * Get it off of [here](github.com/scen/luabind), bjam it up
+        * This forked version is updated to Lua 5.2
+        * `bjam --toolset=msvc release link=static`
+    * Set `LUA_ROOT`, `BOOST_BUILD_ROOT`, `PATH`, `BOOST_ROOT` accordingly.
+
 
 About
 -----

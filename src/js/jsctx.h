@@ -182,7 +182,9 @@ namespace ion
 			locker(),
 			hscope()
 		{
+			dbglogn("what is this");
 			context = v8::Context::New(NULL, v8::ObjectTemplate::New());
+			dbglogn("im 12");
 			auto contextScope = v8::Context::Scope(context);
 			global = context->Global();
 			exportGlobalObject("log", 

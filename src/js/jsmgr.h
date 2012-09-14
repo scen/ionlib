@@ -41,6 +41,7 @@ namespace ion
 				fclose(fin);
 				std::string str(buf);
 				delete [] buf;
+				dbglogn("sup");
 				ctx = new jsctx(str);
 			}
 			jsctx_wrapper(
@@ -53,7 +54,6 @@ namespace ion
 			locker(),
 			contexts()
 		{
-			dbglogn("whats up");
 			InitializeCriticalSection(&criticalSection);
 		}
 
