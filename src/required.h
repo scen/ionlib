@@ -45,19 +45,20 @@
 #include "boost/format.hpp"
 #include "boost/foreach.hpp"
 
+//Dropping javascript :(
 //google v8
-#include "v8/v8.h"
+//#include "v8/v8.h"
 
 //V8Convert
-#include "cvv8/v8-convert.hpp"
-#include "cvv8/V8Shell.hpp"
+//#include "cvv8/v8-convert.hpp"
+//#include "cvv8/V8Shell.hpp"
 
-namespace cv = cvv8;
+//namespace cv = cvv8;
 
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "bea.lib")
-#pragma comment(lib, "v8/v8_base.lib")
-#pragma comment(lib, "v8/preparser_lib.lib")
-#pragma comment(lib, "v8/v8_snapshot.lib")
+//#pragma comment(lib, "v8/v8_base.lib")
+//#pragma comment(lib, "v8/preparser_lib.lib")
+//#pragma comment(lib, "v8/v8_snapshot.lib")
