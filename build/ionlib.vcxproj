@@ -37,6 +37,7 @@
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
     <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
+    <ClInclude Include="..\src\luamgr\global_lua.h" />
     <ClInclude Include="..\src\luamgr\luamgr.h" />
     <ClInclude Include="..\src\mem\detour.h" />
     <ClInclude Include="..\src\mem\memmgr.h" />

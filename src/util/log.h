@@ -43,12 +43,16 @@ namespace ion
 			}
 		}
 
-		logger& init(int flags)
+		logger& init(int flags, int width = 160, int height = 40)
 		{
 			if (flags & AllocateConsole)
 			{
 				AllocConsole();
-				freopen("CONOUT$", "wb", stdout);
+				console = GetStdHandle(STD_OUTPUT_HANDLE);
+				//sue me
+				char buf[256] = {0};
+				sprintf_s(buf, "mode %d,%d", width, height);
+				std::system(buf);
 			}
 			m_fp = 0;
 			m_flags = flags;
@@ -59,7 +63,7 @@ namespace ion
 		{
 #ifdef _DBG
 			va_list args;
-			char buf[2056] = {0};
+			char buf[32000] = {0};
 			char tbuf[24] = {0};
 			SYSTEMTIME st;
 
@@ -72,7 +76,8 @@ namespace ion
 
 			if (m_flags & LogToConsole)
 			{
-				printf("%s%s", tbuf, buf);
+				WriteConsoleA(console, tbuf, strlen(tbuf), NULL, NULL);
+				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
 			}
 			if (m_fp && (m_flags & LogToFile))
 			{
@@ -83,7 +88,7 @@ namespace ion
 		void info(char* fmt, ...)
 		{
 			va_list args;
-			char buf[2056] = {0};
+			char buf[32000] = {0};
 			char tbuf[24] = {0};
 			SYSTEMTIME st;
 
@@ -96,7 +101,8 @@ namespace ion
 
 			if (m_flags & LogToConsole)
 			{
-				printf("%s%s", tbuf, buf);
+				WriteConsoleA(console, tbuf, strlen(tbuf), NULL, NULL);
+				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
 			}
 			if (m_fp && (m_flags & LogToFile))
 			{
@@ -107,6 +113,7 @@ namespace ion
 	private:
 		int m_flags;
 		FILE* m_fp;
+		HANDLE console;
 		logger() {}
 		~logger() {}
 		logger& operator=(logger const&) {}

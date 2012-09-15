@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../required.h"
+#include "../util/log.h"
 
 //files to expose
 #include "../util/log_lua.h"
@@ -34,7 +35,8 @@ namespace ion
 					fclose(f);
 					std::string contents(data);
 					delete[] data;
-					lua.execString(contents);
+					//lua.execString(contents);
+					lua.execFile(file);
 				}
 				else
 				{
@@ -58,26 +60,75 @@ namespace ion
 			CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&waitThread, 0, 0, 0);
 		}
 
+		static int errorHandler(lua_State * ls)
+		{
+#ifdef _DBG
+			lua_Debug d = {0};
+			std::stringstream error;
+			error << "Lua Runtime/Memory error:" << std::endl; 
+			error << "************************************************" << std::endl;
+			error << lua_tostring(ls, -1) << std::endl;
+			error << "Stack trace:" << std::endl;
+			int depth = 0;
+			while (lua_getstack(ls, depth, &d))
+			{
+				int status = lua_getinfo(ls, "Sln", &d);
+				error << "[" << depth << "] ";
+				error << d.short_src << "(" << d.currentline << "): ";
+				error << d.what << " " << (d.name ? d.name : "?");
+				error << std::endl;
+				depth++;
+			}
+			error << "************************************************" << std::endl;
+			infolog(error.str());
+			lua_pop(ls, 1); //Pop old error string
+			lua_pushstring(ls, error.str().c_str()); //push new one in
+#endif
+			return 1;
+		}
+
 		void execString(const std::string& str)
 		{
+			lua_pushcfunction(L, &errorHandler);
 			luaL_loadstring(L, str.c_str());
-			int ret = lua_pcall(L, 0, LUA_MULTRET, 0);
-			if (ret != 0)
-			{
-				dbglogn("lua runtime/memory error");
-			}
+			int ret = lua_pcall(L, 0, LUA_MULTRET, -2);
+			lua_pop(L, 1);
 		}
 		
+		void execFile(const std::string& fn)
+		{
+			lua_pushcfunction(L, &errorHandler);
+			luaL_loadfile(L, fn.c_str());
+			int ret = lua_pcall(L, 0, LUA_MULTRET, -2);
+			lua_pop(L, 1);
+		}
+
 		void setDrawInstance(ion::render* inst)
 		{
-			setGlobal<ion::render>("draw", inst);
+			setGlobalVariable<ion::render>("draw", inst);
 		}
 
 		template <class T>
-		void setGlobal(const std::string& name, T* inst)
+		void setGlobalVariable(const std::string& name, T* inst)
 		{
-			dbglogn("set global " << name <<  " to " << inst);
+			dbglogn("set global v " << name <<  " to " << inst);
 			luabind::globals(L)[name] = inst;
+		}
+
+
+		//see http://www.rasterbar.com/products/luabind/docs.html#splitting-up-the-registration
+		void registerScope(luabind::scope s, const char* namespac = 0)
+		{
+			luabind::module(L, namespac)
+			[
+				s
+			];
+		}
+
+		template <class T>
+		void addToGlobalClass(const std::string& name, T* ptr)
+		{
+
 		}
 
 		int call(const std::string& evt)
@@ -94,7 +145,8 @@ namespace ion
 					}
 					catch (luabind::error e)
 					{
-						dbglogn(e.what());
+						funcs.erase(it);
+						continue;
 					}
 				}
 				else if (it->second.first) //should be a good function, probably error
@@ -114,7 +166,7 @@ namespace ion
 			LeaveCriticalSection(&cs);
 		}
 
-		void init(const std::string& appName)
+		void init()
 		{
 			if (!m_init) m_init = 1;
 			else
@@ -126,8 +178,8 @@ namespace ion
 			luaL_openlibs(L); //load standard library
 
 			luabind::open(L);
-
-			//set app name TODO put under global namespace
+			
+			luabind::set_pcall_callback(&errorHandler);
 
 			//bind logging class
 			luabind::module(L)[
@@ -217,6 +269,8 @@ namespace ion
 					.def_readwrite("g", &color::G)
 					.def_readwrite("b", &color::B)
 			];
+
+
 			LeaveCriticalSection(&cs);
 		}
 
@@ -228,7 +282,10 @@ namespace ion
 		lua_State* L;
 		std::vector<luascript*> _scripts;
 
+		luabind::object globalObject;
+
 		static std::map<std::string, std::map<std::string, std::pair<bool, luabind::object>>> _hooks;
+
 	private:
 		luamgr() : m_init(0)
 		{

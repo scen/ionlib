@@ -186,6 +186,9 @@
     <ClInclude Include="..\src\mem\memmgr.h">
       <Filter>Header Files\mem</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\luamgr\global_lua.h">
+      <Filter>Header Files\luamgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
