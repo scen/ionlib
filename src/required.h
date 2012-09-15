@@ -1,10 +1,14 @@
 #pragma once
 
+//If you want MSVC_10 libraries, just change lib path to lib/msvc10
+//#define MSVC_10
+
+
 #pragma warning(disable: 4005 4996 4615 4018 4482;)
 
 #define BEA_ENGINE_STATIC
-//#define BEA_USE_STDCALL
-#define NOMINMAX
+#define NOMINMAX //min() max() in windows.h
+#define _SECURE_SCL 0
 
 #define JMP_SIZE 5 //0xE9
 
@@ -33,6 +37,7 @@
 #include <string>
 #include <cstdlib>
 #include <set>
+#include <map>
 
 //beaengine
 #include "beaengine/BeaEngine.h"
@@ -44,6 +49,17 @@
 #include "boost/lexical_cast.hpp"
 #include "boost/format.hpp"
 #include "boost/foreach.hpp"
+
+//lua
+extern "C" {
+#include "lua/lua.h"
+#include "lua/lualib.h"
+#include "lua/lauxlib.h"
+}
+
+//luabind
+#include "luabind/luabind.hpp"
+#include "luabind/operator.hpp"
 
 //Dropping javascript :(
 //google v8
@@ -58,7 +74,15 @@
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
+#ifndef MSVC_10
 #pragma comment(lib, "bea.lib")
+#pragma comment(lib, "lua.lib")
+#pragma comment(lib, "libluabind.lib")
+#else
+#pragma comment(lib, "bea.lib")
+#pragma comment(lib, "lua.lib")
+#pragma comment(lib, "libluabind.lib")
+#endif
 //#pragma comment(lib, "v8/v8_base.lib")
 //#pragma comment(lib, "v8/preparser_lib.lib")
 //#pragma comment(lib, "v8/v8_snapshot.lib")

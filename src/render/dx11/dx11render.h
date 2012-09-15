@@ -15,9 +15,15 @@
 #include "extra/d3dxGlobal.h"
 #include "extra/FillFx.h"
 
+#ifndef MSVC_10
 #pragma comment(lib, "Effects11.lib")
 #pragma comment(lib, "D3DCompiler.lib")
 #pragma comment(lib, "D3DX11.lib")
+#else
+#pragma comment(lib, "Effects11.lib")
+#pragma comment(lib, "D3DCompiler.lib")
+#pragma comment(lib, "D3DX11.lib")
+#endif
 
 namespace ion
 {

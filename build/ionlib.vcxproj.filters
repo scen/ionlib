@@ -58,17 +58,11 @@
     <Filter Include="Source Files\hooks\draw">
       <UniqueIdentifier>{f35158e0-1ec1-4816-b83e-311ae55e6902}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\js">
-      <UniqueIdentifier>{66633804-cdfa-4168-8ab4-7b0108aa835b}</UniqueIdentifier>
+    <Filter Include="Header Files\luamgr">
+      <UniqueIdentifier>{4be8cfca-2bcc-4d80-8186-171e5e7a0090}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\js">
-      <UniqueIdentifier>{097ae62c-88f3-4c23-bfe7-02dd1c6e9c4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\js\dir">
-      <UniqueIdentifier>{da277e3e-51f7-469f-aca6-21a2eeedfab1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\js\dir">
-      <UniqueIdentifier>{4394b05c-aa3c-4072-ab43-a8e184a2c6ff}</UniqueIdentifier>
+    <Filter Include="Source Files\luamgr">
+      <UniqueIdentifier>{8999cac7-e07b-414f-b61e-f3b7bf0de4a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -183,17 +177,14 @@
     <ClInclude Include="..\src\hooks\draw\dx11hook.h">
       <Filter>Header Files\hooks\draw</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\mem\memmgr.h">
-      <Filter>Header Files\hooks\draw</Filter>
+    <ClInclude Include="..\src\luamgr\luamgr.h">
+      <Filter>Header Files\luamgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\util\log_js.h">
+    <ClInclude Include="..\src\util\log_lua.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\js\jsctx.h">
-      <Filter>Header Files\js</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\js\jsmgr.h">
-      <Filter>Header Files\js</Filter>
+    <ClInclude Include="..\src\mem\memmgr.h">
+      <Filter>Header Files\mem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,11 +275,8 @@
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp">
       <Filter>Source Files\hooks\draw</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\js\jsctx.cpp">
-      <Filter>Source Files\js</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\js\jsmgr.cpp">
-      <Filter>Source Files\js</Filter>
+    <ClCompile Include="..\src\luamgr\luamgr.cpp">
+      <Filter>Source Files\luamgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

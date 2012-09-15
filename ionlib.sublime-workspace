@@ -36,51 +36,85 @@
 	"buffers":
 	[
 		{
+			"file": "/C/projects/Entropy/Program.cs",
+			"settings":
+			{
+				"buffer_size": 6285,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/projects/tmp/js/test.js",
+			"settings":
+			{
+				"buffer_size": 119,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Stanley/Downloads/luabind-0.9.1/luabind-0.9.1/Jamroot",
+			"settings":
+			{
+				"buffer_size": 4193,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/projects/luabind/Jamroot",
+			"settings":
+			{
+				"buffer_size": 4204,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 2373,
+				"buffer_size": 2848,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "LICENSE",
+			"file": "/C/projects/tmp/lua/test.lua",
 			"settings":
 			{
-				"buffer_size": 1057,
+				"buffer_size": 69,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": ".git/info/exclude",
+			"contents": "Searching 169 files for \"LUA_GLOBALSINDEX\"\n\nC:\\Users\\Stanley\\Downloads\\luabind-0.9.1\\luabind-0.9.1\\luabind\\detail\\call_function.hpp:\n  348  \n  349  		lua_pushstring(L, name);\n  350: 		lua_gettable(L, LUA_GLOBALSINDEX);\n  351  \n  352  		return proxy_type(L, 1, &detail::pcall, args);\n  ...\n  391  \n  392  		lua_pushstring(L, name);\n  393: 		lua_gettable(L, LUA_GLOBALSINDEX);\n  394  \n  395  		return proxy_type(L, 1, &detail::resume_impl, args);\n\nC:\\Users\\Stanley\\Downloads\\luabind-0.9.1\\luabind-0.9.1\\luabind\\detail\\object_funs.hpp:\n  185  	inline object get_globals(lua_State* L)\n  186  	{\n  187: 		lua_pushvalue(L, LUA_GLOBALSINDEX);\n  188  		detail::lua_reference ref;\n  189  		ref.set(L);\n\nC:\\Users\\Stanley\\Downloads\\luabind-0.9.1\\luabind-0.9.1\\luabind\\object.hpp:\n 1208  inline object globals(lua_State* interpreter)\n 1209  {\n 1210:     lua_pushvalue(interpreter, LUA_GLOBALSINDEX);\n 1211      detail::stack_pop pop(interpreter, 1);\n 1212      return object(from_stack(interpreter, -1));\n\n4 matches across 3 files\n",
 			"settings":
 			{
-				"buffer_size": 341,
+				"buffer_size": 1019,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/C/projects/lua521/lua52/src/luaconf.h",
+			"settings":
+			{
+				"buffer_size": 15409,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ionlib.sln",
+			"file": "/C/projects/tmp/js/test2.js",
 			"settings":
 			{
-				"buffer_size": 861,
+				"buffer_size": 164,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/render/color.h",
+			"file": "/C/projects/PreStrEnc/XorStr.cs",
 			"settings":
 			{
-				"buffer_size": 1142,
+				"buffer_size": 3413,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Stanley/Downloads/v8-v8-3.13.0-0-g6b47a1a/v8-v8-6b47a1a/build/README.txt",
-			"settings":
-			{
-				"buffer_size": 2259,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -160,6 +194,18 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Stanley/Downloads/luabind-0.9.1/luabind-0.9.1/luabind/detail/call_function.hpp",
+		"/C/Users/Stanley/Downloads/boost_1_51_0/boost_1_51_0/Jamroot",
+		"/C/projects/ionlib/src/render/dx11/dx11render.cpp",
+		"/C/Users/Stanley/Downloads/v8-v8-3.13.0-0-g6b47a1a/v8-v8-6b47a1a/build/README.txt",
+		"/C/projects/ionlib/src/render/color.h",
+		"/C/projects/ionlib/ionlib.sln",
+		"/C/projects/ionlib/.git/info/exclude",
+		"/C/projects/ionlib/LICENSE",
+		"/C/projects/ionlib/README.md",
+		"/C/projects/Vox/TF2/Entropy.h",
+		"/C/projects/Vox/TF2/StrEnc.cpp",
+		"/C/projects/Vox/TF2/StrEnc.h",
 		"/C/projects/ionlib/src/render/dx11/extra/FW1FontWrapper.h",
 		"/C/projects/Vox/Mem/MemMgr.cpp",
 		"/C/projects/Vox/Mem/VMT.cpp",
@@ -173,12 +219,8 @@
 		"/C/projects/Vox/Util/Logger.h",
 		"/C/projects/Vox/Util/Logger.cpp",
 		"/C/projects/Vox/Util/Required.h",
-		"/C/projects/ionlib/.git/info/exclude",
 		"/C/projects/Vox/LICENSE",
 		"/C/projects/Vox/README.md",
-		"/C/projects/Vox/TF2/StrEnc.h",
-		"/C/projects/Vox/TF2/StrEnc.cpp",
-		"/C/projects/Vox/TF2/Entropy.h",
 		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tomorrow-Night.tmTheme",
 		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Tubster.tmTheme",
 		"/C/Users/Stanley/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
@@ -246,9 +288,11 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 92.0,
 		"where_history":
 		[
+			"C:\\Users\\Stanley\\Downloads\\luabind-0.9.1\\luabind-0.9.1\\luabind,C:\\projects\\lua521\\lua52",
+			"C:\\Users\\Stanley\\Downloads\\luabind-0.9.1\\luabind-0.9.1\\luabind"
 		]
 	},
 	"find_state":
@@ -256,6 +300,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"LUA_GLOBALSINDEX",
+			"lua_strlen",
+			"lua.h",
 			"}",
 			"return",
 			"p",
@@ -337,10 +384,64 @@
 			[
 				{
 					"buffer": 0,
-					"file": "README.md",
+					"file": "/C/projects/Entropy/Program.cs",
 					"settings":
 					{
-						"buffer_size": 2373,
+						"buffer_size": 6285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3437,
+								3437
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/projects/tmp/js/test.js",
+					"settings":
+					{
+						"buffer_size": 119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Stanley/Downloads/luabind-0.9.1/luabind-0.9.1/Jamroot",
+					"settings":
+					{
+						"buffer_size": 4193,
 						"regions":
 						{
 						},
@@ -348,7 +449,63 @@
 						[
 							[
 								0,
-								0
+								4193
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/projects/luabind/Jamroot",
+					"settings":
+					{
+						"buffer_size": 4204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1097,
+								1097
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 223.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 2848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2219,
+								2219
 							]
 						],
 						"settings":
@@ -364,133 +521,161 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "LICENSE",
-					"settings":
-					{
-						"buffer_size": 1057,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								465,
-								465
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": ".git/info/exclude",
-					"settings":
-					{
-						"buffer_size": 341,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "ionlib.sln",
-					"settings":
-					{
-						"buffer_size": 861,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								861,
-								861
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/render/color.h",
-					"settings":
-					{
-						"buffer_size": 1142,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 5,
-					"file": "/C/Users/Stanley/Downloads/v8-v8-3.13.0-0-g6b47a1a/v8-v8-6b47a1a/build/README.txt",
+					"file": "/C/projects/tmp/lua/test.lua",
 					"settings":
 					{
-						"buffer_size": 2259,
+						"buffer_size": 69,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1141,
-								1141
+								62,
+								62
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Lua/Lua.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 1019,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										200,
+										216
+									],
+									[
+										356,
+										372
+									],
+									[
+										617,
+										633
+									],
+									[
+										869,
+										885
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								212,
+								212
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/projects/lua521/lua52/src/luaconf.h",
+					"settings":
+					{
+						"buffer_size": 15409,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8275,
+								8275
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3974.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/projects/tmp/js/test2.js",
+					"settings":
+					{
+						"buffer_size": 164,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/projects/PreStrEnc/XorStr.cs",
+					"settings":
+					{
+						"buffer_size": 3413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

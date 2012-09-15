@@ -5,7 +5,11 @@
 
 #include "extra/FW1FontWrapper.h"
 
+#ifndef MSVC_10
 #pragma comment(lib, "FW1FontWrapper.lib")
+#else
+#pragma comment(lib, "FW1FontWrapper.lib")
+#endif
 
 namespace ion
 {
@@ -13,9 +17,6 @@ namespace ion
 	{
 	public:
 
-		int m_size;
-		int getSize() const { return m_size; }
-		void setSize(int val) { m_size = val; }
 		IFW1FontWrapper* m_fontWrapper;
 		IFW1FontWrapper* getFontWrapper() const { return m_fontWrapper; }
 		void setFontWrapper(IFW1FontWrapper* val) { m_fontWrapper = val; }

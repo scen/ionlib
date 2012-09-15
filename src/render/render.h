@@ -37,7 +37,6 @@ namespace ion
 		virtual size measureText(int flags, const font *fnt, const point& p, const std::string& fmt) PURE;
 
 		virtual font* createFont(const std::string& name, int size, int flags) PURE;
-
 		//rect
 		virtual void fillRect(const rect& r, const color& c) PURE;
 		virtual void outlineRect(const rect& r, const color& c) PURE;

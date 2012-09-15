@@ -124,6 +124,7 @@ namespace ion
 	void dx11render::renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
 	{
 		auto f = reinterpret_cast<const dx11font*>(fnt);
+		if (!f) return;
 		int rflags = FW1_RESTORESTATE;
 		//convert render flags to lib flags
 		if (flags & VCenter)
