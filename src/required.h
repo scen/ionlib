@@ -68,11 +68,14 @@ extern "C" {
 #include "luabind/operator.hpp"
 #include "luabind/adopt_policy.hpp"
 
+//jsoncpp
+#include "json/json.h"
 
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "distorm.lib")
+#pragma comment(lib, "jsoncpp.lib")
 #ifdef _LUA_JIT
 #pragma comment(lib, "luajit.lib") //compiled with lua 5.1.5
 #pragma comment(lib, "libluabind515.lib")

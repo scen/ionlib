@@ -1,13 +1,14 @@
 #pragma once
 
 #include "../required.h"
-
+#include "../util/log.h"
 namespace ion
 {
 	class module
 	{
 	public:
-		module(char* name);
+		module(const std::string& name);
+		module() {}
 		~module() {}
 		//static
 		static bool enumLoadedModules(std::function<void(MODULEENTRY32&)> lambda);

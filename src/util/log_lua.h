@@ -13,4 +13,8 @@ public:
 	{
 		infologn("[lua-info] " << text);
 	}
+	static void raw(const std::string& text)
+	{
+		log.raw((char*)text.c_str());
+	}
 };

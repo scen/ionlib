@@ -189,6 +189,15 @@
     <ClInclude Include="..\src\luamgr\global_lua.h">
       <Filter>Header Files\luamgr</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\util\filewatch.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ionbase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\sigdb.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -280,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="..\src\luamgr\luamgr.cpp">
       <Filter>Source Files\luamgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\filewatch.cpp">
+      <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

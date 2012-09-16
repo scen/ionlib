@@ -2,6 +2,7 @@
 
 #include "../required.h"
 #include "../util/log.h"
+#include "../util/filewatch.h"
 
 //files to expose
 #include "../util/log_lua.h"
@@ -15,13 +16,12 @@ namespace ion
 	class luamgr
 	{
 	public:
-		//TODO MAKE IT WATCH AN ENTIRE DIR
 		struct luascript
 		{
 			std::string file;
 			FILE * f;
 			SYSTEMTIME st;
-			void reload()
+			void reload(bool updated =  false)
 			{
 				f = fopen(file.c_str(), "rb");
 				if (f)
@@ -37,6 +37,7 @@ namespace ion
 					delete[] data;
 					//lua.execString(contents);
 					lua.execFile(file);
+					if (!updated) filewatcher.addFile(file, this, &luamgr::dispatchFileReload);
 				}
 				else
 				{
@@ -49,15 +50,14 @@ namespace ion
 			}
 
 		};
+		struct luaproject
+		{
+			std::vector<luascript*> files;
+		};
 		static luamgr& get()
 		{
 			static luamgr l;
 			return l;
-		}
-
-		void beginReload()
-		{
-			CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&waitThread, 0, 0, 0);
 		}
 
 		static int errorHandler(lua_State * ls)
@@ -105,57 +105,27 @@ namespace ion
 			return ret;
 		}
 
-		//TODO Make project file hot reloading
-		void loadProject(const std::string & fn)
+		void reloadProject(Json::Value& root, std::string &basepath)
 		{
-			FILE * f = fopen(fn.c_str(), "rb");
-			if (!f)
+			curProj.files.clear();
+			
+			const Json::Value files = root["files"];
+			if (files == Json::Value::null)
 			{
-				dbglogn("project file cannot be opened");
-				return;
+				dbglogn("missing files parameter");
 			}
-			fseek(f, 0, FILE_END);
-			auto sz = ftell(f);
-			rewind(f);
-			char* data = new char[sz + 1];
-			memset(data, 0, sz + 1);
-			fread(data, 1, sz, f);
-			fclose(f);
-			std::string contents(data);
-			delete[] data;
-			if (lua.execString(contents) != 0)
+			for (int i = 0; i < files.size(); i++)
 			{
-				dbglogn("Failed to load project");
-				return;
-			}
-			char dir[MAX_PATH] = {0};
-			char drive[MAX_PATH] = {0};
-			_splitpath(fn.c_str(), drive, dir, 0, 0); 
-			std::string basepath = std::string(drive) + std::string(dir);
-
-			if (luabind::type(luabind::globals(L)["PROJECT"]) != LUA_TTABLE)
-			{
-				dbglogn("Could not find PROJECT table");
-				return;
-			}
-
-			if (luabind::type(luabind::globals(L)["PROJECT"]["files"]) != LUA_TTABLE)
-			{
-				dbglogn("Could not find PROJECT.files table");
-				return;
-			}
-			for (luabind::iterator it(luabind::globals(L)["PROJECT"]["files"]), end; it != end; ++it)
-			{
-				auto dit = *it;
-				if (luabind::type(dit["path"]) == LUA_TNIL)
+				if (files[i]["path"] == Json::Value::null)
 				{
-					dbglogn("file.path undefined");
+					dbglogn("missing file.path");
 					return;
 				}
-				std::string name = luabind::object_cast<std::string>(dit["path"]);
-				infologn("Project: loading file " << name);
-				addScript(basepath + name);
+				auto path = files[i]["path"];
+				infologn("Project: Loading " << path.asString());
+				lua.addScript(basepath + path.asString());
 			}
+
 		}
 
 		void setDrawInstance(ion::render* inst)
@@ -166,7 +136,6 @@ namespace ion
 		template <class T>
 		void setGlobalVariable(const std::string& name, T* inst)
 		{
-			dbglogn("set global v " << name <<  " to " << inst);
 			luabind::globals(L)[name] = inst;
 		}
 
@@ -218,7 +187,7 @@ namespace ion
 		void addScript(const std::string& s)
 		{
 			EnterCriticalSection(&cs);
-			_scripts.push_back(new luascript(s));
+			curProj.files.push_back(new luascript(s));
 			LeaveCriticalSection(&cs);
 		}
 
@@ -242,7 +211,8 @@ namespace ion
 				luabind::class_<log_lua>("log")
 					.scope[
 						luabind::def("dbg", &log_lua::dbg),
-							luabind::def("info", &log_lua::info)
+						luabind::def("info", &log_lua::info),
+						luabind::def("raw", &log_lua::raw)
 					]
 			];
 
@@ -340,13 +310,20 @@ namespace ion
 			LeaveCriticalSection(&cs);
 		}
 
+		static void dispatchFileReload(void* const inst)
+		{
+			luascript* instance = (luascript*)inst;
+			instance->reload(true);
+		}
+
 		~luamgr()
 		{
 		}
 
 		CRITICAL_SECTION cs;
 		lua_State* L;
-		std::vector<luascript*> _scripts;
+
+		luaproject curProj;
 
 		luabind::object globalObject;
 
@@ -380,40 +357,6 @@ namespace ion
 		static void callHook(const std::string& evt)
 		{
 			lua.call(evt);
-		}
-
-		static void waitThread(void* inst)
-		{
-			//initialize
-			for (auto it = lua._scripts.begin(); it != lua._scripts.end(); it++)
-				lua.isFileModified((*it)->file, &(*it)->st, &(*it)->st);
-
-			while (true)
-			{
-				for (auto it = lua._scripts.begin(); it != lua._scripts.end(); it++)
-				{
-					if (lua.isFileModified((*it)->file, &(*it)->st, &(*it)->st))
-					{
-						(*it)->reload();
-					}
-				}
-				Sleep(750);
-			}
-		}
-
-		bool isFileModified(const std::string& file, SYSTEMTIME* pOld,
-			SYSTEMTIME* pNew)
-		{
-			WIN32_FILE_ATTRIBUTE_DATA data = {0};
-			GetFileAttributesEx(file.c_str(),  GetFileExInfoStandard,
-				&data);
-			SYSTEMTIME st = {0};
-			FileTimeToSystemTime(&data.ftLastWriteTime, &st);
-
-			int ret =  memcmp(&st, pOld, sizeof SYSTEMTIME);
-
-			memcpy(pNew, &st, sizeof SYSTEMTIME);
-			return (bool)ret;
 		}
 	};
 

@@ -85,6 +85,28 @@ namespace ion
 			}
 #endif
 		}
+
+		void raw(char* fmt, ...)
+		{
+			va_list args;
+			char buf[32000] = {0};
+
+			va_start(args, fmt);
+			vsprintf(buf, fmt, args);
+			va_end(args);
+
+
+			if (m_flags & LogToConsole)
+			{
+				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
+			}
+			if (m_fp && (m_flags & LogToFile))
+			{
+				fprintf(m_fp, "%s", buf);
+				fflush(m_fp);
+			}
+		}
+
 		void info(char* fmt, ...)
 		{
 			va_list args;
