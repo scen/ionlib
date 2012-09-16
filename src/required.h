@@ -67,15 +67,6 @@ extern "C" {
 #include "luabind/operator.hpp"
 #include "luabind/adopt_policy.hpp"
 
-//Dropping javascript :(
-//google v8
-//#include "v8/v8.h"
-
-//V8Convert
-//#include "cvv8/v8-convert.hpp"
-//#include "cvv8/V8Shell.hpp"
-
-//namespace cv = cvv8;
 
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
@@ -88,7 +79,3 @@ extern "C" {
 #pragma comment(lib, "lua52.lib")
 #pragma comment(lib, "libluabind52.lib")
 #endif
-
-//#pragma comment(lib, "v8/v8_base.lib")
-//#pragma comment(lib, "v8/preparser_lib.lib")
-//#pragma comment(lib, "v8/v8_snapshot.lib")
