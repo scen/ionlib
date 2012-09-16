@@ -24,6 +24,10 @@ Notes for future reference
     * Set `LUA_ROOT`, `BOOST_BUILD_ROOT`, `PATH`, `BOOST_ROOT` accordingly.
 * Luabind tutorial
     * http://blog.nuclex-games.com/tutorials/cxx/luabind-introduction/
+* Replacing Lua with LuaJIT
+	* They should have the same API
+	* Follow instructions [here](http://luajit.org/install.html)
+	* Build with mscvbuild.bat static. Link with the lua51.lib
 
 
 About

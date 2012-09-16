@@ -133,10 +133,10 @@ namespace ion
 
 		int call(const std::string& evt)
 		{
-			auto funcs = _hooks[evt];
+			auto &funcs = _hooks[evt];
 			for (auto it = funcs.begin(); it != funcs.end(); it++)
 			{
-				auto func = it->second.second;
+				auto &func = it->second.second;
 				if (it->second.first && func.is_valid())
 				{
 					try
@@ -145,6 +145,7 @@ namespace ion
 					}
 					catch (luabind::error e)
 					{
+						it->second.first = false;
 						funcs.erase(it);
 						continue;
 					}
@@ -192,10 +193,11 @@ namespace ion
 
 			//bind hooking class
 			luabind::module(L)[
-				luabind::class_<luamgr>("hooks")
+				luabind::class_<luamgr>("events")
 					.scope[
-						luabind::def("add", &addHook),
-						luabind::def("remove", &removeHook)
+						luabind::def("register", &addHook),
+						luabind::def("unregister", &removeHook),
+						luabind::def("call", &call)
 					]
 			];
 
@@ -263,11 +265,20 @@ namespace ion
 				luabind::class_<ion::color>("color")
 					.def(luabind::constructor<ULONG>())
 					.def(luabind::constructor<UINT, UINT, UINT, UINT>())
+					.def(luabind::constructor<UINT, UINT, UINT>())
 					.def_readwrite("argb", &color::ARGB)
 					.def_readwrite("a", &color::A)
 					.def_readwrite("r", &color::R)
 					.def_readwrite("g", &color::G)
 					.def_readwrite("b", &color::B)
+					.scope[
+						luabind::def("red", &color::red),
+						luabind::def("empty", &color::empty),
+						luabind::def("green", &color::green),
+						luabind::def("blue", &color::blue),
+						luabind::def("black", &color::black),
+						luabind::def("white", &color::white)
+					]
 			];
 
 

@@ -1,13 +1,11 @@
 #pragma once
 
-//If you want MSVC_10 libraries, just change lib path to lib/msvc10
-//#define MSVC_10
-
+#define _LUA_JIT //experimental
 
 #pragma warning(disable: 4005 4996 4615 4018 4482;)
 
 #define BEA_ENGINE_STATIC
-#define NOMINMAX //min() max() in windows.h
+#define NOMINMAX
 #define _SECURE_SCL 0
 
 #define JMP_SIZE 5 //0xE9
@@ -52,9 +50,16 @@
 
 //lua
 extern "C" {
+#ifdef _LUA_JIT
+#include "lua/luajit/luajit.h"
+#include "lua/luajit/lua.h"
+#include "lua/luajit/lualib.h"
+#include "lua/luajit/lauxlib.h"
+#else
 #include "lua/lua.h"
 #include "lua/lualib.h"
 #include "lua/lauxlib.h"
+#endif
 }
 
 //luabind
@@ -75,15 +80,15 @@ extern "C" {
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
-#ifndef MSVC_10
 #pragma comment(lib, "bea.lib")
-#pragma comment(lib, "lua.lib")
-#pragma comment(lib, "libluabind.lib")
+#ifdef _LUA_JIT
+#pragma comment(lib, "luajit.lib") //compiled with lua 5.1.5
+#pragma comment(lib, "libluabind515.lib")
 #else
-#pragma comment(lib, "bea.lib")
-#pragma comment(lib, "lua.lib")
-#pragma comment(lib, "libluabind.lib")
+#pragma comment(lib, "lua52.lib")
+#pragma comment(lib, "libluabind52.lib")
 #endif
+
 //#pragma comment(lib, "v8/v8_base.lib")
 //#pragma comment(lib, "v8/preparser_lib.lib")
 //#pragma comment(lib, "v8/v8_snapshot.lib")
