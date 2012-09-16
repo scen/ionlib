@@ -37,8 +37,9 @@
 #include <set>
 #include <map>
 
-//beaengine
-#include "beaengine/BeaEngine.h"
+//distorm
+#include "distorm/mnemonics.h"
+#include "distorm/distorm.h"
 
 //asmjit
 #include "asmjit/AsmJit.h"
@@ -71,7 +72,7 @@ extern "C" {
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")
-#pragma comment(lib, "bea.lib")
+#pragma comment(lib, "distorm.lib")
 #ifdef _LUA_JIT
 #pragma comment(lib, "luajit.lib") //compiled with lua 5.1.5
 #pragma comment(lib, "libluabind515.lib")

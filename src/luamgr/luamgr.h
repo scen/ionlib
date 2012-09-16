@@ -197,7 +197,7 @@ namespace ion
 					.scope[
 						luabind::def("register", &addHook),
 						luabind::def("unregister", &removeHook),
-						luabind::def("call", &call)
+						luabind::def("call", &callHook)
 					]
 			];
 
@@ -320,6 +320,11 @@ namespace ion
 			dbglogn("removing hook " << evt << " " << id);
 			auto &h = _hooks[evt][id];
 			h.first = false;
+		}
+
+		static void callHook(const std::string& evt)
+		{
+			lua.call(evt);
 		}
 
 		static void waitThread(void* inst)

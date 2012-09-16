@@ -15,44 +15,57 @@ namespace ion
 		VirtualProtect(m_tramp, trampSize + 1, PAGE_EXECUTE_READWRITE, &dwOldProtTramp);
 		BYTE* trampCur = (BYTE*)m_tramp;
 
-		//Initialize the DISASM structure
-		DISASM srcDisasm;
-		memset(&srcDisasm, 0, sizeof DISASM);
+		_DInst dec[1];
+		UINT decCnt = 0;
 
-		srcDisasm.Archi = 32;
-		srcDisasm.EIP = (UIntPtr)this->m_src;
-		srcDisasm.VirtualAddr = (UIntPtr)this->m_src;	
+		_CodeInfo ci = {0};
+		ci.code = m_src;
+		ci.codeOffset = (_OffsetType)m_src;
+		ci.codeLen = 20;
+		ci.dt = Decode32Bits;
+		ci.features = DF_NONE;
+		
 		unsigned int InstrSize = 0;
 		do
 		{
-			int len = Disasm(&srcDisasm);
-
-			if (len == UNKNOWN_OPCODE)
+			distorm_decompose(&ci, dec, 1, &decCnt);
+			if (dec->flags == FLAG_NOT_DECODABLE)
 			{
-				return false;
+				dbglogn("flag_not_decodable");
+				return 0;
 			}
-
-			//Relocate relative jumps //TODO: Other branch types
-			if (srcDisasm.Instruction.BranchType == JmpType &&
-				srcDisasm.Instruction.AddrValue != 0)
+			if (META_GET_FC(dec->meta) == FC_UNC_BRANCH || META_GET_FC(dec->meta) == FC_CND_BRANCH) //TODO add more branch types
 			{
-				jmp(trampCur, (void*)srcDisasm.Instruction.AddrValue);
-				trampCur += JMP_SIZE;
+				if (dec->opcode == I_JMP)
+				{
+					dbglogn("JMP branch");
+					if (dec->ops[0].type == O_PC)
+					{
+						//If you want target address use INSTRUCTION_GET_TARGET()
+						//otherwise just read from imm.addr for relative offset
+						jmp(trampCur, (void*)dec->imm.addr);
+						trampCur += dec->size;
+					}
+					else
+					{
+						dbglogn("unknown JMP op 0");
+						return 0;
+					}
+				}
+				else
+				{
+					dbglogn("[warning] no implementation for branch type: " << GET_MNEMONIC_NAME(dec->opcode));
+				}
 			}
 			else
 			{
-				//Generic instruction
-				memcpy(trampCur, (void*)srcDisasm.VirtualAddr, len);
-				trampCur += len;
+				//non branching instruction
+				memcpy(trampCur, (void*)ci.codeOffset, dec->size);
+				trampCur += dec->size;
 			}
-
-			//Advance
-			srcDisasm.EIP += len;
-			srcDisasm.VirtualAddr += len;
-
-			InstrSize += len;
-		} while(InstrSize < JMP_SIZE);
-
+			ci.codeOffset = ci.nextOffset;
+			InstrSize += dec->size;
+		} while (InstrSize < JMP_SIZE);
 		int OverridenSize = InstrSize;
 
 		//Jump back to source

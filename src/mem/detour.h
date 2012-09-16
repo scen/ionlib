@@ -2,6 +2,7 @@
 
 #include "../required.h"
 #include "memmgr.h"
+#include "../util/log.h"
 
 namespace ion
 {
