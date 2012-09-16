@@ -283,11 +283,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\lib\bea.lib">
-      <Filter>lib</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>

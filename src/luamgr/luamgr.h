@@ -40,7 +40,7 @@ namespace ion
 				}
 				else
 				{
-					dbglogn("ferror");
+					dbglogn("fopen error. file not found?");
 				}
 			}
 			luascript(const std::string& fn) : file(fn)
@@ -87,20 +87,75 @@ namespace ion
 			return 1;
 		}
 
-		void execString(const std::string& str)
+		int execString(const std::string& str)
 		{
 			lua_pushcfunction(L, &errorHandler);
 			luaL_loadstring(L, str.c_str());
 			int ret = lua_pcall(L, 0, LUA_MULTRET, -2);
 			lua_pop(L, 1);
+			return ret;
 		}
-		
-		void execFile(const std::string& fn)
+
+		int execFile(const std::string& fn)
 		{
 			lua_pushcfunction(L, &errorHandler);
 			luaL_loadfile(L, fn.c_str());
 			int ret = lua_pcall(L, 0, LUA_MULTRET, -2);
 			lua_pop(L, 1);
+			return ret;
+		}
+
+		//TODO Make project file hot reloading
+		void loadProject(const std::string & fn)
+		{
+			FILE * f = fopen(fn.c_str(), "rb");
+			if (!f)
+			{
+				dbglogn("project file cannot be opened");
+				return;
+			}
+			fseek(f, 0, FILE_END);
+			auto sz = ftell(f);
+			rewind(f);
+			char* data = new char[sz + 1];
+			memset(data, 0, sz + 1);
+			fread(data, 1, sz, f);
+			fclose(f);
+			std::string contents(data);
+			delete[] data;
+			if (lua.execString(contents) != 0)
+			{
+				dbglogn("Failed to load project");
+				return;
+			}
+			char dir[MAX_PATH] = {0};
+			char drive[MAX_PATH] = {0};
+			_splitpath(fn.c_str(), drive, dir, 0, 0); 
+			std::string basepath = std::string(drive) + std::string(dir);
+
+			if (luabind::type(luabind::globals(L)["PROJECT"]) != LUA_TTABLE)
+			{
+				dbglogn("Could not find PROJECT table");
+				return;
+			}
+
+			if (luabind::type(luabind::globals(L)["PROJECT"]["files"]) != LUA_TTABLE)
+			{
+				dbglogn("Could not find PROJECT.files table");
+				return;
+			}
+			for (luabind::iterator it(luabind::globals(L)["PROJECT"]["files"]), end; it != end; ++it)
+			{
+				auto dit = *it;
+				if (luabind::type(dit["path"]) == LUA_TNIL)
+				{
+					dbglogn("file.path undefined");
+					return;
+				}
+				std::string name = luabind::object_cast<std::string>(dit["path"]);
+				infologn("Project: loading file " << name);
+				addScript(basepath + name);
+			}
 		}
 
 		void setDrawInstance(ion::render* inst)
@@ -120,9 +175,9 @@ namespace ion
 		void registerScope(luabind::scope s, const char* namespac = 0)
 		{
 			luabind::module(L, namespac)
-			[
-				s
-			];
+				[
+					s
+				];
 		}
 
 		template <class T>
@@ -179,7 +234,7 @@ namespace ion
 			luaL_openlibs(L); //load standard library
 
 			luabind::open(L);
-			
+
 			luabind::set_pcall_callback(&errorHandler);
 
 			//bind logging class
@@ -187,7 +242,7 @@ namespace ion
 				luabind::class_<log_lua>("log")
 					.scope[
 						luabind::def("dbg", &log_lua::dbg),
-						luabind::def("info", &log_lua::info)
+							luabind::def("info", &log_lua::info)
 					]
 			];
 
@@ -196,8 +251,8 @@ namespace ion
 				luabind::class_<luamgr>("events")
 					.scope[
 						luabind::def("register", &addHook),
-						luabind::def("unregister", &removeHook),
-						luabind::def("call", &callHook)
+							luabind::def("unregister", &removeHook),
+							luabind::def("call", &callHook)
 					]
 			];
 
@@ -273,11 +328,11 @@ namespace ion
 					.def_readwrite("b", &color::B)
 					.scope[
 						luabind::def("red", &color::red),
-						luabind::def("empty", &color::empty),
-						luabind::def("green", &color::green),
-						luabind::def("blue", &color::blue),
-						luabind::def("black", &color::black),
-						luabind::def("white", &color::white)
+							luabind::def("empty", &color::empty),
+							luabind::def("green", &color::green),
+							luabind::def("blue", &color::blue),
+							luabind::def("black", &color::black),
+							luabind::def("white", &color::white)
 					]
 			];
 
@@ -309,7 +364,7 @@ namespace ion
 		static void addHook(const std::string& evt, const std::string& id,
 			luabind::object const &func) //expose to lua
 		{
-			dbglogn("adding hook " << evt << " " << id);
+			dbglogn("Registered event " << evt << " -> " << id);
 			auto &h = _hooks[evt][id];
 			h.second = func;
 			h.first = true;
@@ -317,7 +372,7 @@ namespace ion
 
 		static void removeHook(const std::string& evt, const std::string& id)
 		{
-			dbglogn("removing hook " << evt << " " << id);
+			dbglogn("removing event " << evt << "  -> " << id);
 			auto &h = _hooks[evt][id];
 			h.first = false;
 		}
@@ -332,7 +387,7 @@ namespace ion
 			//initialize
 			for (auto it = lua._scripts.begin(); it != lua._scripts.end(); it++)
 				lua.isFileModified((*it)->file, &(*it)->st, &(*it)->st);
-			
+
 			while (true)
 			{
 				for (auto it = lua._scripts.begin(); it != lua._scripts.end(); it++)

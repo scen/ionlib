@@ -90,9 +90,6 @@
     <ClCompile Include="..\src\util\log.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\lib\bea.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
