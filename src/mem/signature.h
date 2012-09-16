@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../util/log.h"
+
 namespace ion
 {
 	class signature
@@ -9,17 +11,18 @@ namespace ion
 		signature() {}
 		signature(std::string idapattern) 
 		{
-			static std::string wildcard("??");
+			static std::string wildcard("?");
 			idapattern.erase(std::remove(idapattern.begin(), idapattern.end(), ' '), idapattern.end());
-			for (auto it = idapattern.cbegin(); it != idapattern.cend(); it += 2)
+			for (auto it = idapattern.cbegin(); it != idapattern.cend();)
 			{
-				std::string cur(it, it + 2);
-				if (cur.compare(0, 2, wildcard) == 0)
+				if (*it == '?')
 				{
 					m_pattern += '\0';
 					m_mask += '?';
+					it++;
 					continue;
 				}
+				std::string cur(it, it + 2);
 
 				std::stringstream converter(cur);
 				USHORT current = 0;
@@ -27,6 +30,7 @@ namespace ion
                 char real_current = static_cast<char>(current);
                 m_pattern += real_current;
                 m_mask += 'x';
+				it += 2;
 			}
 		}
 		~signature() {}
