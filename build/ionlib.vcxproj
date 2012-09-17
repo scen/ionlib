@@ -183,7 +183,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <PrecompiledHeaderOutputFile>$(SolutionDir)\build\ipch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>

@@ -167,7 +167,7 @@ namespace ion
 					{
 						luabind::call_function<void>(func);
 					}
-					catch (...)
+					catch (const luabind::error& e)
 					{
 						log.write(log.ERRO, "Caught exception in luabind::call\n");
 						it->second.first = false;

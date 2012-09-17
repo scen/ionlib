@@ -22,7 +22,8 @@ Notes for future reference
         * This forked version is updated to Lua 5.2
 		* Compile with exceptions
         * `bjam toolset=msvc release link=static exception-handling=on asynch-exceptions=off extern-c-nothrow=on`
-		* WHY WON'T MY EXCEPTIONS BE CAUGHT FROM LUABIND->MY CODE
+		* How to make exceptions caught
+			* Compile ionlib and your project with `/EHs`, which means extern functions CAN throw.
     * Set `LUA_PATH`, `BOOST_BUILD_PATH`, `PATH`, `BOOST_ROOT` accordingly.
 * Luabind tutorial
     * http://blog.nuclex-games.com/tutorials/cxx/luabind-introduction/
