@@ -733,6 +733,7 @@ public:
 	virtual void					SetNextClientThink( float nextThinkTime );
 
 	// anything that has health can override this...
+	virtual void					Padding001(void);
 	virtual void					SetHealth(int iHealth) {}
 	virtual int						GetHealth() const { return 0; }
 	virtual int						GetMaxHealth() const { return 1; }

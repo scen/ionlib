@@ -511,7 +511,8 @@ public:
 									CGlobalVarsBase *pGlobals ) = 0;
 
 	virtual void			PostInit() = 0;
-
+	virtual void pad001(void) = 0;
+	virtual void pad002(void) = 0;
 	// Called once when the client DLL is being unloaded
 	virtual void			Shutdown( void ) = 0;
 	
@@ -635,7 +636,13 @@ public:
 	// Returns true if the client can start recording a demo now.  If the client returns false,
 	// an error message of up to length bytes should be returned in errorMsg.
 	virtual bool			CanRecordDemo( char *errorMsg, int length ) const = 0;
-
+	virtual void PadOnDemoRecordStart();
+	virtual void PadOnDemoRecordStart1();
+	virtual void PadOnDemoRecordStart2();
+	virtual void PadOnDemoRecordStart3();
+	virtual void PadOnDemoRecordStart4();
+	virtual void PadOnDemoRecordStart5();
+	virtual void PadOnDemoRecordStart6();
 	// Added interface
 
 	// save game screenshot writing
