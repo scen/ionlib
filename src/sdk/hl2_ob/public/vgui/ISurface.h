@@ -166,6 +166,8 @@ public:
 	virtual void DrawTexturedRect(int x0, int y0, int x1, int y1) = 0;
 	virtual bool IsTextureIDValid(int id) = 0;
 
+	virtual void DeleteTextureByID(int i) = 0;
+
 	virtual int CreateNewTextureID( bool procedural = false ) = 0;
 #ifdef _X360
 	virtual void DestroyTextureID( int id ) = 0;

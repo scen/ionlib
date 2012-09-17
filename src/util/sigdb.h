@@ -49,7 +49,7 @@ namespace ion
 			for (auto it = _entry.begin(); it != _entry.end(); it++)
 			{
 				it->second.find();
-				dbglogn("[sigdb] " << it->first << ": 0x" << get(it->first));
+				log.write(log.INFO, format("%s -> 0x%X\n") % it->first % get(it->first), "sigdb");
 			}
 		}
 

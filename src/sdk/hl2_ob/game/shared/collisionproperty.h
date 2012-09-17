@@ -72,6 +72,8 @@ public:
 
 	// Methods of ICollideable
 	virtual IHandleEntity	*GetEntityHandle();
+	virtual const Vector&	OBBMinsPreScaled( ) const;
+	virtual const Vector&	OBBMaxsPreScaled( ) const;
  	virtual const Vector&	OBBMins( ) const;
 	virtual const Vector&	OBBMaxs( ) const;
 	virtual void			WorldSpaceTriggerBounds( Vector *pVecWorldMins, Vector *pVecWorldMaxs ) const;

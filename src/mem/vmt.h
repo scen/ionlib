@@ -41,6 +41,7 @@ namespace ion
 	public:
 		vmt( void* inst, size_t offset = 0, UINT vfuncs = 0 );
 		~vmt();
+		vmt() {}
 
 		inline void hookMethod( void* newfunc, size_t index )
 		{

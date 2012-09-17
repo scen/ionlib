@@ -3,21 +3,14 @@
 #include "../required.h"
 
 //Two classes, logger
+//thanks to http://facepunch.com/showthread.php?t=1209342&p=37692735&viewfull=1#post37692735
+//and https://github.com/naelstrof/Astrostruct/blob/master/src/Log.cpp
+//for color inspiration (didn't know how to set color)
 
-#define _DBG 1
+//#define _NO_LOG
 
-//macros, this you can do something like this
-//dbglog("this " << blah << " and that " << that)
 #define log ion::logger::get()
-#ifdef _DBG
-#define dbglog(a) do { char fname[_MAX_FNAME] = {0}; char extName[_MAX_EXT] = {0}; _splitpath_s(__FILE__, 0, 0, 0, 0, fname, _MAX_FNAME, extName, _MAX_EXT); std::stringstream ss; ss << fname << extName << ":" << std::dec << __LINE__ << ":" << __FUNCTION__ << "(): " << a; log.dbg((char*)ss.str().c_str()); } while (false);
-#define dbglogn(a) dbglog(a << std::endl)
-#else
-#define dbglog(a)
-#define dbglogn(a)
-#endif
-#define infolog(a) do { std::stringstream ss; ss << a; log.info((char*)ss.str().c_str()); } while (false);
-#define infologn(a) do { std::stringstream ss; ss << a << std::endl; log.info((char*)ss.str().c_str()); } while (false);
+
 namespace ion
 {
 	class logger
@@ -29,6 +22,34 @@ namespace ion
 			LogToConsole = 2,
 			AllocateConsole = 4,
 		};
+		enum EColors
+		{
+			BLACK = 0,
+			BLUE,
+			GREEN,
+			CYAN,
+			RED,
+			MAGENTA,
+			BROWN,
+			LIGHTGRAY,
+			DARKGRAY,
+			LIGHTBLUE,
+			LIGHTGREEN,
+			LIGHTCYAN,
+			LIGHTRED,
+			LIGHTMAGENTA,
+			YELLOW,
+			WHITE
+		};
+
+		enum ELogLevel
+		{
+			ERRO = 0,
+			WARN,
+			INFO,
+			VERB
+		};
+
 		static logger& get()
 		{
 			static logger l;
@@ -42,7 +63,7 @@ namespace ion
 				m_fp = fopen(file, "wb");
 			}
 		}
-
+		
 		logger& init(int flags, int width = 160, int height = 40)
 		{
 			if (flags & AllocateConsole)
@@ -53,84 +74,87 @@ namespace ion
 				char buf[256] = {0};
 				sprintf_s(buf, "mode %d,%d", width, height);
 				std::system(buf);
+				freopen("CONOUT$", "wb", stdout);
 			}
 			m_fp = 0;
 			m_flags = flags;
 			return *this;
 		}
 
-		void dbg(char* fmt, ...)
+		void setColor(int col)
 		{
-#ifdef _DBG
-			va_list args;
-			char buf[32000] = {0};
-			char tbuf[24] = {0};
+			SetConsoleTextAttribute(console, (WORD)col);
+		}
+
+		void write(int level,  const std::string& text, std::string system = "")
+		{
+#ifndef _NO_LOG
+			write(level, boost::format(text), system);
+#endif
+		}
+
+		void write(int level,  boost::format fmt, std::string system = "")
+		{
+#ifndef _NO_LOG
+			switch (level)
+			{
+				case ERRO: setColor(RED); break;
+				case WARN: setColor(BROWN); break;
+				case INFO: setColor(LIGHTBLUE); break;
+				default: setColor(DARKGRAY); break;
+			}
+			std::string fin = "";
+			switch (level)
+			{
+				case ERRO: fin.append("[ERRO]:\t"); break;
+				case WARN: fin.append("[WARN]:\t"); break;
+				case INFO: fin.append("[INFO]:\t"); break;
+				default: fin.append("[VERB]:\t"); break;
+			}
 			SYSTEMTIME st;
-
-			va_start(args, fmt);
-			vsprintf(buf, fmt, args);
-			va_end(args);
-
 			GetLocalTime(&st);
-			sprintf_s(tbuf, 24, "[%02d:%02d:%02d]: ", st.wHour, st.wMinute, st.wSecond);
+			std::stringstream ss;
+			ss << boost::str(boost::format("[%02d:%02d:%02d]") % st.wHour % st.wMinute % st.wSecond) << fin;
 
 			if (m_flags & LogToConsole)
 			{
-				WriteConsoleA(console, tbuf, strlen(tbuf), NULL, NULL);
-				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
+				std::cout << ss.str();
 			}
-			if (m_fp && (m_flags & LogToFile))
+
+			setColor(WHITE);
+
+			if (m_flags & LogToConsole)
 			{
-				fprintf(m_fp, "%s%s", tbuf, buf);
+				std::cout << boost::str(fmt);
+			}
+
+			ss << boost::str(fmt);
+
+			if ((m_flags & LogToFile) && m_fp)
+			{
+				fprintf(m_fp, ss.str().c_str());
+			}
+			if (level == ERRO)
+			{
+				std::cout.flush();
+				if ((m_flags & LogToFile) && m_fp)
+					fflush(m_fp);
 			}
 #endif
 		}
 
-		void raw(char* fmt, ...)
+		void raw(const std::string& r)
 		{
-			va_list args;
-			char buf[32000] = {0};
-
-			va_start(args, fmt);
-			vsprintf(buf, fmt, args);
-			va_end(args);
-
-
+#ifndef _NO_LOG
 			if (m_flags & LogToConsole)
 			{
-				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
+				std::cout << r;
 			}
-			if (m_fp && (m_flags & LogToFile))
+			if ((m_flags & LogToFile) && m_fp)
 			{
-				fprintf(m_fp, "%s", buf);
-				fflush(m_fp);
+				fprintf(m_fp, r.c_str());
 			}
-		}
-
-		void info(char* fmt, ...)
-		{
-			va_list args;
-			char buf[32000] = {0};
-			char tbuf[24] = {0};
-			SYSTEMTIME st;
-
-			va_start(args, fmt);
-			vsprintf(buf, fmt, args);
-			va_end(args);
-
-			GetLocalTime(&st);
-			sprintf_s(tbuf, 24, "[%02d:%02d:%02d]: ", st.wHour, st.wMinute, st.wSecond);
-
-			if (m_flags & LogToConsole)
-			{
-				WriteConsoleA(console, tbuf, strlen(tbuf), NULL, NULL);
-				WriteConsoleA(console, buf, strlen(buf), NULL, NULL);
-			}
-			if (m_fp && (m_flags & LogToFile))
-			{
-				fprintf(m_fp, "%s%s", tbuf, buf);
-				fflush(m_fp);
-			}
+#endif
 		}
 	private:
 		int m_flags;

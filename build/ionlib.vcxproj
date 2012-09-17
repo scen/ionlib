@@ -36,6 +36,8 @@
     <ClInclude Include="..\inc\asmjit\Platform.h" />
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
+    <ClInclude Include="..\src\framework\source\ionsource.h" />
+    <ClInclude Include="..\src\framework\source\sdk.h" />
     <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
     <ClInclude Include="..\src\ionbase.h" />
     <ClInclude Include="..\src\luamgr\global_lua.h" />
@@ -54,6 +56,8 @@
     <ClInclude Include="..\src\render\rect.h" />
     <ClInclude Include="..\src\render\render.h" />
     <ClInclude Include="..\src\render\size.h" />
+    <ClInclude Include="..\src\render\source\sourcefont.h" />
+    <ClInclude Include="..\src\render\source\sourcerender.h" />
     <ClInclude Include="..\src\required.h" />
     <ClInclude Include="..\src\util\filewatch.h" />
     <ClInclude Include="..\src\util\log.h" />
@@ -74,6 +78,7 @@
     <ClCompile Include="..\inc\asmjit\OperandX86X64.cpp" />
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
+    <ClCompile Include="..\src\framework\source\ionsource.cpp" />
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp" />
     <ClCompile Include="..\src\luamgr\luamgr.cpp" />
     <ClCompile Include="..\src\mem\detour.cpp" />
@@ -90,6 +95,8 @@
     <ClCompile Include="..\src\render\rect.cpp" />
     <ClCompile Include="..\src\render\render.cpp" />
     <ClCompile Include="..\src\render\size.cpp" />
+    <ClCompile Include="..\src\render\source\sourcefont.cpp" />
+    <ClCompile Include="..\src\render\source\sourcerender.cpp" />
     <ClCompile Include="..\src\util\filewatch.cpp" />
     <ClCompile Include="..\src\util\log.cpp" />
   </ItemGroup>
@@ -175,7 +182,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <PrecompiledHeaderOutputFile>$(SolutionDir)\build\ipch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>

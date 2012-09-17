@@ -41,7 +41,7 @@ namespace ion
 				}
 				else
 				{
-					dbglogn("fopen error. file not found?");
+					log.write(log.WARN, "fopen error. file not found?\n");
 				}
 			}
 			luascript(const std::string& fn) : file(fn)
@@ -62,7 +62,7 @@ namespace ion
 
 		static int errorHandler(lua_State * ls)
 		{
-#ifdef _DBG
+#ifndef _NO_LOG
 			lua_Debug d = {0};
 			std::stringstream error;
 			error << "Lua Runtime/Memory error:" << std::endl; 
@@ -80,9 +80,9 @@ namespace ion
 				depth++;
 			}
 			error << "************************************************" << std::endl;
-			infolog(error.str());
-			lua_pop(ls, 1); //Pop old error string
-			lua_pushstring(ls, error.str().c_str()); //push new one in
+			log.write(log.ERRO, error.str());
+			//lua_pop(ls, 1); //Pop old error string
+			//lua_pushstring(ls, error.str().c_str()); //push new one in
 #endif
 			return 1;
 		}
@@ -112,17 +112,17 @@ namespace ion
 			const Json::Value files = root["files"];
 			if (files == Json::Value::null)
 			{
-				dbglogn("missing files parameter");
+				log.write(log.WARN, "missing files parameter\n");
 			}
 			for (int i = 0; i < files.size(); i++)
 			{
 				if (files[i]["path"] == Json::Value::null)
 				{
-					dbglogn("missing file.path");
+					log.write(log.ERRO, "missing file.path\n");
 					return;
 				}
 				auto path = files[i]["path"];
-				infologn("Project: Loading " << path.asString());
+				log.write(log.INFO, "Project: Loading " + path.asString() + "\n");
 				lua.addScript(basepath + path.asString());
 			}
 
@@ -165,10 +165,19 @@ namespace ion
 				{
 					try
 					{
-						luabind::call_function<int>(func);
+						throw std::exception("MAELD");
 					}
-					catch (luabind::error e)
+					catch(const std::exception & e)
 					{
+						log.write(log.WARN, format("caught exception %s\n") % e.what());
+					}
+					try
+					{
+						luabind::call_function<void>(func);
+					}
+					catch (const luabind::error& e)
+					{
+						log.write(log.ERRO, "Caught exception in luabind::call\n");
 						it->second.first = false;
 						funcs.erase(it);
 						continue;
@@ -176,7 +185,7 @@ namespace ion
 				}
 				else if (it->second.first) //should be a good function, probably error
 				{
-					dbglogn("invalid function call");
+					log.write(log.WARN, "Invalid function call\n");
 					funcs.erase(it);
 					continue;
 				}
@@ -210,9 +219,15 @@ namespace ion
 			luabind::module(L)[
 				luabind::class_<log_lua>("log")
 					.scope[
-						luabind::def("dbg", &log_lua::dbg),
-						luabind::def("info", &log_lua::info),
+						luabind::def("write", &log_lua::write),
 						luabind::def("raw", &log_lua::raw)
+					]
+				.enum_("constants")
+					[
+						luabind::value("warn", log.WARN),
+						luabind::value("erro", log.ERRO),
+						luabind::value("verb", log.VERB),
+						luabind::value("info", log.INFO)
 					]
 			];
 
@@ -341,7 +356,7 @@ namespace ion
 		static void addHook(const std::string& evt, const std::string& id,
 			luabind::object const &func) //expose to lua
 		{
-			dbglogn("Registered event " << evt << " -> " << id);
+			log.write(log.INFO, "Registered event " + evt + " -> " + id + "\n");
 			auto &h = _hooks[evt][id];
 			h.second = func;
 			h.first = true;
@@ -349,7 +364,7 @@ namespace ion
 
 		static void removeHook(const std::string& evt, const std::string& id)
 		{
-			dbglogn("removing event " << evt << "  -> " << id);
+			log.write(log.INFO, "Unregistered event " + evt + "  -> " + id + "\n");
 			auto &h = _hooks[evt][id];
 			h.first = false;
 		}

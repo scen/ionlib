@@ -27,7 +27,12 @@ Notes for future reference
 * Replacing Lua with LuaJIT
 	* They should have the same API
 	* Follow instructions [here](http://luajit.org/install.html)
-	* Build with mscvbuild.bat static. Link with the lua51.lib
+	* Build with `mscvbuild.bat static`. Link with `lua51.lib`
+		* Edit `msvcbuild.bat` compile flags, add `/EHsc` for C++ exceptions (**IMPORTANT**)
+* Source SDK HL2 OB Updates
+	* Added https://forums.alliedmods.net/showthread.php?p=1782597
+	* ISurface
+		* Added `virtual void DeleteTextureByID(int i) PURE` after `IsTextureIDValid`
 
 
 About

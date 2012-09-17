@@ -1,20 +1,17 @@
 #pragma once
 
 #include "../required.h"
+#include "log.h"
 
 class log_lua
 {
 public:
-	static void dbg(const std::string& text)
+	static void write(int level, const std::string& text)
 	{
-		infologn("[lua-dbg] " << text);
+		log.write(level, text, "LUA");
 	}
-	static void info(const std::string& text)
+	static void raw(const std::string& txt)
 	{
-		infologn("[lua-info] " << text);
-	}
-	static void raw(const std::string& text)
-	{
-		log.raw((char*)text.c_str());
+		log.raw(txt.c_str());
 	}
 };

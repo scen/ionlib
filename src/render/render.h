@@ -36,7 +36,7 @@ namespace ion
 		virtual size measureText(int flags, const font *fnt, const point& p, const boost::format& fmt) PURE;
 		virtual size measureText(int flags, const font *fnt, const point& p, const std::string& fmt) PURE;
 
-		virtual font* createFont(const std::string& name, int size, int flags) PURE;
+		virtual font* createFont(const std::string& name, int size, int flags, int weight) PURE;
 		//rect
 		virtual void fillRect(const rect& r, const color& c) PURE;
 		virtual void outlineRect(const rect& r, const color& c) PURE;
@@ -45,7 +45,7 @@ namespace ion
 		//line
 		virtual void renderLine(const point& begin, const point& end, const color& col) PURE;
 
-
-
+		//virtual void renderCircle() PURE;
+		//virtual void renderFade() PURE;
 	};
 }

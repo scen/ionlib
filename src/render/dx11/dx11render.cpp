@@ -10,11 +10,11 @@ namespace ion
 		HRESULT hResult = FW1CreateFactory(FW1_VERSION, &m_fontFactory);
 		if (SUCCEEDED(hResult))
 		{
-			dbglog("Created font factory\n");
+			log.write(log.INFO, "Created font factory\n");
 		}
 		else
 		{
-			dbglog("Error creating font factory\n");
+			log.write(log.ERRO, "Error creating font factory\n");
 			return;
 		}
 
@@ -23,21 +23,21 @@ namespace ion
 
 		if (SUCCEEDED(hr))
 		{
-			dbglog("Compiled fillfx shader\n");
+			log.write(log.INFO, "Compiled fillfx shader\n");
 		}
 
 		hr = D3DX11CreateEffectFromMemory( compiledFX->GetBufferPointer(), compiledFX->GetBufferSize(), 0, m_device, &m_pEffect );
 
 		if (SUCCEEDED(hr))
 		{
-			dbglog("Created effect from shader\n");
+			log.write(log.INFO, "Created effect from shader\n");
 		}
 
 		compiledFX->Release();
 		m_pTechnique = m_pEffect->GetTechniqueByName( "FillTech" );
 		if (m_pTechnique)
 		{
-			dbglog("Success getting 'FillTech' technique\n");
+			log.write(log.INFO, "Success getting 'FillTech' technique\n");
 		}
 
 		D3D11_INPUT_ELEMENT_DESC lineRectLayout[] =
@@ -50,7 +50,7 @@ namespace ion
 
 		if( FAILED( m_pTechnique->GetPassByIndex( 0 )->GetDesc( &passDesc ) ) )
 		{
-			dbglog("Failed to GetPassByIndex\n");
+			log.write(log.ERRO, "Failed to GetPassByIndex\n");
 			return;
 		}
 
@@ -61,7 +61,7 @@ namespace ion
 			passDesc.IAInputSignatureSize, 
 			&m_pInputLayout ) ) )
 		{
-			dbglog("Failed to CreateInputLayout\n");
+			log.write(log.INFO, "Failed to CreateInputLayout\n");
 			return;
 		}
 
@@ -75,10 +75,10 @@ namespace ion
 
 		if( FAILED( m_device->CreateBuffer( &bufferDesc, NULL, &m_pVertexBuffer ) ) )
 		{
-			dbglog("device->CreateBuffer failed\n");
+			log.write(log.ERRO, "device->CreateBuffer failed\n");
 			return;
 		}
-		dbglog("Success initializing DX11 draw resources\n")
+		log.write(log.INFO, "Success initializing DX11 draw resources\n");
 	}
 
 	HRESULT dx11render::compileShaderFromMem(LPCSTR pFileBuf, SIZE_T FileSize, LPCSTR szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut )
@@ -100,7 +100,7 @@ namespace ion
 		return S_OK;
 	}
 
-	font* dx11render::createFont(const std::string& name, int size, int flags)
+	font* dx11render::createFont(const std::string& name, int size, int flags, int weight)
 	{
 		dx11font* f = new dx11font();
 		f->setName(name);
@@ -111,11 +111,11 @@ namespace ion
 		HRESULT hResult = m_fontFactory->CreateFontWrapper(m_device, w, &f->m_fontWrapper);
 		if (SUCCEEDED(hResult))
 		{
-			dbglogn("Created font wrapper for " << name);
+			log.write(log.VERB, "Created font wrapper for " + name + "\n");
 		}
 		else
 		{
-			dbglog("Error creating font wrapper.\n");
+			log.write(log.ERRO, "Error creating font wrapper.\n");
 		}
 		delete[] w;
 		return f;

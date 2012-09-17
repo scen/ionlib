@@ -18,6 +18,11 @@ namespace ion
 			return R | (G << 8) | ( B << 16) | (A << 24);
 		}
 
+		UINT toRGBA() const
+		{
+			return A | (B << 8) | (G << 16) | (R << 24);
+		}
+
 		D3DXCOLOR toD3DXCOLOR() const
 		{
 			return d3dxcolor;

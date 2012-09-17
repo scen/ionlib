@@ -71,6 +71,8 @@ extern "C" {
 //jsoncpp
 #include "json/json.h"
 
+using boost::format;
+
 #pragma comment(lib, "WinMM.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "ws2_32.lib")

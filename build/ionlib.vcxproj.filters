@@ -64,6 +64,21 @@
     <Filter Include="Source Files\luamgr">
       <UniqueIdentifier>{8999cac7-e07b-414f-b61e-f3b7bf0de4a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{a2730ef6-4faa-421d-a76a-d3ecfa79ec4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{06e98746-93f6-40b5-90e1-3fc810b08b10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framework\source">
+      <UniqueIdentifier>{00e365c3-8920-4988-b69d-ce59cd832978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\render\source">
+      <UniqueIdentifier>{c621d95d-45e1-4e22-bc6b-7c92bc41b940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\render\source">
+      <UniqueIdentifier>{00f259fd-22e0-41f4-b688-4dc662091d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -198,6 +213,18 @@
     <ClInclude Include="..\src\util\sigdb.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\render\source\sourcerender.h">
+      <Filter>Header Files\render\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\source\sdk.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\source\ionsource.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\source\sourcefont.h">
+      <Filter>Header Files\render\dx11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -292,6 +319,15 @@
     </ClCompile>
     <ClCompile Include="..\src\util\filewatch.cpp">
       <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\source\sourcerender.cpp">
+      <Filter>Source Files\render\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\ionsource.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\source\sourcefont.cpp">
+      <Filter>Source Files\render\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

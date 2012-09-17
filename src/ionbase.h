@@ -13,13 +13,13 @@ namespace ion
 	public:
 		virtual ~ionbase() {}
 
-		void reloadProject()
+		Json::Value reloadProject(bool deferLoad = false)
 		{
 			FILE * f = fopen(projFile.c_str(), "rb");
 			if (!f)
 			{
-				dbglogn("project file cannot be opened");
-				return;
+				log.write(log.ERRO, "project file cannot be opened");
+				return Json::Value::null;
 			}
 
 			//find base path for project
@@ -42,15 +42,15 @@ namespace ion
 			bool flag = reader.parse(contents, root);
 			if (!flag)
 			{
-				dbglogn("Failed to parse project file" << std::endl << reader.getFormatedErrorMessages());
-				return;
+				log.write(log.ERRO, format("Failed to parse project file\n%s") % reader.getFormatedErrorMessages());
+				return Json::Value::null;
 			}
 
 			const Json::Value name = root["name"];
-			if (name == Json::Value::null)
+			if (name.isNull())
 			{
-				dbglogn("missing name parameter");
-				return;
+				log.write(log.WARN, "missing name parameter");
+				return name;
 			}
 			projName = name.asString();
 
@@ -58,8 +58,8 @@ namespace ion
 			parseSigs();
 
 
-			lua.reloadProject(root, basepath);
-
+			if (!deferLoad) lua.reloadProject(root, basepath);
+			return root;
 		}
 
 		void parseSigs()
@@ -70,7 +70,7 @@ namespace ion
 			FILE * f = fopen((basepath+sigdbFile).c_str(), "rb");
 			if (!f)
 			{
-				dbglogn("sigdb file cannot be opened");
+				log.write(log.ERRO, "sigdb file cannot be opened");
 				return;
 			}
 
@@ -87,7 +87,7 @@ namespace ion
 			Json::Reader reader;
 			if (!reader.parse(contents, root))
 			{
-				dbglogn("[fatal] Failed to parse sigdb file" << std::endl << reader.getFormatedErrorMessages());
+				log.write(log.ERRO, format("Failed to parse sigdb file\n%s") % reader.getFormatedErrorMessages());
 				return;
 			}
 			scanAll = root.get("scan_all", false).asBool();
@@ -119,7 +119,7 @@ namespace ion
 				}
 				if (module.empty() || pattern.empty())
 				{
-					dbglogn("Invalid values in signature " << it.key().asString());
+					log.write(log.WARN, format("Invalid values in signature %s\n") % it.key().asString());
 					continue;
 				}
 				sigs.addEntry(it.key().asString(), pattern, module, offset);
@@ -128,11 +128,17 @@ namespace ion
 			filewatcher.addFile(basepath+sigdbFile, this, &dispatchSigReload);
 		}
 
-		void superInit(const std::string& proj)
+		Json::Value superInit(const std::string& proj)
 		{
 			lua.init();
 			projFile = proj;
-			reloadProject();
+			auto root = reloadProject(true);
+			return root;
+		}
+
+		void finishInit(Json::Value& root)
+		{
+			lua.reloadProject(root, basepath);
 			filewatcher.addFile(projFile, this, &dispatchProjectReload);
 		}
 
@@ -146,11 +152,6 @@ namespace ion
 		{
 			auto ibase = (ionbase*)inst;
 			ibase->parseSigs();
-		}
-
-		ionbase(const std::string& proj)
-		{
-			superInit(proj);
 		}
 
 		ion::sigdb sigs;

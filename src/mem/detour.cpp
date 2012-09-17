@@ -31,14 +31,14 @@ namespace ion
 			distorm_decompose(&ci, dec, 1, &decCnt);
 			if (dec->flags == FLAG_NOT_DECODABLE)
 			{
-				dbglogn("flag_not_decodable");
+				log.write(logger::ERRO, "FLAG_NOT_DECODABLE\n", "detour");
 				return 0;
 			}
 			if (META_GET_FC(dec->meta) == FC_UNC_BRANCH || META_GET_FC(dec->meta) == FC_CND_BRANCH) //TODO add more branch types
 			{
 				if (dec->opcode == I_JMP)
 				{
-					dbglogn("JMP branch");
+					log.write(log.VERB, "JMP\n", "detour");
 					if (dec->ops[0].type == O_PC)
 					{
 						//If you want target address use INSTRUCTION_GET_TARGET()
@@ -48,13 +48,13 @@ namespace ion
 					}
 					else
 					{
-						dbglogn("unknown JMP op 0");
+						log.write(log.ERRO, "unknown JMP opcode\n", "detour");
 						return 0;
 					}
 				}
 				else
 				{
-					dbglogn("[warning] no implementation for branch type: " << GET_MNEMONIC_NAME(dec->opcode));
+					log.write(log.WARN, format("no implementation for branch type: %s\n") % GET_MNEMONIC_NAME(dec->opcode), "detour");
 				}
 			}
 			else
