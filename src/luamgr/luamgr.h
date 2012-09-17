@@ -165,17 +165,9 @@ namespace ion
 				{
 					try
 					{
-						throw std::exception("MAELD");
-					}
-					catch(const std::exception & e)
-					{
-						log.write(log.WARN, format("caught exception %s\n") % e.what());
-					}
-					try
-					{
 						luabind::call_function<void>(func);
 					}
-					catch (const luabind::error& e)
+					catch (...)
 					{
 						log.write(log.ERRO, "Caught exception in luabind::call\n");
 						it->second.first = false;

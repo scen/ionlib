@@ -20,8 +20,10 @@ Notes for future reference
     * Build Lua using [this method](http://stackoverflow.com/questions/6321927/compiling-lua-5-2-alpha-under-vs2010)
     * Get it off of [here](github.com/scen/luabind), bjam it up
         * This forked version is updated to Lua 5.2
-        * `bjam --toolset=msvc release link=static`
-    * Set `LUA_ROOT`, `BOOST_BUILD_ROOT`, `PATH`, `BOOST_ROOT` accordingly.
+		* Compile with exceptions
+        * `bjam toolset=msvc release link=static exception-handling=on asynch-exceptions=off extern-c-nothrow=on`
+		* WHY WON'T MY EXCEPTIONS BE CAUGHT FROM LUABIND->MY CODE
+    * Set `LUA_PATH`, `BOOST_BUILD_PATH`, `PATH`, `BOOST_ROOT` accordingly.
 * Luabind tutorial
     * http://blog.nuclex-games.com/tutorials/cxx/luabind-introduction/
 * Replacing Lua with LuaJIT
