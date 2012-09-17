@@ -1000,7 +1000,7 @@ namespace detail
       static T handle_error(lua_State* interpreter, type_id const& type_info)
       {
 #ifndef LUABIND_NO_EXCEPTIONS
-          throw cast_failed(interpreter, type_info);
+          //throw cast_failed(interpreter, type_info);
 #else
           cast_failed_callback_fun e = get_cast_failed_callback();
           if (e) e(interpreter, type_info);
@@ -1195,7 +1195,7 @@ namespace adl
 # endif
           {
 #ifndef LUABIND_NO_EXCEPTIONS
-              throw luabind::error(interpreter);
+              //throw luabind::error(interpreter);
 #else
               error_callback_fun e = get_error_callback();
               if (e) e(interpreter);

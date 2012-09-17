@@ -92,12 +92,12 @@ namespace std
 // one of your real threads may run lua code.
 
 // LUABIND_NO_EXCEPTIONS
-// this define will disable all usage of try, catch and throw in
+// this define will disable all usage of try, catch and ////throw in
 // luabind. This will in many cases disable runtime-errors, such
 // as invalid casts, when calling lua-functions that fails or
 // returns values that cannot be converted by the given policy.
 // Luabind requires that no function called directly or indirectly
-// by luabind throws an exception (throwing exceptions through
+// by luabind //throws an exception (//throwing exceptions through
 // C code has undefined behavior, lua is written in C).
 
 #ifdef LUABIND_DYNAMIC_LINK

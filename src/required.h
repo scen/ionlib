@@ -7,6 +7,7 @@
 #define BEA_ENGINE_STATIC
 #define NOMINMAX
 #define _SECURE_SCL 0
+//#define LUABIND_NO_EXCEPTIONS
 
 #define JMP_SIZE 5 //0xE9
 

@@ -165,15 +165,28 @@ namespace ion
 				{
 					try
 					{
-						luabind::call_function<void>(func);
+						throw luabind::error(L);
 					}
-					catch (...)
+					catch (const luabind::error& e)
 					{
-						log.write(log.ERRO, "Caught exception in luabind::call\n");
-						it->second.first = false;
-						funcs.erase(it);
-						continue;
+						log.write(log.ERRO, "lol\n");
 					}
+					//No need for exception handling
+					//my workaround to the try catch not working
+					//disable all throw statements in luabind
+					//TODO
+
+					//try
+					//{
+						luabind::call_function<void>(func);
+					//}
+					//catch (...)
+					//{
+						//log.write(log.ERRO, "Caught exception in luabind::call\n");
+						//it->second.first = false;
+						//funcs.erase(it);
+						//continue;
+				//	}
 				}
 				else if (it->second.first) //should be a good function, probably error
 				{

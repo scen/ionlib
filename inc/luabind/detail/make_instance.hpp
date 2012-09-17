@@ -77,7 +77,7 @@ void make_instance(lua_State* L, P p)
 
     if (!cls)
     {
-        throw std::runtime_error("Trying to use unregistered class");
+        //throw std::runtime_error("Trying to use unregistered class");
     }
 
     object_rep* instance = push_new_instance(L, cls);
@@ -94,7 +94,7 @@ void make_instance(lua_State* L, P p)
     {
         instance->deallocate(storage);
         lua_pop(L, 1);
-        throw;
+        //throw;
     }
 
     instance->set_instance(static_cast<holder_type*>(storage));
