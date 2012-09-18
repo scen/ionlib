@@ -1,3 +1,5 @@
+#pragma once
+
 #pragma region source07_includes
 //source07 sdk
 #define private public //sue me

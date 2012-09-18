@@ -236,7 +236,7 @@ namespace ion
 			//bind draw class
 			luabind::module(L)[
 				luabind::class_<ion::render>("render")
-					.def("renderText", (void(render::*)(int, const font*, const point&, const color&, const std::string&))&render::renderText)
+					.def("renderText", (size(render::*)(int, const font*, const point&, const color&, const std::string&))&render::renderText)
 					.def("measureText", (size(render::*)(int, const font*, const point&, const std::string& ))&render::measureText)
 					.def("createFont", &render::createFont)
 					.def("fillRect", &render::fillRect)
@@ -254,7 +254,8 @@ namespace ion
 						luabind::value("lalign", ion::render::LAlign),
 						luabind::value("ralign", ion::render::RAlign),
 						luabind::value("talign", ion::render::TAlign),
-						luabind::value("balign", ion::render::BAlign)
+						luabind::value("balign", ion::render::BAlign),
+						luabind::value("outline", ion::render::Outline)
 					]
 			];
 

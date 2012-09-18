@@ -82,6 +82,12 @@
     <Filter Include="Source Files\framework\source">
       <UniqueIdentifier>{b529c6e0-919b-4d02-ba89-dd6d06f40bc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework\csgo">
+      <UniqueIdentifier>{f99094a6-3733-4f62-8126-c5cbf5bb125c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework\csgo">
+      <UniqueIdentifier>{6e4e7f4d-574a-4966-9cef-508e533d357b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -243,6 +249,21 @@
     <ClInclude Include="..\src\framework\source\interfaces.h">
       <Filter>Header Files\framework\source</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\framework\source\vector.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\csgohook.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\interfaces.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\ioncsgo.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\sdk.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -358,6 +379,15 @@
     </ClCompile>
     <ClCompile Include="..\src\framework\source\interfaces.cpp">
       <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\vector.cpp">
+      <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\csgo\ioncsgo.cpp">
+      <Filter>Source Files\framework\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\csgo\csgohook.cpp">
+      <Filter>Source Files\framework\csgo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -52,6 +52,8 @@ namespace ion
 			auto panelName = source->gPanel->GetName(vguiPanel);
 			if (panelName && panelName[0] == 'F'&& panelName[5] == 'O' && panelName[12]=='P')
 			{
+				if (source->gEngine->IsInGame()) glua.inGame = true;
+				else glua.inGame = false;
 				lua.call("Paint");
 			}
 		}

@@ -26,12 +26,13 @@ namespace ion
 			RAlign = 64,
 			TAlign = 128,
 			BAlign = 256,
+			Outline = 512
 		};
 		virtual ~render() {}
 		
 		//text functions
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt) PURE;
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt) PURE;
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt) PURE;
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt) PURE;
 
 		virtual size measureText(int flags, const font *fnt, const point& p, const boost::format& fmt) PURE;
 		virtual size measureText(int flags, const font *fnt, const point& p, const std::string& fmt) PURE;

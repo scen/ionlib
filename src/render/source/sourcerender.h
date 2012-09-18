@@ -16,8 +16,8 @@ namespace ion
 		{
 		}
 		//text functions
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt) {}
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt) {return size::none; }
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
 		{
 			auto f = reinterpret_cast<const sourcefont*>(fnt);
 			wchar_t buf[512];
@@ -27,6 +27,9 @@ namespace ion
 			m_surface->DrawSetTextFont(f->font);
 			m_surface->DrawSetTextPos(p.getX(), p.getY());
 			m_surface->DrawPrintText(buf, fmt.length());
+			size ret;
+			m_surface->GetTextSize(f->font, buf,  ret.m_width, ret.m_height);
+			return ret;
 		}
 
 		virtual size measureText(int flags, const font *fnt, const point& p, const boost::format& fmt) {return size();}
@@ -47,6 +50,12 @@ namespace ion
 			f->setSurface(m_surface);
 			f->setName(name);
 			f->setSize(size);
+
+			int realFlags = 0;
+			if (flags & Outline) realFlags |= sourcefont::FONTFLAG_OUTLINE; 
+			if (flags & Underline) realFlags |= sourcefont::FONTFLAG_UNDERLINE;
+			if (flags & Italic) realFlags |= sourcefont::FONTFLAG_ITALIC;
+
 			f->setFlags(flags);
 			f->setWeight(weight);
 			f->create();

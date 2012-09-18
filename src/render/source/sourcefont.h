@@ -34,7 +34,10 @@ namespace ion
 		int weight;
 		void setWeight(int w){weight = w;}
 		int flags;
-		void setFlags(int f) {flags = f;}
+		void setFlags(int f) 
+		{
+			flags = f;
+		}
 
 		vgui::HFont font;
 		vgui::HFont getFont() const {return font;}

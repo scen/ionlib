@@ -30,17 +30,38 @@ namespace ion
 
 			if (root.isNull()) return;
 
-			//bind
+			//bind entity
 			lua.registerScope(
-				luabind::class_<entity>("ent")
+				luabind::class_<entity>("entity")
 					.def("isValid", &entity::isValid)
 					.def("isAlive", &entity::isAlive)
+					.def("getName", &entity::getName)
+					.def("isPlayer", &entity::isPlayer)
+					.def("getTeam", &entity::getTeam)
+					.def("getHealth", &entity::getHealth)
+					.def("isBot", &entity::isBot)
+					.def("getOrigin", &entity::getOrigin)
 					.scope
 					[
-						luabind::def("me", &entity::me)
+						luabind::def("me", &entity::me),
+						luabind::def("getBaseEntAsEntity", &entity::getBaseEntAsEntity),
+						luabind::def("getHighestEntityIndex", &entity::getHighestEntityIndex)
 					]
 					.def(luabind::const_self == luabind::other<entity>())
 				);
+
+			lua.registerScope(
+					luabind::class_<vector>("vector")
+						.def(luabind::constructor<float, float, float>())
+						.def(luabind::constructor<vector&>())
+						.def(luabind::constructor<>())
+						.def("toScreen", &vector::toScreen)
+						.def_readwrite("x", &vector::x)
+						.def_readwrite("y", &vector::y)
+						.def_readwrite("z", &vector::z)
+						.def_readwrite("visible", &vector::visible)
+						.def(luabind::const_self == luabind::other<vector>())
+					);
 
 			source->modClient = module("client.dll");
 			source->modEngine = module("engine.dll");

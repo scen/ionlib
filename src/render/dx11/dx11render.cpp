@@ -121,10 +121,10 @@ namespace ion
 		return f;
 	}
 
-	void dx11render::renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
+	size dx11render::renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
 	{
 		auto f = reinterpret_cast<const dx11font*>(fnt);
-		if (!f) return;
+		if (!f) return size::none;
 		int rflags = FW1_RESTORESTATE;
 		//convert render flags to lib flags
 		if (flags & VCenter)
@@ -148,9 +148,10 @@ namespace ion
 		{
 			f->getFontWrapper()->DrawString(getDeviceContext(), buf, f->getSize(), (FLOAT)p.getX(), (FLOAT)p.getY(), col.toABGR(), rflags);
 		}
+		return size::none;
 	}
 	
-	void dx11render::renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt)
+	size dx11render::renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt)
 	{
 		renderText(flags, fnt, p, col, boost::str(fmt));
 	}

@@ -49,16 +49,18 @@ namespace ion
 			static filewatch fw;
 			return fw;
 		}
-
+		CRITICAL_SECTION cs;
 		std::map<std::string, entry*> _files;
 		//std::vector<entry*> _files;
 	private:
 		filewatch()
 		{
+			InitializeCriticalSection(&cs);
 		}
 
 		static void waitThread(void* p)
 		{
+			EnterCriticalSection(&filewatcher.cs);
 			while (true)
 			{
 				for (auto it = filewatcher._files.begin(); it != filewatcher._files.end(); it++)

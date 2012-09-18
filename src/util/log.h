@@ -61,6 +61,10 @@ namespace ion
 			if (m_flags & LogToFile)
 			{
 				m_fp = fopen(file, "wb");
+				if (!m_fp)
+				{
+					write(ERRO, "Failed to open log file\n", "logger");
+				}
 			}
 		}
 

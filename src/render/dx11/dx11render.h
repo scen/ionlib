@@ -39,8 +39,8 @@ namespace ion
 
 
 		//text functions
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt);
-		virtual void renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt);
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt);
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt);
 
 		virtual size measureText(int flags, const font *fnt, const point& p, const boost::format& fmt);
 		virtual size measureText(int flags, const font *fnt, const point& p, const std::string& fmt);

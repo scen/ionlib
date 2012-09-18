@@ -19,6 +19,7 @@ namespace ion
 			return !(*this == other);
 		}
 
+		static const size none;
 
 		int getHeight() const { return m_height; }
 		void setHeight(int val) { m_height = val; }
@@ -29,4 +30,5 @@ namespace ion
 
 
 	};
+	const size size::none = size();
 }
