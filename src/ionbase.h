@@ -45,7 +45,6 @@ namespace ion
 				log.write(log.ERRO, format("Failed to parse project file\n%s") % reader.getFormatedErrorMessages());
 				return Json::Value::null;
 			}
-
 			const Json::Value name = root["name"];
 			if (name.isNull())
 			{
@@ -56,7 +55,6 @@ namespace ion
 
 			sigdbFile = root.get("sigdb", "").asString();
 			parseSigs();
-
 
 			if (!deferLoad) lua.reloadProject(root, basepath);
 			return root;
@@ -97,12 +95,14 @@ namespace ion
 				std::string module = (*it).get("module", "").asString();
 				std::string pattern = (*it).get("pattern", "").asString();
 				std::string o;
+
 				try
 				{
 					o = (*it).get("offset", "").asString();
 				}
 				catch (...)
 				{
+					log.write(log.WARN, "Caught exception while parsing offset\n");
 					o = "";
 				}
 				UINT offset = 0;

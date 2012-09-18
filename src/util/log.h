@@ -63,19 +63,30 @@ namespace ion
 				m_fp = fopen(file, "wb");
 			}
 		}
-		
-		logger& init(int flags, int width = 160, int height = 40)
+
+		logger& init(int flags, int width = 160, int height = 50)
 		{
 			if (flags & AllocateConsole)
 			{
 				AllocConsole();
-				console = GetStdHandle(STD_OUTPUT_HANDLE);
-				//sue me
-				char buf[256] = {0};
-				sprintf_s(buf, "mode %d,%d", width, height);
-				std::system(buf);
-				freopen("CONOUT$", "wb", stdout);
 			}
+			console = GetStdHandle(STD_OUTPUT_HANDLE);
+			SetConsoleTitle("ionLOG");
+			char buf[256] = {0};
+			sprintf_s(buf, "mode %d,%d", width, height);
+			std::system(buf);
+			freopen("CONOUT$", "wb", stdout);
+			/*hnd = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 
+			0, 0, CONSOLE_TEXTMODE_BUFFER, 0);
+			SetConsoleActiveScreenBuffer(hnd);
+			SMALL_RECT sz = {0, 0, width - 1, height - 1};
+			SetConsoleWindowInfo(hnd, TRUE, &sz);
+			HWND hwnd = GetConsoleWindow();
+			SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 1024, 700, SWP_NOMOVE); 
+			SetStdHandle(STD_OUTPUT_HANDLE, hnd);
+			COORD c = {width, height};
+			SetConsoleScreenBufferSize(hnd, c);*/
+			freopen("CONOUT$", "wb", stdout);
 			m_fp = 0;
 			m_flags = flags;
 			return *this;
@@ -98,18 +109,18 @@ namespace ion
 #ifndef _NO_LOG
 			switch (level)
 			{
-				case ERRO: setColor(RED); break;
-				case WARN: setColor(BROWN); break;
-				case INFO: setColor(LIGHTBLUE); break;
-				default: setColor(DARKGRAY); break;
+			case ERRO: setColor(RED); break;
+			case WARN: setColor(BROWN); break;
+			case INFO: setColor(LIGHTBLUE); break;
+			default: setColor(DARKGRAY); break;
 			}
 			std::string fin = "";
 			switch (level)
 			{
-				case ERRO: fin.append("[ERRO]:\t"); break;
-				case WARN: fin.append("[WARN]:\t"); break;
-				case INFO: fin.append("[INFO]:\t"); break;
-				default: fin.append("[VERB]:\t"); break;
+			case ERRO: fin.append("[ERRO]:\t"); break;
+			case WARN: fin.append("[WARN]:\t"); break;
+			case INFO: fin.append("[INFO]:\t"); break;
+			default: fin.append("[VERB]:\t"); break;
 			}
 			SYSTEMTIME st;
 			GetLocalTime(&st);
@@ -160,6 +171,7 @@ namespace ion
 		int m_flags;
 		FILE* m_fp;
 		HANDLE console;
+		HANDLE hnd;
 		logger() {}
 		~logger() {}
 		logger& operator=(logger const&) {}

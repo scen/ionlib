@@ -36,12 +36,17 @@
     <ClInclude Include="..\inc\asmjit\Platform.h" />
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
+    <ClInclude Include="..\src\framework\source\entity.h" />
+    <ClInclude Include="..\src\framework\source\interfaces.h" />
     <ClInclude Include="..\src\framework\source\ionsource.h" />
+    <ClInclude Include="..\src\framework\source\netvar.h" />
     <ClInclude Include="..\src\framework\source\sdk.h" />
+    <ClInclude Include="..\src\framework\source\sourcehook.h" />
     <ClInclude Include="..\src\hooks\draw\dx11hook.h" />
     <ClInclude Include="..\src\ionbase.h" />
     <ClInclude Include="..\src\luamgr\global_lua.h" />
     <ClInclude Include="..\src\luamgr\luamgr.h" />
+    <ClInclude Include="..\src\mem\common.h" />
     <ClInclude Include="..\src\mem\detour.h" />
     <ClInclude Include="..\src\mem\memmgr.h" />
     <ClInclude Include="..\src\mem\module.h" />
@@ -78,7 +83,11 @@
     <ClCompile Include="..\inc\asmjit\OperandX86X64.cpp" />
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
+    <ClCompile Include="..\src\framework\source\entity.cpp" />
+    <ClCompile Include="..\src\framework\source\interfaces.cpp" />
     <ClCompile Include="..\src\framework\source\ionsource.cpp" />
+    <ClCompile Include="..\src\framework\source\netvar.cpp" />
+    <ClCompile Include="..\src\framework\source\sourcehook.cpp" />
     <ClCompile Include="..\src\hooks\draw\dx11hook.cpp" />
     <ClCompile Include="..\src\luamgr\luamgr.cpp" />
     <ClCompile Include="..\src\mem\detour.cpp" />
@@ -102,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="..\TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />

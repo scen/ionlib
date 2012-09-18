@@ -79,6 +79,9 @@
     <Filter Include="Source Files\render\source">
       <UniqueIdentifier>{00f259fd-22e0-41f4-b688-4dc662091d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\framework\source">
+      <UniqueIdentifier>{b529c6e0-919b-4d02-ba89-dd6d06f40bc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -225,6 +228,21 @@
     <ClInclude Include="..\src\render\source\sourcefont.h">
       <Filter>Header Files\render\dx11</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\framework\source\entity.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mem\common.h">
+      <Filter>Header Files\mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\source\netvar.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\source\sourcehook.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\source\interfaces.h">
+      <Filter>Header Files\framework\source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -323,15 +341,28 @@
     <ClCompile Include="..\src\render\source\sourcerender.cpp">
       <Filter>Source Files\render\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\framework\source\ionsource.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\render\source\sourcefont.cpp">
       <Filter>Source Files\render\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\ionsource.cpp">
+      <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\entity.cpp">
+      <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\sourcehook.cpp">
+      <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\netvar.cpp">
+      <Filter>Source Files\framework\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\source\interfaces.cpp">
+      <Filter>Source Files\framework\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="..\TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />

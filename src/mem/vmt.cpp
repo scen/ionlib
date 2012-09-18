@@ -30,7 +30,7 @@ namespace ion
 
 	vmt::vmt( void* inst, size_t offset, UINT vfuncs )
 	{
-		_vftable = make_ptr<void***>( inst, offset );
+		_vftable = makeptr<void**>( inst, offset );
 		_oldvmt = *_vftable;
 		// Count vfuncs ourself if needed
 		if ( !vfuncs ) vfuncs = countFuncs( _oldvmt );

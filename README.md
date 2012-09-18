@@ -34,8 +34,13 @@ Notes for future reference
 		* Edit `msvcbuild.bat` compile flags, add `/EHsc` for C++ exceptions (**IMPORTANT**)
 * Source SDK HL2 OB Updates
 	* Added https://forums.alliedmods.net/showthread.php?p=1782597
-	* ISurface
+	* `ISurface`
 		* Added `virtual void DeleteTextureByID(int i) PURE` after `IsTextureIDValid`
+	* `C_BaseEntity`
+		* Added `Padding001` before `SetHealth`
+	* `cdll_int.h` -> `IBaseClientDLL`
+		* Added 2 pad functions after `Shutdown()`
+		* Added 7 pad functions after `CanRecordDemo()` (replay update)
 
 
 About
