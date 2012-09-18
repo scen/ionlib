@@ -33,14 +33,14 @@ namespace ion
 			//bind
 			lua.registerScope(
 				luabind::class_<entity>("ent")
-				.def("isValid", &entity::isValid)
-				.def("isAlive", &entity::isAlive)
+					.def("isValid", &entity::isValid)
+					.def("isAlive", &entity::isAlive)
 					.scope
 					[
 						luabind::def("me", &entity::me)
 					]
-			.def(luabind::const_self == luabind::other<entity>())
-					);
+					.def(luabind::const_self == luabind::other<entity>())
+				);
 
 			source->modClient = module("client.dll");
 			source->modEngine = module("engine.dll");
@@ -88,7 +88,7 @@ namespace ion
 			}
 		}
 
-		
+
 
 		static bool bTextCompare( const BYTE *pData, const char *pCompare )
 		{

@@ -94,7 +94,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw luabind::error(L);
+						//throw luabind::error(L);
 #else
 						error_callback_fun e = get_error_callback();
 						if (e) e(L);
@@ -129,7 +129,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw luabind::error(L); 
+						//throw luabind::error(L); 
 #else
 						error_callback_fun e = get_error_callback();
 						if (e) e(L);
@@ -147,7 +147,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw cast_failed(L, typeid(Ret));
+						//throw cast_failed(L, typeid(Ret));
 #else
 						cast_failed_callback_fun e = get_cast_failed_callback();
 						if (e) e(L, typeid(Ret));
@@ -185,7 +185,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw error(L);
+						//throw error(L);
 #else
 						error_callback_fun e = get_error_callback();
 						if (e) e(L);
@@ -203,7 +203,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw cast_failed(L, typeid(Ret));
+						//throw cast_failed(L, typeid(Ret));
 #else
 						cast_failed_callback_fun e = get_cast_failed_callback();
 						if (e) e(L, typeid(Ret));
@@ -269,7 +269,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw luabind::error(L);
+						//throw luabind::error(L);
 #else
 						error_callback_fun e = get_error_callback();
 						if (e) e(L);
@@ -304,7 +304,7 @@ namespace luabind
 					{
 						assert(lua_gettop(L) == top + 1);
 #ifndef LUABIND_NO_EXCEPTIONS
-						throw error(L);
+						//throw error(L);
 #else
 						error_callback_fun e = get_error_callback();
 						if (e) e(L);

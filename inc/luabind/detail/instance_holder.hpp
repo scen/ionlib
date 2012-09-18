@@ -58,8 +58,8 @@ void release_ownership(std::auto_ptr<T>& p)
 template <class P>
 void release_ownership(P const&)
 {
-    throw std::runtime_error(
-        "luabind: smart pointer does not allow ownership transfer");
+    //throw std::runtime_error(
+//        "luabind: smart pointer does not allow ownership transfer");
 }
 
 template <class T>

@@ -77,7 +77,7 @@ void make_instance(lua_State* L, P p)
 
     if (!cls)
     {
-        throw std::runtime_error("Trying to use unregistered class");
+        //throw std::runtime_error("Trying to use unregistered class");
     }
 
     object_rep* instance = push_new_instance(L, cls);

@@ -13,7 +13,7 @@ namespace ion
 {
 	extern interfaces* source;
 
-	class entity : public CBaseEntity
+	class entity
 	{
 	public:
 		enum EEntityType
@@ -52,13 +52,14 @@ namespace ion
 			if (!source->gEngine->GetPlayerInfo(ent->index, &pinfo))
 			{
 				log.write(log.WARN, "GetPlayerInfo failed");
-				return;
+				return "";
 			}
 			return pinfo.friendsName;
 		}
 
 		static entity* me()
 		{
+			log.write(log.VERB, "me()\n");
 			return (entity*)getBaseEnt(source->gEngine->GetLocalPlayer());
 		}
 

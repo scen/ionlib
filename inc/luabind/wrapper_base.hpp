@@ -76,7 +76,7 @@ namespace luabind
             if (lua_isnil(L, -1))
             {
                 lua_pop(L, 1);
-                throw std::runtime_error("Attempt to call nonexistent function");
+                //throw std::runtime_error("Attempt to call nonexistent function");
             }
 
             // push the self reference as the first parameter
@@ -171,7 +171,7 @@ namespace luabind
 			if (lua_isnil(L, -1))
 			{
 				lua_pop(L, 1);
-				throw std::runtime_error("Attempt to call nonexistent function");
+				//throw std::runtime_error("Attempt to call nonexistent function");
 			}
 
 			// push the self reference as the first parameter
