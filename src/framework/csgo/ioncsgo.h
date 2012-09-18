@@ -37,7 +37,7 @@ namespace ion
 			fnMatSurface = captureFactory("vguimatsurface.dll");
 			fnVgui2 = captureFactory("vgui2.dll");
 
-			appSystemFactory = **(CreateInterfaceFn**)sigs["AppSystemFactory"];
+			//appSystemFactory = **(CreateInterfaceFn**)sigs["AppSystemFactory"];
 			//source->spreadOffset = (DWORD)*(short*)sigs["WeaponSpread"];
 			//source->wepSeedOffset = (DWORD)*(short*)sigs["WeaponSeed"];
 
@@ -82,7 +82,10 @@ namespace ion
 				}
 				return NULL;
 		}
-
+		void* appSystemFactory(const char* name, void* retcode)
+		{
+			return 0;
+		}
 		CreateInterfaceFn captureFactory(char* mod)
 		{
 			CreateInterfaceFn fn = NULL;
@@ -99,7 +102,7 @@ namespace ion
 			return fn;
 		}
 
-		CreateInterfaceFn fnEngine, fnClient, fnVstdlib, fnMatSurface, fnVgui2, appSystemFactory;
+		CreateInterfaceFn fnEngine, fnClient, fnVstdlib, fnMatSurface, fnVgui2;//, appSystemFactory;
 
 		static ioncsgo* instance;
 	};

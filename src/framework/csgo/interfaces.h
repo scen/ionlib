@@ -7,7 +7,7 @@ namespace ion
 	class interfaces
 	{
 	public:
-		/*IBaseClientDLL* gClient;
+		IBaseClientDLL* gClient;
 		IVEngineClient* gEngine;
 		ICvar *gCvar;
 		vgui::ISurface* gSurface;
@@ -18,7 +18,7 @@ namespace ion
 		CInput* gInput;
 		IEngineTrace* gTrace;
 		IMaterialSystem* gMatSystem;
-		IVModelRender* gModelRender;*/
+		IVModelRender* gModelRender;
 
 		DWORD* pGlobalSpeed;
 		DWORD wepSeedOffset;

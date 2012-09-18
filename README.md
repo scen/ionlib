@@ -33,6 +33,17 @@ Notes for future reference
 	* Build with `mscvbuild.bat static`. Link with `lua51.lib`
 		* Edit `msvcbuild.bat` compile flags, add `/EHsc` for C++ exceptions (**IMPORTANT**)
 * Source SDK HL2 OB Updates
+	* Interface Dump
+		* [15:19:10][VERB]:	VEngineClient014
+		* [15:19:10][VERB]:	VClient016
+		* [15:19:10][VERB]:	VEngineCvar004
+		* [15:19:10][VERB]:	VGUI_Panel009
+		* [15:19:10][VERB]:	VClientEntityList003
+		* [15:19:10][VERB]:	VEngineModel016
+		* [15:19:10][VERB]:	EngineTraceClient003
+		* [15:19:10][VERB]:	VModelInfoClient006
+		* [15:19:10][VERB]:	VGUI_Surface030
+		* [15:19:10][VERB]:	VMaterialSystem080
 	* Added https://forums.alliedmods.net/showthread.php?p=1782597
 	* `ISurface`
 		* Added `virtual void DeleteTextureByID(int i) PURE` after `IsTextureIDValid`
@@ -41,6 +52,19 @@ Notes for future reference
 	* `cdll_int.h` -> `IBaseClientDLL`
 		* Added 2 pad functions after `Shutdown()`
 		* Added 7 pad functions after `CanRecordDemo()` (replay update)
+* Source SDK HL2 CSGO Updates
+	* Interface Dump
+		* [15:15:27][VERB]:	VEngineClient013
+		* [15:15:27][VERB]:	VClient016
+		* [15:15:27][VERB]:	VEngineCvar007
+		* [15:15:27][VERB]:	VGUI_Panel009
+		* [15:15:27][VERB]:	VClientEntityList003
+		* [15:15:27][VERB]:	VEngineModel016
+		* [15:15:27][VERB]:	EngineTraceClient004
+		* [15:15:27][VERB]:	VModelInfoClient004
+		* [15:15:27][VERB]:	VGUI_Surface031
+		* [15:15:27][VERB]:	VMaterialSystem080
+
 
 
 About
