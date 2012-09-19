@@ -39,6 +39,7 @@
     <ClInclude Include="..\src\framework\csgo\csgohook.h" />
     <ClInclude Include="..\src\framework\csgo\interfaces.h" />
     <ClInclude Include="..\src\framework\csgo\ioncsgo.h" />
+    <ClInclude Include="..\src\framework\csgo\netvar.h" />
     <ClInclude Include="..\src\framework\csgo\sdk.h" />
     <ClInclude Include="..\src\framework\source\entity.h" />
     <ClInclude Include="..\src\framework\source\interfaces.h" />
@@ -59,6 +60,8 @@
     <ClInclude Include="..\src\mem\sigscan.h" />
     <ClInclude Include="..\src\mem\vmt.h" />
     <ClInclude Include="..\src\render\color.h" />
+    <ClInclude Include="..\src\render\csgo\csgofont.h" />
+    <ClInclude Include="..\src\render\csgo\csgorender.h" />
     <ClInclude Include="..\src\render\dx11\dx11font.h" />
     <ClInclude Include="..\src\render\dx11\dx11render.h" />
     <ClInclude Include="..\src\render\font.h" />
@@ -90,6 +93,7 @@
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
     <ClCompile Include="..\src\framework\csgo\csgohook.cpp" />
     <ClCompile Include="..\src\framework\csgo\ioncsgo.cpp" />
+    <ClCompile Include="..\src\framework\csgo\netvar.cpp" />
     <ClCompile Include="..\src\framework\source\entity.cpp" />
     <ClCompile Include="..\src\framework\source\interfaces.cpp" />
     <ClCompile Include="..\src\framework\source\ionsource.cpp" />
@@ -105,6 +109,8 @@
     <ClCompile Include="..\src\mem\sigscan.cpp" />
     <ClCompile Include="..\src\mem\vmt.cpp" />
     <ClCompile Include="..\src\render\color.cpp" />
+    <ClCompile Include="..\src\render\csgo\csgofont.cpp" />
+    <ClCompile Include="..\src\render\csgo\csgorender.cpp" />
     <ClCompile Include="..\src\render\dx11\dx11font.cpp" />
     <ClCompile Include="..\src\render\dx11\dx11render.cpp" />
     <ClCompile Include="..\src\render\font.cpp" />

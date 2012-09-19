@@ -683,7 +683,8 @@ public:
 
 	// Called once when the client DLL is being unloaded
 	virtual void			Shutdown( void ) = 0;
-	
+	virtual void pad001(void) = 0;
+
 	// Called at the start of each level change
 	virtual void			LevelInitPreEntity( char const* pMapName ) = 0;
 	// Called at the start of a new level, after the entities have been received and created
@@ -804,7 +805,13 @@ public:
 	// Returns true if the client can start recording a demo now.  If the client returns false,
 	// an error message of up to length bytes should be returned in errorMsg.
 	virtual bool			CanRecordDemo( char *errorMsg, int length ) const = 0;
-
+	virtual void pad003() = 0;
+	virtual void pad004() = 0;
+	virtual void pad005() = 0;
+	virtual void pad006() = 0;
+	virtual void pad007() = 0;
+	virtual void pad008() = 0;
+	virtual void pad009() = 0;
 	// Give the Client a chance to do setup/cleanup.
 	virtual void			OnDemoRecordStart( char const* pDemoBaseName ) = 0;
 	virtual void			OnDemoRecordStop() = 0;

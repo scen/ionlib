@@ -64,6 +64,8 @@ Notes for future reference
 		* [15:15:27][VERB]:	VModelInfoClient004
 		* [15:15:27][VERB]:	VGUI_Surface031
 		* [15:15:27][VERB]:	VMaterialSystem080
+	* `cdll_int.h` -> `IBaseClientDLL`
+		* 1 pad function after `Shutdown()`
 
 
 

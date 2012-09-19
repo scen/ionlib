@@ -88,6 +88,12 @@
     <Filter Include="Source Files\framework\csgo">
       <UniqueIdentifier>{6e4e7f4d-574a-4966-9cef-508e533d357b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\render\csgo">
+      <UniqueIdentifier>{b82c116a-d749-47cd-b1ad-4974e592aa13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\render\csgo">
+      <UniqueIdentifier>{50e80b82-b6c5-4c89-9971-94f66b4514e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\mem\signature.h">
@@ -231,9 +237,6 @@
     <ClInclude Include="..\src\framework\source\ionsource.h">
       <Filter>Header Files\framework\source</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\render\source\sourcefont.h">
-      <Filter>Header Files\render\dx11</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\framework\source\entity.h">
       <Filter>Header Files\framework\source</Filter>
     </ClInclude>
@@ -263,6 +266,18 @@
     </ClInclude>
     <ClInclude Include="..\src\framework\csgo\sdk.h">
       <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\netvar.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\csgo\csgofont.h">
+      <Filter>Header Files\render\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\csgo\csgorender.h">
+      <Filter>Header Files\render\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render\source\sourcefont.h">
+      <Filter>Header Files\render\source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +403,15 @@
     </ClCompile>
     <ClCompile Include="..\src\framework\csgo\csgohook.cpp">
       <Filter>Source Files\framework\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\csgo\netvar.cpp">
+      <Filter>Source Files\framework\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\csgo\csgorender.cpp">
+      <Filter>Source Files\render\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render\csgo\csgofont.cpp">
+      <Filter>Source Files\render\csgo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

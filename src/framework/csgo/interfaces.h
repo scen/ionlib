@@ -1,6 +1,8 @@
 #pragma once
 
 #include "sdk.h"
+#include "netvar.h"
+#include "../../render/csgo/csgorender.h"
 
 namespace ion
 {
@@ -27,5 +29,7 @@ namespace ion
 		module modClient, modEngine;
 
 		vmt* clientHk, *inputHk, *panelHk;
+		netvar* nvar;
+		csgorender* render;
 	};
 };
