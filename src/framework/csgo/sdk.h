@@ -55,7 +55,7 @@
 #include "../../sdk/hl2_csgo/public/matsys_controls/matsyscontrols.h"
 #include "../../sdk/hl2_csgo/public/vgui/IClientPanel.h"
 #include "../../sdk/hl2_csgo/public/vgui/IPanel.h"
-#include "../../sdk/hl2_csgo/public/vgui/ISurface.h"
+#include "../../sdk/hl2_csgo/public/vgui/ISurfaceV30.h"
 #include "../../sdk/hl2_csgo/public/vgui/ILocalize.h"
 #undef private
 #undef protected

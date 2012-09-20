@@ -287,10 +287,11 @@ public:
 	// Given the name of the key "mouse1", "e", "tab", etc., return the string it is bound to "+jump", "impulse 50", etc.
 	virtual const char			*Key_BindingForKey( ButtonCode_t &code ) = 0;
 
+	virtual void Key_SetBinding(ButtonCode_t, char const*) = 0;
+
 	// key trapping (for binding keys)
 	virtual void				StartKeyTrapMode( void ) = 0;
 	virtual bool				CheckDoneKeyTrapping( ButtonCode_t &code ) = 0;
-
 	// Returns true if the player is fully connected and active in game (i.e, not still loading)
 	virtual bool				IsInGame( void ) = 0;
 	// Returns true if the player is connected, but not necessarily active in game (could still be loading)

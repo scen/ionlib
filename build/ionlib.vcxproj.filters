@@ -279,6 +279,12 @@
     <ClInclude Include="..\src\render\source\sourcefont.h">
       <Filter>Header Files\render\source</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\entity.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\vector.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">
@@ -412,6 +418,12 @@
     </ClCompile>
     <ClCompile Include="..\src\render\csgo\csgofont.cpp">
       <Filter>Source Files\render\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\csgo\entity.cpp">
+      <Filter>Source Files\framework\csgo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\framework\csgo\vector.cpp">
+      <Filter>Source Files\framework\csgo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

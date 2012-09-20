@@ -148,6 +148,7 @@ namespace ion
 			if ((m_flags & LogToFile) && m_fp)
 			{
 				fprintf(m_fp, ss.str().c_str());
+				fflush(m_fp);
 			}
 			if (level == ERRO)
 			{

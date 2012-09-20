@@ -24,11 +24,11 @@ namespace ion
 			size_t cvt;
 			mbstowcs_s(&cvt, buf, strlen(fmt.c_str())+1, fmt.c_str(), _TRUNCATE);
 			m_surface->DrawSetTextColor(col.R, col.G, col.B, col.A);
-			m_surface->DrawSetTextFont(f->font);
+			m_surface->DrawSetTextFont(f->fnt);
 			m_surface->DrawSetTextPos(p.getX(), p.getY());
 			m_surface->DrawPrintText(buf, fmt.length());
 			size ret;
-			m_surface->GetTextSize(f->font, buf,  ret.m_width, ret.m_height);
+			m_surface->GetTextSize(f->fnt, buf,  ret.m_width, ret.m_height);
 			return ret;
 		}
 
@@ -40,7 +40,7 @@ namespace ion
 			size_t cvt;
 			mbstowcs_s(&cvt, buf, strlen(fmt.c_str())+1, fmt.c_str(), _TRUNCATE);
 			size ret;
-			m_surface->GetTextSize(f->font, buf,  ret.m_width, ret.m_height);
+			m_surface->GetTextSize(f->fnt, buf,  ret.m_width, ret.m_height);
 			return ret;
 		}
 

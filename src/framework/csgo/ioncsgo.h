@@ -11,6 +11,8 @@
 #include "sdk.h"
 #include "csgohook.h"
 #include "interfaces.h"
+#include "entity.h"
+#include "vector.h"
 
 
 namespace ion
@@ -48,20 +50,55 @@ namespace ion
 			csgo->gModelRender = reinterpret_cast<IVModelRender*>(appSystemFactory(getInterface("VEngineModel0"), NULL));
 			csgo->gTrace = reinterpret_cast<IEngineTrace*>(appSystemFactory(getInterface("EngineTraceClient0"), NULL));
 			csgo->gModelInfo = reinterpret_cast<IVModelInfoClient*>(appSystemFactory(getInterface("VModelInfoClient0"), NULL));
-			csgo->gSurface = reinterpret_cast<vgui::ISurface*>(appSystemFactory(getInterface("VGUI_Surface0"), NULL));
+			csgo->gSurface = reinterpret_cast<SurfaceV30::ISurface*>(appSystemFactory(getInterface("VGUI_Surface0"), NULL));
 			csgo->gMatSystem = reinterpret_cast<IMaterialSystem*>(appSystemFactory(getInterface("VMaterialSystem0"), NULL));
 			//DWORD* clientVmt = *(DWORD**)(csgo->gClient);
 			//csgo->gInput = (CInput*)**(DWORD**)(clientVmt[14] + 0x2); //InActivateMouse();
 
 			csgo->render = new csgorender(csgo->gSurface);
 			lua.setDrawInstance(csgo->render);
-
+			
 			csgo->nvar = new netvar(csgo->gClient);
 
 			csgo->clientHk = new vmt(csgo->gClient);
 			
 			csgo->panelHk = new vmt(csgo->gPanel);
 			csgo->panelHk->hookMethod(&csgohook::hkPaintTraverse, csgohook::PANEL_PAINTTRAVERSE);
+
+			//bind entity
+			lua.registerScope(
+				luabind::class_<entity>("entity")
+					.def("isValid", &entity::isValid)
+					.def("isAlive", &entity::isAlive)
+					.def("getName", &entity::getName)
+					.def("getType", &entity::getType)
+					.def("getClassName", &entity::getClassName)
+					.def("getTeam", &entity::getTeam)
+					.def("getHealth", &entity::getHealth)
+					.def("isBot", &entity::isBot)
+					.def("getOrigin", &entity::getOrigin)
+					.scope
+					[
+						luabind::def("me", &entity::me),
+						luabind::def("getBaseEntAsEntity", &entity::getBaseEntAsEntity),
+						luabind::def("getHighestEntityIndex", &entity::getHighestEntityIndex)
+					]
+					.def(luabind::const_self == luabind::other<entity>())
+				);
+
+			//bind vector
+			lua.registerScope(
+					luabind::class_<vector>("vector")
+						.def(luabind::constructor<float, float, float>())
+						.def(luabind::constructor<vector&>())
+						.def(luabind::constructor<>())
+						.def("toScreen", &vector::toScreen)
+						.def_readwrite("x", &vector::x)
+						.def_readwrite("y", &vector::y)
+						.def_readwrite("z", &vector::z)
+						.def_readwrite("visible", &vector::visible)
+						.def(luabind::const_self == luabind::other<vector>())
+					);
 
 			finishInit(root);
 		}

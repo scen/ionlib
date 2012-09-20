@@ -3,7 +3,6 @@
 #include "../../required.h"
 #include "../render.h"
 #include "../../framework/source/sdk.h"
-
 namespace ion
 {
 	class sourcefont : public font
@@ -27,8 +26,8 @@ namespace ion
 
 		void create()
 		{
-			font = surface->CreateFont();
-			surface->SetFontGlyphSet(font, getName().c_str(), getSize(), weight, 0, 0, flags);
+			fnt = surface->CreateFont();
+			surface->SetFontGlyphSet(fnt, getName().c_str(), getSize(), weight, 0, 0, flags);
 		}
 
 		int weight;
@@ -39,8 +38,8 @@ namespace ion
 			flags = f;
 		}
 
-		vgui::HFont font;
-		vgui::HFont getFont() const {return font;}
+		vgui::HFont fnt;
+		vgui::HFont getFont() const {return fnt;}
 		vgui::ISurface* surface;
 		void setSurface(vgui::ISurface* s) {surface = s;}
 	};

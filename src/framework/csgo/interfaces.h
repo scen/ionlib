@@ -12,7 +12,7 @@ namespace ion
 		IBaseClientDLL* gClient;
 		IVEngineClient* gEngine;
 		ICvar *gCvar;
-		vgui::ISurface* gSurface;
+		SurfaceV30::ISurface* gSurface;
 		vgui::IPanel* gPanel;
 		IClientEntityList* gEnt;
 		IVModelInfoClient* gModelInfo;

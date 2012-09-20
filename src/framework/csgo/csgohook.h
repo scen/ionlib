@@ -9,7 +9,10 @@
 #include "sdk.h"
 #include "netvar.h"
 #include "interfaces.h"
+#include "entity.h"
+#include "vector.h"
 
+static int once = false;
 namespace ion
 {
 	extern interfaces* csgo;
@@ -43,19 +46,21 @@ namespace ion
 			csgo->clientHk->hookMethod(&hkCreateMove, CLIENT_CREATEMOVE);
 			lua.call("CreateMove");
 		}
-
 		static void __fastcall hkPaintTraverse(void* thisptr, int edx, VPANEL vguiPanel, bool forceRepaint, bool allowForce)
 		{
-			log.write(log.VERB, "PaintTraverse!\n");
 			csgo->panelHk->unhookMethod(PANEL_PAINTTRAVERSE);
 			csgo->panelHk->getMethod<csgohook::PaintTraverseFn>(PANEL_PAINTTRAVERSE)(thisptr, vguiPanel, forceRepaint, allowForce);
 			csgo->panelHk->hookMethod(&hkPaintTraverse, PANEL_PAINTTRAVERSE);
 			auto panelName = csgo->gPanel->GetName(vguiPanel);
+
 			if (panelName && panelName[0] == 'F'&& panelName[5] == 'O' && panelName[12]=='P')
 			{
 				if (csgo->gEngine->IsInGame()) glua.inGame = true;
 				else glua.inGame = false;
 				lua.call("Paint");
+				if (!once)
+				{
+				}
 			}
 		}
 	};

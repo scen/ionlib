@@ -1,8 +1,11 @@
 #pragma once
 
-#include "../../required.h"
 #include "../render.h"
 #include "../../framework/csgo/sdk.h"
+
+#undef CreateFont
+#undef CreateFontA
+#undef CreateFontW
 
 namespace ion
 {
@@ -27,8 +30,8 @@ namespace ion
 
 		void create()
 		{
-			font = surface->CreateFont();
-			surface->SetFontGlyphSet(font, getName().c_str(), getSize(), weight, 0, 0, flags);
+			fnt = surface->CreateFont();
+			surface->SetFontGlyphSet(fnt, getName().c_str(), getSize(), weight, 0, 0, flags, 0, 0);
 		}
 
 		int weight;
@@ -38,10 +41,9 @@ namespace ion
 		{
 			flags = f;
 		}
-
-		vgui::HFont font;
-		vgui::HFont getFont() const {return font;}
-		vgui::ISurface* surface;
-		void setSurface(vgui::ISurface* s) {surface = s;}
+		vgui::HFont fnt;
+		vgui::HFont getFont() const {return fnt;}
+		SurfaceV30::ISurface* surface;
+		void setSurface(SurfaceV30::ISurface* s) {surface = s;}
 	};
 }

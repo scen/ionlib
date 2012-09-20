@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../required.h"
-
+#include "../util/log.h"
 //renderers should inherit from this class
 
 namespace ion
@@ -9,7 +9,9 @@ namespace ion
 	class font
 	{
 	public:
-		virtual ~font() {}
+		virtual ~font() {
+			log.write(log.ERRO, "Destructor called!\n");
+		}
 
 		std::string m_name;
 		int m_size;

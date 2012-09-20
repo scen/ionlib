@@ -24,7 +24,7 @@
 
 #include "appframework/IAppSystem.h"
 #include "bitmap/ImageFormat.h"
-#include "Vector2D.h"  // must be before the namespace line
+#include "vector2d.h"  // must be before the namespace line
 
 #ifdef CreateFont
 #undef CreateFont
@@ -129,10 +129,10 @@ namespace SurfaceV30
 	{
 	public:
 	// call to Shutdown surface; surface can no longer be used after this is called
-	virtual void Shutdown() = 0;
+	virtual void Shutdown() = 0; // 
 
 	// frame
-	virtual void RunFrame() = 0;
+	virtual void RunFrame() = 0; //8
 
 	// hierarchy root
 	virtual vgui::VPANEL GetEmbeddedPanel() = 0;
@@ -153,13 +153,16 @@ namespace SurfaceV30
 	virtual void DrawLine(int x0, int y0, int x1, int y1) = 0;
 	virtual void DrawPolyLine(int *px, int *py, int numPoints) = 0;
 
+	virtual void DrawSetApparentDepth(float f) = 0;
+	virtual void DrawClearApparentDepth(float f) = 0;
+
 	virtual void DrawSetTextFont(vgui::HFont font) = 0;
 	virtual void DrawSetTextColor(int r, int g, int b, int a) = 0;
 	virtual void DrawSetTextColor(Color col) = 0;
 	virtual void DrawSetTextPos(int x, int y) = 0;
 	virtual void DrawGetTextPos(int& x,int& y) = 0;
 	virtual void DrawPrintText(const wchar_t *text, int textLen, FontDrawType_t drawType = FONT_DRAW_DEFAULT ) = 0;
-	virtual void DrawUnicodeChar(wchar_t wch, FontDrawType_t drawType = FONT_DRAW_DEFAULT ) = 0;
+	virtual void DrawUnicodeChar(wchar_t wch, FontDrawType_t drawType = FONT_DRAW_DEFAULT ) = 0; //28
 
 	virtual void DrawFlushText() = 0;		// flushes any buffered text (for rendering optimizations)
 	virtual vgui::IHTML *CreateHTMLWindow(vgui::IHTMLEvents *events,vgui::VPANEL context)=0;
@@ -171,6 +174,7 @@ namespace SurfaceV30
 	virtual void DrawSetTextureFile(int id, const char *filename, int hardwareFilter, bool forceReload) = 0;
 	virtual void DrawSetTextureRGBA(int id, const unsigned char *rgba, int wide, int tall, int hardwareFilter, bool forceReload)=0;
 	virtual void DrawSetTexture(int id) = 0;
+	virtual void DeleteTextureByID(int id) = 0; //38
 	virtual void DrawGetTextureSize(int id, int &wide, int &tall) = 0;
 	virtual void DrawTexturedRect(int x0, int y0, int x1, int y1) = 0;
 	virtual bool IsTextureIDValid(int id) = 0;
@@ -191,7 +195,7 @@ namespace SurfaceV30
 	virtual void SetMinimized(vgui::VPANEL panel, bool state) = 0;
 	virtual bool IsMinimized(vgui::VPANEL panel) = 0;
 	virtual void FlashWindow(vgui::VPANEL panel, bool state) = 0;
-	virtual void SetTitle(vgui::VPANEL panel, const wchar_t *title) = 0;
+	virtual void SetTitle(vgui::VPANEL panel, const wchar_t *title) = 0; //51
 	virtual void SetAsToolBar(vgui::VPANEL panel, bool state) = 0;		// removes the window's task bar entry (for context menu's, etc.)
 
 	// windows stuff
@@ -232,7 +236,6 @@ namespace SurfaceV30
 
 	// engine-only focus handling (replacing WM_FOCUS windows handling)
 	virtual void SetTopLevelFocus(vgui::VPANEL panel) = 0;
-
 	// fonts
 	// creates an empty handle to a vgui font.  windows fonts can be add to this via SetFontGlyphSet().
 	virtual vgui::HFont CreateFont() = 0;
@@ -255,7 +258,7 @@ namespace SurfaceV30
 		FONTFLAG_BITMAP			= 0x800,		// compiled bitmap font - no fallbacks
 	};
 
-	virtual bool SetFontGlyphSet(vgui::HFont font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags) = 0;
+	virtual bool SetFontGlyphSet(vgui::HFont font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags, int unknown, int unknown1) = 0;
 
 	// adds a custom font file (only supports true type font files (.ttf) for now)
 	virtual bool AddCustomFontFile(const char *fontFileName) = 0;

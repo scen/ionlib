@@ -11,8 +11,8 @@ namespace ion
 	class csgorender : public render
 	{
 	public:
-		
-		csgorender(vgui::ISurface* surface) : m_surface(surface)
+
+		csgorender(SurfaceV30::ISurface* surface) : m_surface(surface)
 		{
 		}
 		//text functions
@@ -24,11 +24,11 @@ namespace ion
 			size_t cvt;
 			mbstowcs_s(&cvt, buf, strlen(fmt.c_str())+1, fmt.c_str(), _TRUNCATE);
 			m_surface->DrawSetTextColor(col.R, col.G, col.B, col.A);
-			m_surface->DrawSetTextFont(f->font);
+			m_surface->DrawSetTextFont(f->fnt);
 			m_surface->DrawSetTextPos(p.getX(), p.getY());
 			m_surface->DrawPrintText(buf, fmt.length());
 			size ret;
-			m_surface->GetTextSize(f->font, buf,  ret.m_width, ret.m_height);
+			m_surface->GetTextSize(f->fnt, buf,  ret.m_width, ret.m_height);
 			return ret;
 		}
 
@@ -40,7 +40,7 @@ namespace ion
 			size_t cvt;
 			mbstowcs_s(&cvt, buf, strlen(fmt.c_str())+1, fmt.c_str(), _TRUNCATE);
 			size ret;
-			m_surface->GetTextSize(f->font, buf,  ret.m_width, ret.m_height);
+			m_surface->GetTextSize(f->fnt, buf,  ret.m_width, ret.m_height);
 			return ret;
 		}
 
@@ -56,12 +56,22 @@ namespace ion
 			if (flags & Underline) realFlags |= csgofont::FONTFLAG_UNDERLINE;
 			if (flags & Italic) realFlags |= csgofont::FONTFLAG_ITALIC;
 
+
 			f->setFlags(flags);
 			f->setWeight(weight);
 			f->create();
 			return (font*)f;
 		}
+		char __cdecl C_BaseEntity__IsDormant(int a1)
+		{
+			char result; // al@2
 
+			if ( *(_DWORD *)(a1 + 88) == -1 )
+				result = 0;
+			else
+				result = *(_BYTE *)(a1 + 221) & 1;
+			return result;
+		}
 		//rect
 		virtual void fillRect(const rect& r, const color& c)
 		{
@@ -87,6 +97,6 @@ namespace ion
 
 		virtual ~csgorender() {}
 
-		vgui::ISurface* m_surface;
+		SurfaceV30::ISurface* m_surface;
 	};
 }

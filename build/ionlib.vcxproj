@@ -37,10 +37,12 @@
     <ClInclude Include="..\inc\asmjit\Util.h" />
     <ClInclude Include="..\inc\asmjit\Util_p.h" />
     <ClInclude Include="..\src\framework\csgo\csgohook.h" />
+    <ClInclude Include="..\src\framework\csgo\entity.h" />
     <ClInclude Include="..\src\framework\csgo\interfaces.h" />
     <ClInclude Include="..\src\framework\csgo\ioncsgo.h" />
     <ClInclude Include="..\src\framework\csgo\netvar.h" />
     <ClInclude Include="..\src\framework\csgo\sdk.h" />
+    <ClInclude Include="..\src\framework\csgo\vector.h" />
     <ClInclude Include="..\src\framework\source\entity.h" />
     <ClInclude Include="..\src\framework\source\interfaces.h" />
     <ClInclude Include="..\src\framework\source\ionsource.h" />
@@ -92,8 +94,10 @@
     <ClCompile Include="..\inc\asmjit\Platform.cpp" />
     <ClCompile Include="..\inc\asmjit\Util.cpp" />
     <ClCompile Include="..\src\framework\csgo\csgohook.cpp" />
+    <ClCompile Include="..\src\framework\csgo\entity.cpp" />
     <ClCompile Include="..\src\framework\csgo\ioncsgo.cpp" />
     <ClCompile Include="..\src\framework\csgo\netvar.cpp" />
+    <ClCompile Include="..\src\framework\csgo\vector.cpp" />
     <ClCompile Include="..\src\framework\source\entity.cpp" />
     <ClCompile Include="..\src\framework\source\interfaces.cpp" />
     <ClCompile Include="..\src\framework\source\ionsource.cpp" />
