@@ -31,15 +31,15 @@ Reversing
 
 * IsDormant is no longer networked, it is a virtual of IClientNetworkable.
 	* To get m_bIsDormant, reverse C_BaseEntity::IsDormant like so:
-Code:
-	char __cdecl C_BaseEntity__IsDormant(int a1)
-	{
-		char result; // al@2
 	
-		if ( *(_DWORD *)(a1 + 88) == -1 )
-			result = 0;
-		else
-			result = *(_BYTE *)(a1 + 221) & 1;
-		return result;	
-	}
+            char __cdecl C_BaseEntity__IsDormant(int a1)
+            {
+            	char result; // al@2
+            
+            	if ( *(_DWORD *)(a1 + 88) == -1 )
+            		result = 0;
+            	else
+            		result = *(_BYTE *)(a1 + 221) & 1;
+            	return result;	
+            }
 
