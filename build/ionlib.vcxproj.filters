@@ -432,5 +432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />
+    <Text Include="..\CSGO_Reversing_Log.txt" />
   </ItemGroup>
 </Project>

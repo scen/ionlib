@@ -118,7 +118,7 @@ namespace ion
 				if (parent == "")
 					concatStr = tableName + "->" + offsetName;
 				offsets.insert(std::make_pair(concatStr, (offsets.find(parent) == offsets.end() ? 0 : offsets.find(parent)->second + DWORD(prop->GetOffset()))));
-				//if (concatStr.length() < 110)
+				if (concatStr.length() < 200) log.raw(boost::str(format("%s\n") % concatStr));
 					//log.write(log.VERB, format("%s\n") % concatStr); //LOG IT
 				if (prop->GetDataTable())
 				{

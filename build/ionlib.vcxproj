@@ -132,6 +132,7 @@
     <None Include="..\TODO.md" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\CSGO_Reversing_Log.txt" />
     <Text Include="TODO.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
