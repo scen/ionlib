@@ -20,14 +20,17 @@ namespace ion
 			ply_Health = findOffset(t, "m_iHealth");
 
 			t = findTable("DT_BaseEntity");
-			ent_Team = findOffset(t, "m_iTeamNum");
+			//ent_Team = findOffset(t, "m_iTeamNum");
 
 			t = findTable("DT_BaseCombatCharacter");
-			ply_ActiveWeapon = findOffset(t, "m_hActiveWeapon");
-			ply_Weapons = findOffset(t, "m_hMyWeapons");
+			//ply_ActiveWeapon = findOffset(t, "m_hActiveWeapon");
+
+			ply_Origin = get("DT_CSPlayer->cslocaldata->DT_CSLocalPlayerExclusive->m_vecOrigin");
+			ply_EyePos = get("DT_BasePlayer->localdata->DT_LocalPlayerExclusive->m_vecViewOffset[0]");
 		}
 		~netvar();
 
+#pragma region impl
 		RecvTable* findTable(const std::string& str)
 		{
 			ClientClass* pClass = client->GetAllClasses();
@@ -117,8 +120,9 @@ namespace ion
 				std::string concatStr = parent + "->" + tableName + "->" + offsetName;
 				if (parent == "")
 					concatStr = tableName + "->" + offsetName;
-				offsets.insert(std::make_pair(concatStr, (offsets.find(parent) == offsets.end() ? 0 : offsets.find(parent)->second + DWORD(prop->GetOffset()))));
-				if (concatStr.length() < 200) log.raw(boost::str(format("%s\n") % concatStr));
+				auto newOffset = offsets.find(parent)->second + DWORD(prop->GetOffset());
+				offsets.insert(std::make_pair(concatStr, (offsets.find(parent) == offsets.end() ? 0 : newOffset)));
+				//if (concatStr.length() < 200) log.raw(boost::str(format("%s [0x%X]\n") % concatStr % newOffset));
 					//log.write(log.VERB, format("%s\n") % concatStr); //LOG IT
 				if (prop->GetDataTable())
 				{
@@ -132,21 +136,11 @@ namespace ion
 			}
 		}
 
+#pragma endregion impl
 
-
-		//TF2 stuff
-		DWORD ply_Class, ply_LifeState, ply_Health, ply_TfCond,
-			ply_ActiveWeapon, ply_Weapons, ply_GlowEnabled, ply_Shared, ply_medigunCharge, ply_EyePos,
-			ply_EyeAngles1;
-		DWORD spy_DTeam, spy_DClass, spy_Backstab;
-		DWORD obj_Level, obj_Builder, obj_Health, obj_Sapper, obj_Mini, obj_MaxHealth, obj_Metal,
-			obj_Building, obj_Mode, obj_Disabled, obj_Percent;
-		DWORD sentry_Wrangle, sentry_Shield, sentry_Rockets, sentry_Shells;
-		DWORD ent_Team;
-		DWORD off_AttributeManager, off_item, off_ItemDefIdx;
-		DWORD wep_lastFireTime, wep_lastCritCheckTime, wep_ammoType;
-		DWORD bomb_Type, bomb_Touched, bomb_Owner, bomb_Critical;
-
+		//CSGO stuff
+		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin;
+		DWORD ply_EyePos;
 
 		IBaseClientDLL* client;
 

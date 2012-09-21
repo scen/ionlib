@@ -16,7 +16,10 @@ namespace ion
 		{
 		}
 		//text functions
-		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt) {return size::none; }
+		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const boost::format& fmt)
+		{
+			return renderText(flags, fnt, p, col, str(fmt));
+		}
 		virtual size renderText(int flags, const font *fnt, const point& p, const color& col, const std::string &fmt)
 		{
 			auto f = reinterpret_cast<const csgofont*>(fnt);
@@ -62,16 +65,7 @@ namespace ion
 			f->create();
 			return (font*)f;
 		}
-		char __cdecl C_BaseEntity__IsDormant(int a1)
-		{
-			char result; // al@2
 
-			if ( *(_DWORD *)(a1 + 88) == -1 )
-				result = 0;
-			else
-				result = *(_BYTE *)(a1 + 221) & 1;
-			return result;
-		}
 		//rect
 		virtual void fillRect(const rect& r, const color& c)
 		{

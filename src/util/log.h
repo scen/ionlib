@@ -121,10 +121,10 @@ namespace ion
 			std::string fin = "";
 			switch (level)
 			{
-			case ERRO: fin.append("[ERRO]:\t"); break;
-			case WARN: fin.append("[WARN]:\t"); break;
-			case INFO: fin.append("[INFO]:\t"); break;
-			default: fin.append("[VERB]:\t"); break;
+			case ERRO: fin.append("[ERRO]: "); break;
+			case WARN: fin.append("[WARN]: "); break;
+			case INFO: fin.append("[INFO]: "); break;
+			default: fin.append("[VERB]: "); break;
 			}
 			SYSTEMTIME st;
 			GetLocalTime(&st);

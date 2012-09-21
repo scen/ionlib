@@ -65,13 +65,12 @@ namespace ion
 		const vector getOrigin() const
 		{
 			if (!isValid()) return vector();
-			auto old = ent->GetAbsOrigin();
-			return vector(old.x, old.y, old.z);
+			return *makeptr<vector>(ent, csgo->nvar->ply_Origin);
 		}
 
 		int getTeam() const
 		{
-			return *makeptr<int>(ent, csgo->nvar->ent_Team);
+			return *makeptr<int>(ent, csgo->nvar->ply_Team);
 		}
 
 		static entity getBaseEntAsEntity(int i)

@@ -31,7 +31,7 @@ Reversing
 
 * IsDormant is no longer networked, it is a virtual of IClientNetworkable.
 	* To get m_bIsDormant, reverse C_BaseEntity::IsDormant like so:
-	
+
             char __cdecl C_BaseEntity__IsDormant(int a1)
             {
             	char result; // al@2
@@ -43,3 +43,13 @@ Reversing
             	return result;	
             }
 
+* CClientEntityList (client.dylib)
+	* aka IClientEntityList in the headers
+	* Update to the headers, see the vtable dump.
+	* Press X to see xrefs
+
+* Entity iteration
+	* `i -> {1, gEnt->GetHighestEntityIndex()}`
+		* gEnt->GetClientNetworkable(i)
+			* ->GetClientClass()
+				* ->GetName() for ClassName e.g. CCsPlayer

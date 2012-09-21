@@ -12,10 +12,23 @@
 
 namespace ion
 {
-
+static char const luaStr[] = "C = ffi.C\n"
+"util = util or {}\n"
+"function util.makeptr(ptr, offset, type, deref)\n"
+"	deref = deref or false\n"
+"	local p = tonumber(ffi.cast('int', ptr))\n"
+"	p = p + offset\n"
+"	if deref then\n"
+"		return ffi.cast(type, p)[0]\n"
+"	else\n"
+"		return ffi.cast(type, p)\n"
+"	end\n"
+"end\n"
+;
 	class luamgr
 	{
 	public:
+		
 		struct luascript
 		{
 			std::string file;
@@ -87,6 +100,7 @@ namespace ion
 			return 1;
 		}
 
+
 		int execString(const std::string& str)
 		{
 			lua_pushcfunction(L, &errorHandler);
@@ -108,7 +122,7 @@ namespace ion
 		void reloadProject(Json::Value& root, std::string &basepath)
 		{
 			curProj.files.clear();
-			
+
 			const Json::Value files = root["files"];
 			if (files == Json::Value::null)
 			{
@@ -207,12 +221,18 @@ namespace ion
 
 			luabind::set_pcall_callback(&errorHandler);
 
+			//load FFI
+			execString("ffi = require('ffi')");
+
+			//bind some basic memory operations
+			execString(luaStr);
+
 			//bind logging class
 			luabind::module(L)[
 				luabind::class_<log_lua>("log")
 					.scope[
 						luabind::def("write", &log_lua::write),
-						luabind::def("raw", &log_lua::raw)
+							luabind::def("raw", &log_lua::raw)
 					]
 				.enum_("constants")
 					[
