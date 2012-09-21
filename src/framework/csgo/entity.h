@@ -19,69 +19,56 @@ namespace ion
 	public:
 		enum EEntityType
 		{
-			PLAYER = 0,
-
+			UNKNOWN = 0,
+			PLAYER,
 		};
-		entity(C_BaseEntity* e) : ent(e)
+		entity(int iidx) : idx(iidx), network(0), clientEntity(0), baseEnt(0)
 		{
+			network = csgo->gEnt->GetClientNetworkable(idx);
+			clientEntity = csgo->gEnt->GetClientEntity(idx);
+			if (clientEntity) baseEnt = clientEntity->GetBaseEntity();
 		}
 		~entity()
 		{
 			// log.write(log.WARN, format("Entity destructor called 0x%X\n") % ent);
 		}
-		bool isValid() const
+
+		const char* getClientClassName() const
 		{
-			return ent != NULL;
+			if (!isValid()) return "";
+			auto cc = network->GetClientClass();
+			if (!cc) return "";
+			return cc->GetName();
 		}
 
-		static C_BaseEntity* getBaseEnt(int i)
+		bool isValid() const
 		{
-			auto pEnt = csgo->gEnt->GetClientEntity(i);
-			if (!pEnt)
-			{
-				//log.write(log.WARN, format("Entity %d NULL\n") % i, "GetBaseEntity");
-				return NULL;
-			}
-			return pEnt->GetBaseEntity();
+			return network && clientEntity;
 		}
 
 		int getType() const
 		{
-			if (!ent) return false;
-			return PLAYER;
+			if (!isValid()) return 0;
+			//CCSPlayer
+			//012345678
+			auto name = getClientClassName();
+			if (!name) return UNKNOWN;
+
+			if (name[1] == 'C' && name[3] == 'P' && name[8] == 'r') return PLAYER;
+
+			return UNKNOWN;
 		}
 
-		const char* getClassName() const
-		{
-			if (!ent) return "";
-			log.write(log.WARN, format("%d %d\n") % ent->index % *makeptr<DWORD>(ent, 88));
-			auto p = csgo->gEnt->GetClientEntity(ent->index);
-			if (!p) return "";
-			auto p2 = p->GetClientClass();
-			if (!p2) return "";
-			return p2->GetName();
-		}
 
 		const vector getOrigin() const
 		{
-			if (!isValid()) return vector();
-			return *makeptr<vector>(ent, csgo->nvar->ply_Origin);
+			if (!isValid()) return vector::empty;
+			return *makeptr<vector>(baseEnt, csgo->nvar->ply_Origin);
 		}
 
 		int getTeam() const
 		{
-			return *makeptr<int>(ent, csgo->nvar->ply_Team);
-		}
-
-		static entity getBaseEntAsEntity(int i)
-		{
-			auto pEnt = csgo->gEnt->GetClientEntity(i);
-			if (!pEnt)
-			{
-				//log.write(log.WARN, format("Entity %d NULL\n") % i, "GetBaseEntity");
-				return entity(0);
-			}
-			return entity(pEnt->GetBaseEntity());
+			return *makeptr<int>(baseEnt, csgo->nvar->ply_Team);
 		}
 
 		static int getHighestEntityIndex()
@@ -91,14 +78,14 @@ namespace ion
 
 		bool operator==(const entity& other) const
 		{
-			return other.ent == ent;
+			return other.baseEnt == baseEnt;
 		}
 
 		bool isBot() const
 		{
 			if (!isValid()) return false;
 			player_info_s pinfo;
-			if (!csgo->gEngine->GetPlayerInfo(ent->index, &pinfo))
+			if (!csgo->gEngine->GetPlayerInfo(baseEnt->index, &pinfo))
 			{
 				log.write(log.WARN, "GetPlayerInfo failed");
 				return false;
@@ -113,7 +100,7 @@ namespace ion
 				log.write(log.WARN, "Entity is NULL\n", "getName");
 			}
 			player_info_s pinfo;
-			if (!csgo->gEngine->GetPlayerInfo(ent->index, &pinfo))
+			if (!csgo->gEngine->GetPlayerInfo(baseEnt->index, &pinfo))
 			{
 				log.write(log.WARN, "GetPlayerInfo failed");
 				return "";
@@ -128,26 +115,29 @@ namespace ion
 		int getHealth() const
 		{
 			if (!isAlive()) return 0;
-			return *makeptr<int>(ent, csgo->nvar->ply_Health);
+			return *makeptr<int>(baseEnt, csgo->nvar->ply_Health);
 		}
 
 		static entity me()
 		{
-			return entity(getBaseEnt(csgo->gEngine->GetLocalPlayer()));
+			return entity(csgo->gEngine->GetLocalPlayer());
 		}
 
 		bool isDormant() const
 		{
-			if (*makeptr<int>(ent, 0x58) != -1)
-				return *makeptr<BYTE>(ent, 0xDD);
+			if (*makeptr<int>(baseEnt, 0x58) != -1)
+				return *makeptr<BYTE>(baseEnt, 0xDD);
 			return false;
 		}
 
 		bool isAlive() const
 		{
-			return isValid() && !isDormant() && *makeptr<char>(ent, csgo->nvar->ply_LifeState) == LIFE_ALIVE;
+			return isValid() && !isDormant() && *makeptr<char>(baseEnt, csgo->nvar->ply_LifeState) == LIFE_ALIVE;
 		}
 
-		C_BaseEntity* ent;
+		int idx;
+		C_BaseEntity* baseEnt;
+		IClientNetworkable* network;
+		IClientEntity* clientEntity;
 	};
 };

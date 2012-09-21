@@ -39,13 +39,13 @@ abstract_class IClientEntityList
 public:
 	// Get IClientNetworkable interface for specified entity
 	virtual IClientNetworkable*	GetClientNetworkable( int entnum ) = 0;
-	virtual EntityCacheInfo_t	*GetClientNetworkableArray() = 0;
+	virtual IClientNetworkable*	GetClientNetworkableFromHandle( CBaseHandle hEnt ) = 0;
+	virtual IClientUnknown*		GetClientUnknownFromHandle( CBaseHandle hEnt ) = 0;
+	
 	virtual IClientEntity*		GetClientEntity( int entnum ) = 0;
 
 	virtual int					NumberOfEntities( bool bIncludeNonNetworkable ) = 0;
 
-	virtual IClientUnknown*		GetClientUnknownFromHandle( CBaseHandle hEnt ) = 0;
-	virtual IClientNetworkable*	GetClientNetworkableFromHandle( CBaseHandle hEnt ) = 0;
 	virtual IClientEntity*		GetClientEntityFromHandle( CBaseHandle hEnt ) = 0;
 
 
@@ -55,6 +55,7 @@ public:
 	// Sizes entity list to specified size
 	virtual void				SetMaxEntities( int maxents ) = 0;
 	virtual int					GetMaxEntities( ) = 0;
+	virtual EntityCacheInfo_t	*GetClientNetworkableArray() = 0;
 };
 
 extern IClientEntityList *entitylist;

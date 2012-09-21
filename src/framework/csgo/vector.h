@@ -1,6 +1,6 @@
 #pragma once
 
-//wrap the source vector class
+//wrap the csgo-source vector class
 
 #include "../../required.h"
 #include "sdk.h"
@@ -38,7 +38,7 @@ namespace ion
 		}
 		
 		bool visible;
-
+		static const vector empty;
 	private:
 		bool screenTransform( const vector &p, vector &s )
 		{
@@ -68,4 +68,5 @@ namespace ion
 			return behind;
 		}
 	};
+	const vector vector::empty = vector();
 }

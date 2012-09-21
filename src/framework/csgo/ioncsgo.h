@@ -68,11 +68,12 @@ namespace ion
 			//bind entity
 			lua.registerScope(
 				luabind::class_<entity>("entity")
+					.def(luabind::constructor<int>())
 					.def("isValid", &entity::isValid)
 					.def("isAlive", &entity::isAlive)
 					.def("getName", &entity::getName)
 					.def("getType", &entity::getType)
-					.def("getClassName", &entity::getClassName)
+					.def("getClientClassName", &entity::getClientClassName)
 					.def("getTeam", &entity::getTeam)
 					.def("getHealth", &entity::getHealth)
 					.def("isBot", &entity::isBot)
@@ -80,7 +81,6 @@ namespace ion
 					.scope
 					[
 						luabind::def("me", &entity::me),
-						luabind::def("getBaseEntAsEntity", &entity::getBaseEntAsEntity),
 						luabind::def("getHighestEntityIndex", &entity::getHighestEntityIndex)
 					]
 					.def(luabind::const_self == luabind::other<entity>())

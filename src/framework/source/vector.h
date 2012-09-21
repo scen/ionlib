@@ -41,7 +41,7 @@ namespace ion
 		}
 		
 		bool visible;
-
+		static const vector empty;
 	private:
 		bool screenTransform( const vector &p, vector &s )
 		{
@@ -71,4 +71,5 @@ namespace ion
 			return behind;
 		}
 	};
+	const vector vector::empty = vector();
 }

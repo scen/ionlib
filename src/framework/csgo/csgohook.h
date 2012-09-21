@@ -12,8 +12,6 @@
 #include "entity.h"
 #include "vector.h"
 
-static int once = false;
-static ion::csgofont *tahoma;
 namespace ion
 {
 	extern interfaces* csgo;
@@ -58,18 +56,12 @@ namespace ion
 			{
 				if (csgo->gEngine->IsInGame()) glua.inGame = true;
 				else glua.inGame = false;
-				//lua.call("Paint");
-				auto r = csgo->render;
-				if (!once)
-				{
-					once = true;
-					tahoma = (csgofont*)csgo->render->createFont("Tahoma", 12, csgofont::FONTFLAG_OUTLINE, 650);
-				}
-				size sz;
+				lua.call("Paint");
+				/*size sz;
 				int x = 10, y = 10;
 				if (glua.inGame)
 				{
-					sz = r->renderText(0, tahoma, point(x, y), color::red(), format("In Game: %d") % csgo->gEnt->GetHighestEntityIndex());
+					sz = r->renderText(0, tahoma, point(x, y), color::red(), format("In Game: %d %d 0x%X") % csgo->gEnt->GetHighestEntityIndex()%csgo->gEnt->GetMaxEntities()%csgo->gEnt);
 					y += sz.getHeight();
 					for (int i = 1; i < csgo->gEnt->GetHighestEntityIndex(); i++)
 					{
@@ -77,17 +69,16 @@ namespace ion
 						auto baseEnt = clientEntity ?  clientEntity->GetBaseEntity() : 0;
 						IClientNetworkable* network = csgo->gEnt->GetClientNetworkable(i);
 						auto cc = !network ? 0 : network->GetClientClass();
-						typedef void*( __cdecl* OrigFn)(void*);
 						auto name = cc ? cc->GetName() : "";
-						Vector v = Vector(); //!network?Vector() :*makeptr<Vector>(network, csgo->nvar->ply_Origin);
-						sz = r->renderText(0, tahoma, point(x, y), color::red(), format("Ent 0x%X n0x%X n20x%X %d 0x%X 0x%X %d %s %f %f %f") % csgo->gEnt %network%0%i % clientEntity % baseEnt % (baseEnt?baseEnt->index:-69) % name % v.x %v.y %v.z);
+						Vector v = !clientEntity?Vector() :*makeptr<Vector>(clientEntity, csgo->nvar->ply_Origin);
+						sz = r->renderText(0, tahoma, point(x, y), color::red(), format("Ent %d 0x%X 0x%X %d %s %f %f %f")  %i % clientEntity % baseEnt % (baseEnt?baseEnt->index:-69) % name % v.x %v.y %v.z);
 						y += sz.getHeight();
 					}
 				}
 				else
 				{
 					r->renderText(0, tahoma, point(10, 10), color::red(), "Not in game");
-				}
+				}*/
 			}
 		}
 	};
