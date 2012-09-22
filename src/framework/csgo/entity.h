@@ -22,6 +22,27 @@ namespace ion
 			UNKNOWN = 0,
 			PLAYER,
 		};
+		enum EPlayerBones
+		{
+			PELVIS = 0,
+			LEFT_THIGH,
+			LEFT_ANKLE,
+			LEFT_FOOT,
+			RIGHT_THIGH,
+			RIGHT_ANKLE,
+			RIGHT_FOOT,
+			STOMACH,
+			MID_CHEST,
+			UPPER_CHEST,
+			NECK,
+			HEAD,
+			LEFT_SHOULDER,
+			LEFT_ELBOW,
+			LEFT_HAND,
+			RIGHT_SHOULDER,
+			RIGHT_FOREARM,
+			RIGHT_HAND
+		};
 		entity(int iidx) : idx(iidx), network(0), clientEntity(0), baseEnt(0)
 		{
 			network = csgo->gEnt->GetClientNetworkable(idx);
@@ -85,9 +106,8 @@ namespace ion
 		{
 			if (!isValid()) return false;
 			player_info_s pinfo;
-			if (!csgo->gEngine->GetPlayerInfo(baseEnt->index, &pinfo))
+			if (!csgo->gEngine->GetPlayerInfo(idx, &pinfo))
 			{
-				log.write(log.WARN, "GetPlayerInfo failed");
 				return false;
 			}
 			return pinfo.fakeplayer;
@@ -95,14 +115,10 @@ namespace ion
 
 		std::string getName() const
 		{
-			if (!isValid())
-			{
-				log.write(log.WARN, "Entity is NULL\n", "getName");
-			}
+			if (!isValid()) return "";
 			player_info_s pinfo;
-			if (!csgo->gEngine->GetPlayerInfo(baseEnt->index, &pinfo))
+			if (!csgo->gEngine->GetPlayerInfo(idx, &pinfo))
 			{
-				log.write(log.WARN, "GetPlayerInfo failed");
 				return "";
 			}
 			if (pinfo.fakeplayer)
@@ -126,8 +142,36 @@ namespace ion
 		bool isDormant() const
 		{
 			if (*makeptr<int>(baseEnt, 0x58) != -1)
-				return *makeptr<BYTE>(baseEnt, 0xDD);
+				return (*makeptr<BYTE>(baseEnt, 0xDD) & 1) == 1;
 			return false;
+		}
+
+		vector getBonePos(int bone) const
+		{
+			if (isDormant()) return vector::empty;
+
+			matrix3x4a_t pmatrix[MAXSTUDIOBONES];
+
+			auto model = clientEntity->GetModel();
+			if (!model) return vector::empty;
+
+			auto pStudioHdr = csgo->gModelInfo->GetStudiomodel(model);
+			if (!pStudioHdr) return vector::empty;
+
+			if (!clientEntity->SetupBones(pmatrix, MAXSTUDIOBONES, BONE_USED_BY_HITBOX, csgo->gGlobalVars->curtime)) return vector::empty;
+
+			auto set = pStudioHdr->pHitboxSet(0);
+			if (!set) return vector::empty;
+
+			mstudiobbox_t* pBox = pStudioHdr->pHitbox(bone, 0);
+			if (!pBox) return vector::empty;
+
+			Vector min, max;
+			vector vRet;
+			VectorTransform(pBox->bbmin, pmatrix[pBox->bone], min);
+			VectorTransform(pBox->bbmax, pmatrix[pBox->bone], max);
+			vRet = (vector(min) + vector(max)) * 0.5f;
+			return vRet;
 		}
 
 		bool isAlive() const

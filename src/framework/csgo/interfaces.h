@@ -21,6 +21,7 @@ namespace ion
 		IEngineTrace* gTrace;
 		IMaterialSystem* gMatSystem;
 		IVModelRender* gModelRender;
+		CGlobalVarsBase* gGlobalVars;
 
 		DWORD* pGlobalSpeed;
 		DWORD wepSeedOffset;

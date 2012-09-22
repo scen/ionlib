@@ -75,7 +75,7 @@ public:
 	virtual bool					ModelHasMaterialProxy( const model_t *model ) const = 0;
 	virtual bool					IsTranslucent( model_t const* model ) const = 0;
 	virtual bool					IsTranslucentTwoPass( const model_t *model ) const = 0;
-	virtual void					Unused0() {};
+	virtual void					Unused0() {}; //14
 	virtual RenderableTranslucencyType_t ComputeTranslucencyType( const model_t *model, int nSkin, int nBody ) = 0;
 	virtual int						GetModelMaterialCount( const model_t* model ) const = 0;
 	virtual void					GetModelMaterials( const model_t *model, int count, IMaterial** ppMaterial ) = 0;
@@ -88,7 +88,7 @@ public:
 	virtual const studiohdr_t		*FindModel( void *cache ) const = 0;
 	virtual	virtualmodel_t			*GetVirtualModel( const studiohdr_t *pStudioHdr ) const = 0;
 	virtual byte					*GetAnimBlock( const studiohdr_t *pStudioHdr, int iBlock ) const = 0;
-
+	virtual bool					HasAnimBlockBeenPreloaded(studiohdr_t  const*,int) const = 0;
 	// Available on client only!!!
 	virtual void					GetModelMaterialColorAndLighting( const model_t *model, Vector const& origin,
 										QAngle const& angles, trace_t* pTrace, 

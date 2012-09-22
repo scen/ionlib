@@ -9,11 +9,21 @@ Mac Bins
 	* CSGO dedicated server -> Download app ID 740
 	* All `.dylibs` should be there
 
+* App System Factory
+	* String `g_ClientDLL->Init`
+	* `8B 15 ? ? ? ? 8B 40 08 83 C4 04 68 ? ? ? ? 52 FF D0 85 C0 75 0D` + `0x2`
+* CGlobalVarsBase
+	* Same string
+	* `68 ? ? ? ? 52 FF D0 85 C0 75 0D 68 ? ? ? ? E8 ? ? ? ? 83 C4 04` + `0x1`
+
 * Updating classes
 	* engine.dylib
 		* `CEngineClient`
 			* After `Key_BindingForKey()`
 				* Add `virtual void Key_SetBinding(ButtonCode_t, char const*) = 0;`
+		* `IVModelInfoClient` -> `IVModelInfo`
+			* Added virtual function `virtual bool					HasAnimBlockBeenPreloaded(studiohdr_t  const*,int) const = 0;`
+				* After GetAnimBlock();
 	* vguimatsurface.dylib
 		* CMatSystemSurface
 			* After DrawPolyLine()
@@ -24,6 +34,7 @@ Mac Bins
 				* Add
 					* virtual void DeleteTextureByID(int id) = 0;
 					* SetFontGlyphSet function signature changed
+
 	* TODO FINISH ADDING DrawTextBubble() etc etc
 
 Reversing

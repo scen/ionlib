@@ -39,8 +39,7 @@ namespace ion
 			fnVgui2 = captureFactory("vgui2.dll");
 
 			appSystemFactory = **(CreateInterfaceFn**)sigs["AppSystemFactory"];
-			//csgo->spreadOffset = (DWORD)*(short*)sigs["WeaponSpread"];
-			//csgo->wepSeedOffset = (DWORD)*(short*)sigs["WeaponSeed"];
+			csgo->gGlobalVars = *(CGlobalVarsBase**)sigs["CGlobalVarsBase"];
 
 			csgo->gEngine = reinterpret_cast<IVEngineClient*>(appSystemFactory(getInterface("VEngineClient0"), NULL));
 			csgo->gClient = reinterpret_cast<IBaseClientDLL*>(fnClient(getInterface("VClient0"), NULL));
@@ -73,6 +72,7 @@ namespace ion
 					.def("isAlive", &entity::isAlive)
 					.def("getName", &entity::getName)
 					.def("getType", &entity::getType)
+					.def("getBonePos", &entity::getBonePos)
 					.def("getClientClassName", &entity::getClientClassName)
 					.def("getTeam", &entity::getTeam)
 					.def("getHealth", &entity::getHealth)
