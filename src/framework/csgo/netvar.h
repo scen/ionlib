@@ -18,6 +18,7 @@ namespace ion
 			auto t = findTable("DT_BasePlayer");
 			ply_LifeState = findOffset(t, "m_lifeState");
 			ply_Health = findOffset(t, "m_iHealth");
+			ply_Flags = findOffset(t, "m_fFlags");
 
 			t = findTable("DT_BaseEntity");
 			//ent_Team = findOffset(t, "m_iTeamNum");
@@ -139,7 +140,7 @@ namespace ion
 #pragma endregion impl
 
 		//CSGO stuff
-		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin;
+		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin, ply_Flags;
 		DWORD ply_EyePos;
 
 		IBaseClientDLL* client;

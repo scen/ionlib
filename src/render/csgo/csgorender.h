@@ -47,6 +47,48 @@ namespace ion
 			return ret;
 		}
 
+		void renderCornerRect(rect& r, color& col)
+		{
+			float h = (float)r.getH() * 0.25f;
+			float w = (float)r.getW() * 0.25f;
+			auto& black = color::black();
+			renderLine(point(r.m_x, r.m_y), point(r.m_x + w, r.m_y), col);
+			renderLine(point(r.m_x + 1, r.m_y + 1), point(r.m_x + w, r.m_y + 1), black);
+			renderLine(point(r.m_x, r.m_y), point(r.m_x, r.m_y + h), col);
+			renderLine(point(r.m_x + 1, r.m_y + 1), point(r.m_x + 1, r.m_y + h), black);
+			renderLine(point(r.m_x - 1, r.m_y - 1), point(r.m_x + w + 1, r.m_y - 1), black);
+			renderLine(point(r.m_x - 1, r.m_y - 1), point(r.m_x - 1, r.m_y + h + 1), black);
+			renderLine(point(r.m_x + w + 1, r.m_y - 1), point(r.m_x + w + 1, r.m_y + 1), black);
+			renderLine(point(r.m_x - 1, r.m_y + h + 1), point(r.m_x + 1, r.m_y + h + 1), black);
+
+			renderLine(point(r.m_x + r.m_w - w, r.m_y), point(r.m_x + r.m_w, r.m_y), col);
+			renderLine(point(r.m_x + r.m_w, r.m_y), point(r.m_x + r.m_w, r.m_y + h), col);
+			renderLine(point(r.m_x + r.m_w - 1, r.m_y + 1), point(r.m_x + r.m_w - 1, r.m_y + h), black);
+			renderLine(point(r.m_x + r.m_w - w, r.m_y + 1), point(r.m_x + r.m_w - 1, r.m_y + 1), black);
+			renderLine(point(r.m_x + r.m_w - w, r.m_y - 1), point(r.m_x + r.m_w + 1, r.m_y - 1), black);
+			renderLine(point(r.m_x + r.m_w + 1, r.m_y), point(r.m_x + r.m_w + 1, r.m_y + h), black);
+			renderLine(point(r.m_x + r.m_w - w - 1, r.m_y - 1), point(r.m_x + r.m_w - w - 1, r.m_y + 1), black);
+			renderLine(point(r.m_x + r.m_w - 1, r.m_y + h + 1), point(r.m_x + r.m_w + 1, r.m_y + h + 1), black);
+
+			renderLine(point(r.m_x, r.m_y + r.m_h - h), point(r.m_x, r.m_y + r.m_h), col);
+			renderLine(point(r.m_x, r.m_y + r.m_h), point(r.m_x + w, r.m_y + r.m_h), col);
+			renderLine(point(r.m_x + 1, r.m_y + r.m_h - h), point(r.m_x + 1, r.m_y + r.m_h - 1), black);
+			renderLine(point(r.m_x + 2, r.m_y + r.m_h - 1), point(r.m_x + w, r.m_y + r.m_h - 1), black);
+			renderLine(point(r.m_x, r.m_y + r.m_h + 1), point(r.m_x + w, r.m_y + r.m_h + 1), black);
+			renderLine(point(r.m_x - 1, r.m_y + r.m_h - h), point(r.m_x - 1, r.m_y + r.m_h + 1), black);
+			renderLine(point(r.m_x - 1, r.m_y + r.m_h - h - 1), point(r.m_x + 1, r.m_y + r.m_h - h - 1), black);
+			renderLine(point(r.m_x + w + 1, r.m_y + r.m_h + 1), point(r.m_x + w + 1, r.m_y + r.m_h - 1), black);
+
+			renderLine(point(r.m_x + r.m_w - w, r.m_y + r.m_h), point(r.m_x + r.m_w, r.m_y + r.m_h), col);
+			renderLine(point(r.m_x + r.m_w, r.m_y + r.m_h - h), point(r.m_x + r.m_w, r.m_y + r.m_h), col);
+			renderLine(point(r.m_x + r.m_w - 1, r.m_y + r.m_h - 1), point(r.m_x + r.m_w - 1, r.m_y + r.m_h - h), black);
+			renderLine(point(r.m_x + r.m_w - w , r.m_y + r.m_h - 1), point(r.m_x + r.m_w - 1, r.m_y + r.m_h - 1), black);
+			renderLine(point(r.m_x + r.m_w - w - 1, r.m_y + r.m_h + 1), point(r.m_x + r.m_w - w - 1, r.m_y + r.m_h - 1), black);
+			renderLine(point(r.m_x + r.m_w - 1, r.m_y + r.m_h - h - 1), point(r.m_x + r.m_w + 1, r.m_y + r.m_h - h - 1), black);
+			renderLine(point(r.m_x + r.m_w - w, r.m_y + r.m_h + 1), point(r.m_x + r.m_w + 1, r.m_y + r.m_h + 1), black);
+			renderLine(point(r.m_x + r.m_w + 1, r.m_y + r.m_h), point(r.m_x + r.m_w + 1, r.m_y + r.m_h - h), black);
+		}
+
 		virtual font* createFont(const std::string& name, int size, int flags, int weight)
 		{
 			csgofont* f = new csgofont();

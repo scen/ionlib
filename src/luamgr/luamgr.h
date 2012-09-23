@@ -263,6 +263,7 @@ static char const luaStr[] = "C = ffi.C\n"
 					.def("outlineRect", &render::outlineRect)
 					.def("fillGradient", &render::fillGradient)
 					.def("renderLine", &render::renderLine)
+					.def("outlineRectOutline", &render::outlineRectOutline)
 					.enum_("constants")
 					[
 						luabind::value("none", ion::render::None),

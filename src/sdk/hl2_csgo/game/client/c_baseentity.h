@@ -1381,7 +1381,7 @@ public:
 public:	
 
 	// Determine what entity this corresponds to
-	int								index;	
+	int								badIndex;	
 
 	// Entity flags that are only for the client (ENTCLIENTFLAG_ defines).
 	unsigned short					m_EntClientFlags;

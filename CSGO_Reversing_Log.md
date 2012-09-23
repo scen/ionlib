@@ -40,6 +40,13 @@ Mac Bins
 Reversing
 ---------
 
+
+* CIVDebugOverlay has built in W2S
+	* Dump in engine.dylib
+	* Added to SDK CSGO
+	* Can render spheres
+
+
 * IsDormant is no longer networked, it is a virtual of IClientNetworkable.
 	* To get m_bIsDormant, reverse C_BaseEntity::IsDormant like so:
 

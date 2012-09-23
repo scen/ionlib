@@ -42,7 +42,13 @@ namespace ion
 		virtual void fillRect(const rect& r, const color& c) PURE;
 		virtual void outlineRect(const rect& r, const color& c) PURE;
 		virtual void fillGradient(const rect& r, const color& top, const color& bottom) PURE;
-		
+		virtual void outlineRectOutline(const rect& r, const color& inner, const color& outer)
+		{
+			outlineRect(r, inner);
+			outlineRect(rect(point(r.getX() - 1, r.getY() - 1), size(r.getW() + 2, r.getH() + 2)), outer);
+			outlineRect(rect(point(r.getX() + 1, r.getY() + 1), size(r.getW() - 2, r.getH() - 2)), outer);
+		}
+
 		//line
 		virtual void renderLine(const point& begin, const point& end, const color& col) PURE;
 

@@ -51,12 +51,18 @@ namespace ion
 			csgo->gModelInfo = reinterpret_cast<IVModelInfoClient*>(appSystemFactory(getInterface("VModelInfoClient0"), NULL));
 			csgo->gSurface = reinterpret_cast<SurfaceV30::ISurface*>(appSystemFactory(getInterface("VGUI_Surface0"), NULL));
 			csgo->gMatSystem = reinterpret_cast<IMaterialSystem*>(appSystemFactory(getInterface("VMaterialSystem0"), NULL));
+			csgo->gDebugOverlay = reinterpret_cast<IVDebugOverlay*>(fnEngine(getInterface("VDebugOverlay0"), NULL));
+
 			//DWORD* clientVmt = *(DWORD**)(csgo->gClient);
 			//csgo->gInput = (CInput*)**(DWORD**)(clientVmt[14] + 0x2); //InActivateMouse();
+
+			//init fonts
 
 			csgo->render = new csgorender(csgo->gSurface);
 			lua.setDrawInstance(csgo->render);
 			
+			csgo->tahoma12 = (csgofont*)csgo->render->createFont("Tahoma", 12, render::Outline, 500);
+
 			csgo->nvar = new netvar(csgo->gClient);
 
 			csgo->clientHk = new vmt(csgo->gClient);
@@ -77,7 +83,10 @@ namespace ion
 					.def("getTeam", &entity::getTeam)
 					.def("getHealth", &entity::getHealth)
 					.def("isBot", &entity::isBot)
+					.def("isDormant", &entity::isDormant)
 					.def("getOrigin", &entity::getOrigin)
+					.def("getFlags", &entity::getFlags)
+					.def("isVisible", &entity::isVisible)
 					.scope
 					[
 						luabind::def("me", &entity::me),
@@ -98,6 +107,8 @@ namespace ion
 						.def_readwrite("z", &vector::z)
 						.def_readwrite("visible", &vector::visible)
 						.def(luabind::const_self == luabind::other<vector>())
+						.def(luabind::const_self + luabind::other<vector>())
+						.def(luabind::const_self / float())
 					);
 
 			finishInit(root);

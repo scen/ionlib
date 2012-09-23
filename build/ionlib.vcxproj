@@ -43,6 +43,7 @@
     <ClInclude Include="..\src\framework\csgo\netvar.h" />
     <ClInclude Include="..\src\framework\csgo\sdk.h" />
     <ClInclude Include="..\src\framework\csgo\vector.h" />
+    <ClInclude Include="..\src\framework\csgo\visuals.h" />
     <ClInclude Include="..\src\framework\source\entity.h" />
     <ClInclude Include="..\src\framework\source\interfaces.h" />
     <ClInclude Include="..\src\framework\source\ionsource.h" />

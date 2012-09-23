@@ -11,6 +11,7 @@
 #include "interfaces.h"
 #include "entity.h"
 #include "vector.h"
+#include "visuals.h"
 
 namespace ion
 {
@@ -52,33 +53,29 @@ namespace ion
 			csgo->panelHk->hookMethod(&hkPaintTraverse, PANEL_PAINTTRAVERSE);
 			auto panelName = csgo->gPanel->GetName(vguiPanel);
 
-			if (panelName && panelName[0] == 'F'&& panelName[5] == 'O' && panelName[12]=='P')
+			if (panelName && panelName[0] == 'F'&& panelName[5] == 'O' && panelName[12] == 'P')
 			{
-				if (csgo->gEngine->IsInGame()) glua.inGame = true;
-				else glua.inGame = false;
-				lua.call("Paint");
-				/*size sz;
-				int x = 10, y = 10;
-				if (glua.inGame)
+				//if (csgo->gEngine->IsInGame()) glua.inGame = true;
+				//else glua.inGame = false;
+				//lua.call("Paint");
+				auto me = entity::me();
+				if (csgo->gEngine->IsInGame() && me.isAlive())
 				{
-					sz = r->renderText(0, tahoma, point(x, y), color::red(), format("In Game: %d %d 0x%X") % csgo->gEnt->GetHighestEntityIndex()%csgo->gEnt->GetMaxEntities()%csgo->gEnt);
-					y += sz.getHeight();
 					for (int i = 1; i < csgo->gEnt->GetHighestEntityIndex(); i++)
 					{
-						IClientEntity* clientEntity = csgo->gEnt->GetClientEntity(i);
-						auto baseEnt = clientEntity ?  clientEntity->GetBaseEntity() : 0;
-						IClientNetworkable* network = csgo->gEnt->GetClientNetworkable(i);
-						auto cc = !network ? 0 : network->GetClientClass();
-						auto name = cc ? cc->GetName() : "";
-						Vector v = !clientEntity?Vector() :*makeptr<Vector>(clientEntity, csgo->nvar->ply_Origin);
-						sz = r->renderText(0, tahoma, point(x, y), color::red(), format("Ent %d 0x%X 0x%X %d %s %f %f %f")  %i % clientEntity % baseEnt % (baseEnt?baseEnt->index:-69) % name % v.x %v.y %v.z);
-						y += sz.getHeight();
+						entity ent(i);
+						if (ent == me) continue;
+						
+						if (ent.getType() == entity::PLAYER)
+						{
+							visuals::renderPlayer(ent);
+						}
 					}
 				}
 				else
 				{
-					r->renderText(0, tahoma, point(10, 10), color::red(), "Not in game");
-				}*/
+					csgo->render->renderCornerRect(rect(point(600, 300), size(20, 20)), color::white());
+				}
 			}
 		}
 	};

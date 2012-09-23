@@ -17,11 +17,29 @@ namespace ion
 	class entity
 	{
 	public:
+		static const unsigned int TRACE_FLAGS_ISVISIBLE = 0x4600400B;
+
 		enum EEntityType
 		{
 			UNKNOWN = 0,
 			PLAYER,
+			C4,
+			C4PLANTED
 		};
+
+		enum ETeamID
+		{
+			TERRORIST = 2,
+			COUNTERTERRORIST = 3
+		};
+
+		enum EBonePos
+		{
+			BONEMIN = 0,
+			BONEMAX,
+			BONEAVG 
+		};
+
 		enum EPlayerBones
 		{
 			PELVIS = 0,
@@ -40,7 +58,7 @@ namespace ion
 			LEFT_ELBOW,
 			LEFT_HAND,
 			RIGHT_SHOULDER,
-			RIGHT_FOREARM,
+			RIGHT_ELBOW,
 			RIGHT_HAND
 		};
 		entity(int iidx) : idx(iidx), network(0), clientEntity(0), baseEnt(0)
@@ -77,9 +95,19 @@ namespace ion
 
 			if (name[1] == 'C' && name[3] == 'P' && name[8] == 'r') return PLAYER;
 
+			if (!strcmp(name, "CC4")) return C4;
+
+			//CPlantedC4
+			//0123456789
+			if (name[1] == 'P' && name[4] == 'n' && name[9] == '4') return C4PLANTED;
+
 			return UNKNOWN;
 		}
 
+		float distanceTo() const
+		{
+			return fabs((me().getOrigin() - getOrigin()).Length());
+		}
 
 		const vector getOrigin() const
 		{
@@ -89,6 +117,7 @@ namespace ion
 
 		int getTeam() const
 		{
+			if (!isValid()) return -1;
 			return *makeptr<int>(baseEnt, csgo->nvar->ply_Team);
 		}
 
@@ -141,12 +170,19 @@ namespace ion
 
 		bool isDormant() const
 		{
+			if (!isValid()) return true;
 			if (*makeptr<int>(baseEnt, 0x58) != -1)
 				return (*makeptr<BYTE>(baseEnt, 0xDD) & 1) == 1;
 			return false;
 		}
 
-		vector getBonePos(int bone) const
+		int getFlags() const
+		{
+			if (!isValid()) return 0;
+			return *makeptr<int>(baseEnt, csgo->nvar->ply_Flags);
+		}
+
+		vector getBonePos(int bone, int type = BONEAVG) const
 		{
 			if (isDormant()) return vector::empty;
 
@@ -166,12 +202,44 @@ namespace ion
 			mstudiobbox_t* pBox = pStudioHdr->pHitbox(bone, 0);
 			if (!pBox) return vector::empty;
 
+			if (type == BONEMIN)
+			{
+				vector ret;
+				VectorTransform(pBox->bbmin, pmatrix[pBox->bone], ret);
+				return ret;
+			}
+			if (type == BONEMAX)
+			{
+				vector ret;
+				VectorTransform(pBox->bbmax, pmatrix[pBox->bone], ret);
+				return ret;
+			}
 			Vector min, max;
 			vector vRet;
 			VectorTransform(pBox->bbmin, pmatrix[pBox->bone], min);
 			VectorTransform(pBox->bbmax, pmatrix[pBox->bone], max);
 			vRet = (vector(min) + vector(max)) * 0.5f;
 			return vRet;
+		}
+
+		//only for local player
+		vector getEyePos() const
+		{
+			if (!isAlive()) return vector::empty;
+			return getOrigin() + *makeptr<vector>(baseEnt, csgo->nvar->ply_EyePos);
+		}
+
+		bool isVisible(int bone) const
+		{
+			if (isDormant() || me().isDormant()) return false;
+			Ray_t ray;
+			trace_t tr;
+			ray.Init(me().getEyePos(), getBonePos(bone));
+			csgo->gTrace->TraceRay(ray, TRACE_FLAGS_ISVISIBLE, 0, &tr);
+			log.write(log.WARN, format("ent0x%X solid:%d base=0x%X fraction:%f\n") % tr.m_pEnt->index % tr.allsolid % baseEnt->index % tr.fraction);
+			if (tr.fraction > .98f) return true;
+			if (tr.m_pEnt  && !tr.allsolid && tr.m_pEnt->index == baseEnt->index) return true;
+			return false;
 		}
 
 		bool isAlive() const

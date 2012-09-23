@@ -22,6 +22,7 @@ namespace ion
 		IMaterialSystem* gMatSystem;
 		IVModelRender* gModelRender;
 		CGlobalVarsBase* gGlobalVars;
+		IVDebugOverlay* gDebugOverlay;
 
 		DWORD* pGlobalSpeed;
 		DWORD wepSeedOffset;
@@ -32,5 +33,8 @@ namespace ion
 		vmt* clientHk, *inputHk, *panelHk;
 		netvar* nvar;
 		csgorender* render;
+
+		//fonts
+		csgofont* tahoma12;
 	};
 };
