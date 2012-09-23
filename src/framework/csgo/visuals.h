@@ -3,6 +3,7 @@
 #include "sdk.h"
 #include "interfaces.h"
 #include "entity.h"
+#include "weapon.h"
 #include "../../render/csgo/csgorender.h"
 
 namespace ion
@@ -19,6 +20,7 @@ namespace ion
 			if (pct > 0.30f) return healthYellow;
 			return healthRed;
 		}
+
 
 		static void renderPlayer(entity& ent)
 		{
@@ -45,20 +47,32 @@ namespace ion
 				if (crouch) bbWidth = bbHeight / 2.0f;
 
 				color col;
-				if (false && ent.getTeam() == me.getTeam())
+				if (ent.getTeam() == me.getTeam())
 				{
-					col = teamVisible;
+					if (ent.isVisible(entity::HEAD))
+					{
+						col = teamVisible;
+					}
+					else
+					{
+						col = teamHidden;
+					}
 				}
 				else
 				{
-					col = enemyVisible;
+					if (ent.isVisible(entity::HEAD))
+					{
+						col = enemyVisible;
+					}
+					else
+					{
+						col = enemyHidden;
+					}
 				}
 
 				const static int DistanceHP = 2;
 				const static int HPBarWidth = 5;
 				const static int DistanceText = 2;
-
-				r->renderCornerRect(rect(point(origHead.x - 8, origHead.y - 8), size(16, 16)), col);
 
 				float healthPct = (float)ent.getHealth() / 100.0;
 				r->outlineRectOutline(rect(point(upperBB.x - bbWidth, upperBB.y), size(bbWidth * 2.0f, bbHeight)), col, color::black());
@@ -66,14 +80,17 @@ namespace ion
 				r->fillRect(rect(point(upperBB.x + bbWidth + DistanceHP + 1, upperBB.y + 1 + ((bbHeight - 2.0f) * (1.0f - healthPct))), size(HPBarWidth - 2, bbHeight * healthPct - 2)), getHealthColor(healthPct));
 				int x = upperBB.x + bbWidth + DistanceHP + HPBarWidth + DistanceText;
 				int y = upperBB.y;
-
 				size s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, ent.getName());
 				y = y + s.getHeight();
 				s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, format("%d HP") % ent.getHealth());
 				y = y + s.getHeight();
-				s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, format("%d m") % ent.distanceTo());
+				s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, format("%.1f m") % (int)sqrt(ent.distanceTo()));
 				y = y + s.getHeight();
-				s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, format("0x%X %d") % ent.baseEnt% ent.baseEnt->index);
+				auto wep = weapon(ent.getActiveWeapon());
+				auto own = wep.getPlayerOwner();
+				s = r->renderText(render::None, csgo->tahoma12, point(x, y), col, format("wep: %s owner: 0x%X name=%s") % wep.getNiceName() % own % (!own?"69":entity(own).getName()));
+
+				r->renderCornerRect(rect(point(origHead.x - 8, origHead.y - 8), size(16, 16)), col);
 			}
 		}
 	};

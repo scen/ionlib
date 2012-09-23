@@ -288,6 +288,9 @@
     <ClInclude Include="..\src\framework\csgo\visuals.h">
       <Filter>Header Files\framework\csgo</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\framework\csgo\weapon.h">
+      <Filter>Header Files\framework\csgo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\mem\signature.cpp">

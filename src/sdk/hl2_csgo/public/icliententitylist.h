@@ -44,10 +44,10 @@ public:
 	
 	virtual IClientEntity*		GetClientEntity( int entnum ) = 0;
 
-	virtual int					NumberOfEntities( bool bIncludeNonNetworkable ) = 0;
 
 	virtual IClientEntity*		GetClientEntityFromHandle( CBaseHandle hEnt ) = 0;
 
+	virtual int					NumberOfEntities( bool bIncludeNonNetworkable ) = 0;
 
 	// Returns highest index actually used
 	virtual int					GetHighestEntityIndex( void ) = 0;

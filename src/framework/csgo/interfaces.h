@@ -34,6 +34,9 @@ namespace ion
 		netvar* nvar;
 		csgorender* render;
 
+		//address
+		DWORD weaponIDAsString;
+
 		//fonts
 		csgofont* tahoma12;
 	};

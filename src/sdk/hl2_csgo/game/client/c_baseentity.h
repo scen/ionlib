@@ -1899,7 +1899,7 @@ inline const CParticleProperty *C_BaseEntity::ParticleProp() const
 //-----------------------------------------------------------------------------
 inline bool C_BaseEntity::IsServerEntity( void )
 {
-	return index != -1;
+	return this->badIndex != -1;
 }
 
 //-----------------------------------------------------------------------------

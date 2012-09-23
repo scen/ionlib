@@ -48,6 +48,40 @@ Reversing
 * C_BaseEntity->index
 	* Offset is 0x64 at the moment
 
+* WeaponIDS
+	* In mac bins the functions are called BLah::GetCSWeaponID() they just mov a # into eax
+	* Make ida script to loop through all functions
+		* then run ` if ( strstr(GetMnem(CurrentOperand), "mov") != -1 && strstr( GetOpnd( CurrentOperand, 0 ), "eax" ) != -1 && GetOperandValue( CurrentOperand, 1 ) == 33 )`
+			* 33 signifies the weapon id ur searching for, make sure it's odd so u get a match
+			* xrefs, vtable, difference
+				* vtable start 106A493C 
+				* Get CS weapon ID 106A4F2C
+				* delta = 0x5F0 (380'th vfunc)
+
+* Weapon getplayerowner
+	* fx_firebullets in client.dylib, xrefs show the first func called is getplayer owner, match with client.dll
+	* 396th vfunc
+
+* FX_FireBullets (Client.dll)
+	* Look in mac bin to find searchable string "old: %f"
+	* Find how it is called in client.dll, and see hwo to get the weapon id
+	* look @ how it gets called by using xrefs (x)
+	* 4th arg is wepid
+	* gets wepid using `sub_101E8960((void *)v3, (int)&v44);`
+	* Find function WeaponIdAsString (currently 0x101D9450) (it just reads from an array)
+            char *__cdecl WepIdAsString(int a1)
+            {
+              unsigned int v1; // eax@1
+            
+              v1 = 0;
+              while ( dword_107CAC10[2 * v1] != a1 )
+              {
+                ++v1;
+                if ( v1 >= 0x36 )
+                  return 0;
+              }
+              return (char *)off_107CAC14[2 * v1];
+            }
 
 * IsDormant is no longer networked, it is a virtual of IClientNetworkable.
 	* To get m_bIsDormant, reverse C_BaseEntity::IsDormant like so:

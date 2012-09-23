@@ -20,8 +20,16 @@ namespace ion
 			ply_Health = findOffset(t, "m_iHealth");
 			ply_Flags = findOffset(t, "m_fFlags");
 
+			t = findTable("DT_BaseCombatCharacter");
+			ply_ActiveWeapon = findOffset(t, "m_hActiveWeapon");
+
+			t = findTable("DT_BaseCombatWeapon");
+			wep_Owner = findOffset(t, "m_hOwner");
+			wep_Clip1 = findOffset(t, "m_iClip1");
+			wep_Clip2 = findOffset(t, "m_iClip2");
+
 			t = findTable("DT_BaseEntity");
-			//ent_Team = findOffset(t, "m_iTeamNum");
+			ply_Team = findOffset(t, "m_iTeamNum");
 
 			t = findTable("DT_BaseCombatCharacter");
 			//ply_ActiveWeapon = findOffset(t, "m_hActiveWeapon");
@@ -140,8 +148,9 @@ namespace ion
 #pragma endregion impl
 
 		//CSGO stuff
-		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin, ply_Flags;
+		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin, ply_Flags, ply_ActiveWeapon;
 		DWORD ply_EyePos;
+		DWORD wep_Owner, wep_Clip1, wep_Clip2;
 
 		IBaseClientDLL* client;
 

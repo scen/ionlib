@@ -1,5 +1,6 @@
 #pragma once
 
+#define CLIENT_DLL
 #define COMPILER_MSVC 1
 #define COMPILER_MSVC32 1
 

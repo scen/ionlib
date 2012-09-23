@@ -14,10 +14,13 @@ namespace ion
 {
 	extern interfaces* csgo;
 
+	class weapon;
+
 	class entity
 	{
 	public:
 		static const unsigned int TRACE_FLAGS_ISVISIBLE = 0x4600400B;
+		static const entity invalid;
 
 		enum EEntityType
 		{
@@ -67,9 +70,34 @@ namespace ion
 			clientEntity = csgo->gEnt->GetClientEntity(idx);
 			if (clientEntity) baseEnt = clientEntity->GetBaseEntity();
 		}
+
+		entity(C_BaseEntity* ent) : baseEnt(ent)
+		{
+			idx = getIndex(ent);
+			network = csgo->gEnt->GetClientNetworkable(idx);
+			clientEntity = csgo->gEnt->GetClientEntity(idx);
+
+		}
+
+		entity() : baseEnt(0), clientEntity(0), idx(-1), network(0)
+		{
+
+		}
 		~entity()
 		{
 			// log.write(log.WARN, format("Entity destructor called 0x%X\n") % ent);
+		}
+
+		bool operator!=(const entity& other) const
+		{
+			return !(*this == other);
+		}
+
+		//static for quicker access if you ONLY want the index
+		static int getIndex(C_BaseEntity* ent)
+		{
+			if (!ent) return -1;
+			return *makeptr<int>(ent, 0x64);
 		}
 
 		const char* getClientClassName() const
@@ -229,16 +257,44 @@ namespace ion
 			return getOrigin() + *makeptr<vector>(baseEnt, csgo->nvar->ply_EyePos);
 		}
 
+		C_BaseEntity* getActiveWeapon() const
+		{
+			if (!isAlive()) return 0;
+			EHANDLE ehandle = *makeptr<EHANDLE>(baseEnt, csgo->nvar->ply_ActiveWeapon);
+			auto c = csgo->gEnt->GetClientEntityFromHandle(ehandle);
+			if (!c) return 0;
+			return (C_BaseEntity*)c;
+		}
+
+		class CTraceFilter : public ITraceFilter
+		{
+		public:
+			CTraceFilter(void* skip) : ITraceFilter(), pSkip(skip)
+			{
+			}
+			bool ShouldHitEntity( IHandleEntity* pEntityHandle, int contentsMask )
+			{
+				return !( pEntityHandle == pSkip );
+			}
+
+			virtual TraceType_t GetTraceType() const
+			{
+				return TRACE_EVERYTHING;
+			}
+
+			void* pSkip;
+		};
+
 		bool isVisible(int bone) const
 		{
 			if (isDormant() || me().isDormant()) return false;
 			Ray_t ray;
 			trace_t tr;
+			CTraceFilter traceFilter(me().baseEnt);
 			ray.Init(me().getEyePos(), getBonePos(bone));
-			csgo->gTrace->TraceRay(ray, TRACE_FLAGS_ISVISIBLE, 0, &tr);
-			log.write(log.WARN, format("ent0x%X solid:%d base=0x%X fraction:%f\n") % tr.m_pEnt->index % tr.allsolid % baseEnt->index % tr.fraction);
-			if (tr.fraction > .98f) return true;
-			if (tr.m_pEnt  && !tr.allsolid && tr.m_pEnt->index == baseEnt->index) return true;
+			csgo->gTrace->TraceRay(ray, TRACE_FLAGS_ISVISIBLE, &traceFilter, &tr);
+			if (tr.fraction == 1.0f) return true;
+			if (tr.m_pEnt  && tr.m_pEnt == baseEnt) return true;
 			return false;
 		}
 
@@ -252,4 +308,5 @@ namespace ion
 		IClientNetworkable* network;
 		IClientEntity* clientEntity;
 	};
+	const entity entity::invalid = entity();
 };

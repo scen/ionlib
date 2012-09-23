@@ -40,6 +40,7 @@ namespace ion
 
 			appSystemFactory = **(CreateInterfaceFn**)sigs["AppSystemFactory"];
 			csgo->gGlobalVars = *(CGlobalVarsBase**)sigs["CGlobalVarsBase"];
+			csgo->weaponIDAsString = sigs["WeaponIDAsString"];
 
 			csgo->gEngine = reinterpret_cast<IVEngineClient*>(appSystemFactory(getInterface("VEngineClient0"), NULL));
 			csgo->gClient = reinterpret_cast<IBaseClientDLL*>(fnClient(getInterface("VClient0"), NULL));
