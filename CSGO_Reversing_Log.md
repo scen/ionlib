@@ -45,6 +45,8 @@ Reversing
 	* Dump in engine.dylib
 	* Added to SDK CSGO
 	* Can render spheres
+* C_BaseEntity->index
+	* Offset is 0x64 at the moment
 
 
 * IsDormant is no longer networked, it is a virtual of IClientNetworkable.
