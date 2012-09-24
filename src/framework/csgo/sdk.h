@@ -58,6 +58,9 @@
 #include "../../sdk/hl2_csgo/public/vgui/IPanel.h"
 #include "../../sdk/hl2_csgo/public/vgui/ISurfaceV30.h"
 #include "../../sdk/hl2_csgo/public/vgui/ILocalize.h"
+
+#include "../../sdk/hl2_csgo/public/tier1/checksum_crc.h"
+
 #undef private
 #undef protected
 

@@ -54,8 +54,10 @@ namespace ion
 			csgo->gMatSystem = reinterpret_cast<IMaterialSystem*>(appSystemFactory(getInterface("VMaterialSystem0"), NULL));
 			csgo->gDebugOverlay = reinterpret_cast<IVDebugOverlay*>(fnEngine(getInterface("VDebugOverlay0"), NULL));
 
-			//DWORD* clientVmt = *(DWORD**)(csgo->gClient);
-			//csgo->gInput = (CInput*)**(DWORD**)(clientVmt[14] + 0x2); //InActivateMouse();
+			DWORD* clientVmt = *(DWORD**)(csgo->gClient);
+			csgo->gInput = (CInput*)**(DWORD**)(clientVmt[15] + 0x2); //InActivateMouse();
+
+			log.write(log.WARN, format("input = 0x%X\n") % csgo->gInput);
 
 			//init fonts
 
@@ -67,6 +69,10 @@ namespace ion
 			csgo->nvar = new netvar(csgo->gClient);
 
 			csgo->clientHk = new vmt(csgo->gClient);
+			csgo->clientHk->hookMethod(&csgohook::hkCreateMove, csgohook::CLIENT_CREATEMOVE);
+
+			csgo->modelRenderHk = new vmt(csgo->gModelRender);
+			csgo->modelRenderHk->hookMethod(&csgohook::hkDrawModelExecute, csgohook::MODELRENDER_DRAWMODELEXECUTE);
 			
 			csgo->panelHk = new vmt(csgo->gPanel);
 			csgo->panelHk->hookMethod(&csgohook::hkPaintTraverse, csgohook::PANEL_PAINTTRAVERSE);

@@ -177,7 +177,7 @@ public:
 	virtual int	DrawModelExStaticProp( ModelRenderInfo_t &pInfo ) = 0;
 
 	virtual bool DrawModelSetup( ModelRenderInfo_t &pInfo, DrawModelState_t *pState, matrix3x4_t **ppBoneToWorldOut ) = 0;
-	virtual void DrawModelExecute( const DrawModelState_t &state, const ModelRenderInfo_t &pInfo, matrix3x4_t *pCustomBoneToWorld = NULL ) = 0;
+	virtual void DrawModelExecute(IMatRenderContext *d,DrawModelState_t  const&c,ModelRenderInfo_t  const&b,matrix3x4_t *a) = 0;
 
 	// Sets up lighting context for a point in space
 	virtual void SetupLighting( const Vector &vecCenter ) = 0;

@@ -28,6 +28,13 @@ namespace ion
 			wep_Clip1 = findOffset(t, "m_iClip1");
 			wep_Clip2 = findOffset(t, "m_iClip2");
 
+			t = findTable("DT_PlantedC4");
+			c4_Ticking = findOffset(t, "m_bBombTicking");
+			c4_Blow = findOffset(t, "m_flC4Blow");
+			c4_TimerLen = findOffset(t, "m_flTimerLength");
+			c4_DefuseLen = findOffset(t, "m_flDefuseLength");
+			c4_DefuseCountDown = findOffset(t, "m_flDefuseCountDown");
+
 			t = findTable("DT_BaseEntity");
 			ply_Team = findOffset(t, "m_iTeamNum");
 
@@ -151,6 +158,7 @@ namespace ion
 		DWORD ply_Health, ply_LifeState, ply_Team, ply_Origin, ply_Flags, ply_ActiveWeapon;
 		DWORD ply_EyePos;
 		DWORD wep_Owner, wep_Clip1, wep_Clip2;
+		DWORD c4_Ticking, c4_Blow, c4_TimerLen, c4_DefuseLen, c4_DefuseCountDown;
 
 		IBaseClientDLL* client;
 

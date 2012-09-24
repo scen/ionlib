@@ -676,7 +676,7 @@ abstract_class IBaseClientDLL
 public:
 	// Connect appsystem components, get global interfaces, don't run any other init code
 	virtual int				Connect( CreateInterfaceFn appSystemFactory, CGlobalVarsBase *pGlobals ) = 0;
-
+	virtual int				Disconnect( void) = 0;
 	// run other init code here
 	virtual int				Init( CreateInterfaceFn appSystemFactory, CGlobalVarsBase *pGlobals ) = 0;
 
@@ -684,7 +684,6 @@ public:
 
 	// Called once when the client DLL is being unloaded
 	virtual void			Shutdown( void ) = 0;
-	virtual void pad001(void) = 0;
 
 	// Called at the start of each level change
 	virtual void			LevelInitPreEntity( char const* pMapName ) = 0;
@@ -706,6 +705,8 @@ public:
 	virtual void			HudReset( void ) = 0;
 	// Display a hud text message
 	virtual void			HudText( const char * message ) = 0;
+
+	virtual void ShouldDrawDropdownConsole(void) = 0;
 
 	// Mouse Input Interfaces
 	// Activate the mouse (hides the cursor and locks it to the center of the screen)

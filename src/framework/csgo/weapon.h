@@ -81,7 +81,7 @@ namespace ion
 			return weaponIDAsString(getID());
 		}
 
-		C_BaseEntity* getPlayerOwner()
+		entity getPlayerOwner()
 		{
 			if (!isValid()) return 0;
 			typedef C_BaseEntity*(__thiscall* GetPlayerOwnerFn)(void *pthis);
@@ -90,7 +90,7 @@ namespace ion
 
 		const char* getNiceName() const
 		{
-			return getWeaponAlias(); // TODO
+			return getWeaponAlias() + 7; // TODO
 		}
 	};
 };

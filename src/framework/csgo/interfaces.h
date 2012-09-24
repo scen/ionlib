@@ -30,12 +30,15 @@ namespace ion
 
 		module modClient, modEngine;
 
-		vmt* clientHk, *inputHk, *panelHk;
+		vmt* clientHk, *inputHk, *panelHk, *modelRenderHk;
 		netvar* nvar;
 		csgorender* render;
 
 		//address
 		DWORD weaponIDAsString;
+
+		//materials
+		IMaterial* mat_tArms;
 
 		//fonts
 		csgofont* tahoma12;

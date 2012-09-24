@@ -27,7 +27,8 @@ namespace ion
 			UNKNOWN = 0,
 			PLAYER,
 			C4,
-			C4PLANTED
+			C4PLANTED,
+			WEAPON
 		};
 
 		enum ETeamID
@@ -129,12 +130,17 @@ namespace ion
 			//0123456789
 			if (name[1] == 'P' && name[4] == 'n' && name[9] == '4') return C4PLANTED;
 
+			if (!strncmp(name + 1, "Weapon", 6))
+			{
+				return WEAPON;
+			}
+
 			return UNKNOWN;
 		}
 
 		float distanceTo() const
 		{
-			return fabs((me().getOrigin() - getOrigin()).Length());
+			return sqrt(fabs((me().getOrigin() - getOrigin()).Length()));
 		}
 
 		const vector getOrigin() const

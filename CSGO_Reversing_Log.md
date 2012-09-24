@@ -17,6 +17,14 @@ Mac Bins
 	* `68 ? ? ? ? 52 FF D0 85 C0 75 0D 68 ? ? ? ? E8 ? ? ? ? 83 C4 04` + `0x1`
 
 * Updating classes
+	* client.dylib
+		* `CHLClient`
+			* After HudText()
+				* Add `virtual void ShouldDrawDropdownConsole(void) = 0;`
+			* After connect()
+				* add `virtual int				Disconnect( void) = 0;`
+		* `CInput`
+			* added a bunch of joystick functions
 	* engine.dylib
 		* `CEngineClient`
 			* After `Key_BindingForKey()`
@@ -48,6 +56,66 @@ Reversing
 * C_BaseEntity->index
 	* Offset is 0x64 at the moment
 
+* New CUserCmd crap
+	* since csgo refuses to work with olly, to get addy of getusercmd in ida, getvfunc(ginput, 8) then find address of it then sub from base address then add to ida's base address (0x1000000)
+	* http://www.gamedeception.net/threads/18658-L4D2-Verifying-CUserCmd
+	* GetUserCmd takes 2 args -1, 0
+			int __thiscall CInput__GetUserCmd(void *this, int nSlot, signed int sequence_number)
+			{
+			  int v3; // esi@2
+			  int v5; // eax@4
+
+			  if ( nSlot == -1 )
+			    v3 = (int)((char *)this + 56);
+			  else
+			    v3 = (int)(this + 212 * nSlot + 56);
+			  v5 = *(_DWORD *)(v3 + 172) + 100 * sequence_number % 150;// MULTIPLAYER_BACKUP = 150
+			  return ((*(_DWORD *)(v5 + 4) != sequence_number) - 1) & v5;
+			}
+
+			.text:102480C0 ; int __thiscall CInput__GetUserCmd(void *this, int nSlot, signed int sequence_number)
+			.text:102480C0 CInput__GetUserCmd proc near            ; DATA XREF: .rdata:105F2C74o
+			.text:102480C0                                         ; .rdata:1061F4B4o
+			.text:102480C0
+			.text:102480C0 nSlot           = dword ptr  8
+			.text:102480C0 sequence_number = dword ptr  0Ch
+			.text:102480C0
+			.text:102480C0                 push    ebp
+			.text:102480C1                 mov     ebp, esp
+			.text:102480C3                 mov     eax, [ebp+nSlot]
+			.text:102480C6                 push    esi
+			.text:102480C7                 cmp     eax, 0FFFFFFFFh ; CMP -1
+			.text:102480CA                 jnz     short loc_102480D1
+			.text:102480CC                 lea     esi, [ecx+38h]
+			.text:102480CF                 jmp     short loc_102480DB
+			.text:102480D1 ; ---------------------------------------------------------------------------
+			.text:102480D1
+			.text:102480D1 loc_102480D1:                           ; CODE XREF: CInput__GetUserCmd+Aj
+			.text:102480D1                 imul    eax, 0D4h
+			.text:102480D7                 lea     esi, [eax+ecx+38h]
+			.text:102480DB
+			.text:102480DB loc_102480DB:                           ; CODE XREF: CInput__GetUserCmd+Fj
+			.text:102480DB                 mov     ecx, [ebp+sequence_number]
+			.text:102480DE                 mov     eax, 1B4E81B5h
+			.text:102480E3                 imul    ecx
+			.text:102480E5                 sar     edx, 4
+			.text:102480E8                 mov     eax, edx
+			.text:102480EA                 shr     eax, 1Fh
+			.text:102480ED                 add     edx, eax
+			.text:102480EF                 imul    edx, 96h        ; MULTIPLAYER_BACKUP = 150 decimal
+			.text:102480F5                 mov     eax, ecx
+			.text:102480F7                 sub     eax, edx
+			.text:102480F9                 imul    eax, 64h        ; sizeof(CUserCmd) = 100
+			.text:102480FC                 add     eax, [esi+0ACh]
+			.text:10248102                 xor     edx, edx
+			.text:10248104                 cmp     [eax+4], ecx
+			.text:10248107                 pop     esi
+			.text:10248108                 setnz   dl
+			.text:1024810B                 dec     edx
+			.text:1024810C                 and     eax, edx
+			.text:1024810E                 pop     ebp
+			.text:1024810F                 retn    8
+			.text:1024810F CInput__GetUserCmd endp
 * WeaponIDS
 	* In mac bins the functions are called BLah::GetCSWeaponID() they just mov a # into eax
 	* Make ida script to loop through all functions

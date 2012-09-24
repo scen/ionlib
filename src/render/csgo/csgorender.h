@@ -26,12 +26,25 @@ namespace ion
 			wchar_t buf[512];
 			size_t cvt;
 			mbstowcs_s(&cvt, buf, strlen(fmt.c_str())+1, fmt.c_str(), _TRUNCATE);
-			m_surface->DrawSetTextColor(col.R, col.G, col.B, col.A);
-			m_surface->DrawSetTextFont(f->fnt);
-			m_surface->DrawSetTextPos(p.getX(), p.getY());
-			m_surface->DrawPrintText(buf, fmt.length());
+
 			size ret;
 			m_surface->GetTextSize(f->fnt, buf,  ret.m_width, ret.m_height);
+
+			m_surface->DrawSetTextColor(col.R, col.G, col.B, col.A);
+			m_surface->DrawSetTextFont(f->fnt);
+			if (flags & RAlign)
+			{
+				m_surface->DrawSetTextPos(p.getX() - ret.getWidth(), p.getY());
+			}
+			else if (flags & Center)
+			{
+				m_surface->DrawSetTextPos(p.getX() - (ret.getWidth() >> 1), p.getY());
+			}
+			else
+			{
+				m_surface->DrawSetTextPos(p.getX(), p.getY());
+			}
+			m_surface->DrawPrintText(buf, fmt.length());
 			return ret;
 		}
 

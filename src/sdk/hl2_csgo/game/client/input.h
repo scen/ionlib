@@ -50,10 +50,10 @@ public:
 
 class CInput : public ::IInput
 {
-// Interface
+	// Interface
 public:
-							CInput( void );
-							~CInput( void );
+	CInput( void );
+	~CInput( void );
 
 	virtual		void		Init_All( void );
 	virtual		void		Shutdown_All( void );
@@ -73,8 +73,14 @@ public:
 	virtual		kbutton_t	*FindKey( const char *name );
 
 	virtual		void		ControllerCommands( void );
+	virtual		bool		ControllerModeActive(void);
 	virtual		void		Joystick_Advanced( bool bSilent );
 	virtual		void		Joystick_SetSampleTime(float frametime);
+	virtual void Joystick_GetPitch(void);
+	virtual	void Joystick_GetYaw(void) = 0;
+	virtual	void Joystick_Querry(float &,float &,float &,float &) = 0;
+	virtual	void Joystick_ForceRecentering(int,bool) = 0;
+
 	virtual		void		IN_SetSampleTime( float frametime );
 
 	virtual		void		AccumulateMouse( int nSlot );
@@ -88,7 +94,7 @@ public:
 	virtual		void		SetFullscreenMousePos( int mx, int my );
 	virtual		void		ResetMouse( void );
 
-//	virtual		bool		IsNoClipping( void );
+	//	virtual		bool		IsNoClipping( void );
 	virtual		float		GetLastForwardMove( void );
 	virtual		void		ClearInputButton( int bits );
 
@@ -109,7 +115,7 @@ public:
 	virtual		void		CAM_ToOrthographic();
 	virtual		bool		CAM_IsOrthographic() const;
 	virtual		void		CAM_OrthographicSize( float& w, float& h ) const;
-	
+
 #if defined( HL2_CLIENT_DLL )
 	// IK back channel info
 	virtual		void		AddIKGroundContactInfo( int entindex, float minheight, float maxheight );
@@ -122,7 +128,7 @@ public:
 	virtual		void		CheckPaused( CUserCmd *cmd );
 	virtual		void		CheckSplitScreenMimic( int nSlot, CUserCmd *cmd, CUserCmd *pPlayer0Command );
 
-// Private Implementation
+	// Private Implementation
 protected:
 	// Implementation specific initialization
 	virtual void		Init_Camera( void );
@@ -152,7 +158,6 @@ protected:
 	float			ScaleAxisValue( const float axisValue, const float axisThreshold );
 	virtual void	JoyStickMove( float frametime, CUserCmd *cmd );
 
-	virtual bool	ControllerModeActive( void );
 	virtual bool	JoyStickActive();
 	virtual void	JoyStickSampleAxes( float &forward, float &side, float &pitch, float &yaw, bool &bAbsoluteYaw, bool &bAbsolutePitch );
 	virtual void	JoyStickThirdPersonPlatformer( CUserCmd *cmd, float &forward, float &side, float &pitch, float &yaw );
@@ -337,7 +342,7 @@ protected:
 	bool		m_fMouseParmsValid;
 	// List of queryable keys
 	CKeyboardKey *m_pKeys;
-	
+
 	PerUserInput_t	m_PerUser[ MAX_SPLITSCREEN_PLAYERS ];
 
 	InputContextHandle_t m_hInputContext;
@@ -363,4 +368,4 @@ extern void KeyUp( kbutton_t *b, const char *c );
 
 
 #endif // INPUT_H
-	
+
